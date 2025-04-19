@@ -36,7 +36,7 @@ function DBFetch() {
     );
     
     async function populateUserData() {
-        const response = await fetch(`${baseUrl}/user`);
+        const response = await fetch(`${baseUrl}/user/users`);
         if (response.ok) {
             const data = await response.json();
             setUsers(data);
