@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import PersonalPage from './components/PersonalPage';
 import Layout from './components/Layout';
 import DBFetch from './components/DBFetch';
+import AuthProvider from './components/AuthContext';
 
 const basename = process.env.REACT_APP_BASENAME;
 
@@ -14,12 +15,14 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter basename={basename}>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<DBFetch /> } />
-          <Route path="/me" element={<PersonalPage /> } />
-        </Routes>
-      </Layout>
+      <AuthProvider>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<DBFetch /> } />
+            <Route path="/me" element={<PersonalPage /> } />
+          </Routes>
+        </Layout>
+      </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

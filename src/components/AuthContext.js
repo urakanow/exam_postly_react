@@ -4,10 +4,11 @@ import axios from 'axios';
 export const AuthContext = createContext();
 
 function AuthProvider({ children }) {
-    const baseUrl = import.meta.env.VITE_API_BASE_URL;
+    //const baseUrl = import.meta.env.VITE_API_BASE_URL;
+    const baseUrl = process.env.REACT_APP_BASE_URL;
     const [accessToken, setAccessToken] = useState(() => {
         return sessionStorage.getItem('accessToken') || null;
-        return token && !isTokenExpired(token) ? token : null;
+        //return token && !isTokenExpired(token) ? token : null;
     });
     const [authErrorMessage, setAuthErrorMessage] = useState("");
 
