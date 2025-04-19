@@ -6,6 +6,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import PersonalPage from './components/PersonalPage';
 import Layout from './components/Layout';
+import DBFetch from './components/DBFetch';
 
 const basename = process.env.REACT_APP_BASENAME;
 
@@ -15,7 +16,7 @@ root.render(
     <BrowserRouter basename={basename}>
       <Layout>
         <Routes>
-          <Route path="/" element={<App /> } />
+          <Route path="/" element={<DBFetch /> } />
           <Route path="/me" element={<PersonalPage /> } />
         </Routes>
       </Layout>
