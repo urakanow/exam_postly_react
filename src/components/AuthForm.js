@@ -68,7 +68,8 @@ function AuthForm() {
                 "Content-Type": "application/json",
             },
             method: 'POST',
-            body: JSON.stringify({ username, email, password })
+            body: JSON.stringify({ username, email, password }),
+            credentials: "include"
         });
 
         await handleResponse(response);
@@ -81,7 +82,8 @@ function AuthForm() {
                 "Content-Type": "application/json",
             },
             method: 'POST',
-            body: JSON.stringify({ email, password })
+            body: JSON.stringify({ email, password }),
+            credentials: "include"
         });
 
         await handleResponse(response);
