@@ -22,8 +22,8 @@ function PersonalPage() {
     //const baseUrl = import.meta.env.VITE_API_BASE_URL;
     const baseUrl = process.env.REACT_APP_BASE_URL;
 
-    const [userData, setUserData] = useState();
-    const { accessToken, showAuthForm } = useContext(AuthContext);
+    const [userData, setUserData] = useState(null);
+    const { accessToken, setAccessToken } = useContext(AuthContext);
     const { authorizedRequest } = useApi();
 
     useEffect(() => {
@@ -36,6 +36,7 @@ function PersonalPage() {
                 <div>
                     {userData.username}
                     {userData.email}
+                    <button type='button' onClick={() => logout()}>logout</button>
                 </div>
             ) : (
                 <div>
@@ -54,11 +55,29 @@ function PersonalPage() {
                 url: `${baseUrl}/user/personal-page`
             });
 
-            if (response.status == 200) {
+            if (response.status === 200) {
                 setUserData(response.data);
             }
         } catch (err) {
             console.error('Failed to fetch user data:', err);
+        }
+    }
+
+    async function logout(){
+        try {
+            const response = await authorizedRequest({
+                method: 'POST',
+                url: `${baseUrl}/user/logout`,
+            });
+
+            if (response.status === 200) {
+                //const data = await response.json();
+                console.log(response.data.message);
+                setAccessToken(null);
+                setUserData(null);
+            }
+        } catch (err) {
+            console.error('Unexpected error:', err);
         }
     }
 }
