@@ -8,6 +8,9 @@ import PersonalPage from './components/PersonalPage';
 import Layout from './components/Layout';
 import DBFetch from './components/DBFetch';
 import AuthProvider from './components/AuthContext';
+import OffersDisplayPage from './components/OffersDisplayPage';
+import OfferInfoPage from './components/OfferInfoPage';
+
 
 const basename = process.env.REACT_APP_BASENAME;
 
@@ -18,8 +21,9 @@ root.render(
       <AuthProvider>
         <Layout>
           <Routes>
-            <Route path="/" element={<DBFetch /> } />
+            <Route path="/" element={<OffersDisplayPage /> } />
             <Route path="/me" element={<PersonalPage /> } />
+            <Route path='/offer' element={<OfferInfoPage offer />} />
           </Routes>
         </Layout>
       </AuthProvider>

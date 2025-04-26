@@ -77,3 +77,15 @@ main{
   align-items: center;
   font-size: 20px;
 }
+
+.offer-block{
+  background-color: red;
+  padding: 20px;
+  border: 2px solid black;
+}
+
+.offer-container{
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
