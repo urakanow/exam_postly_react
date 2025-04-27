@@ -8,7 +8,9 @@ function Header() {
             <nav>
                 <Link to="/">Home </Link>
                 |
-                <Link to="/me"> Me</Link>
+                <Link to="/me"> Me </Link>
+                |
+                <Link to="/create-offer"> Create Offer</Link>
             </nav>
         </header>
     );

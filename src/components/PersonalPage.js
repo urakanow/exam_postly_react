@@ -39,8 +39,9 @@ function PersonalPage() {
             });
 
             if (response.status === 200) {
-                console.log(response.json());
-                setUserData(response.json());
+                //const data = awaitresponse.json();
+                console.log(response.data);
+                setUserData(response.data);
             }
         } catch (err) {
             console.error('Failed to fetch user data:', err);

@@ -30,9 +30,10 @@ export default function useApi() {
             ...config,
             headers: {
                 ...config.headers,
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json" 
             },
-            withCredentials: true  // For refresh token cookie
+            withCredentials: true,  // For refresh token cookie
         });
         return response;
     };

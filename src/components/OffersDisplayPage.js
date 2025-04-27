@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext } from "react";
-import OfferInfoPage from "./OfferInfoPage";
+import OfferInfoPage from "./OfferElement";
 import { AuthContext } from "./AuthContext";
 import useApi from "./UseApi";
 
 function OffersDisplayPage() {
-    const [offers, setOffers] = useState(null);
+    const [offers, setOffers] = useState([]);
     const { accessToken, setAccessToken, baseUrl } = useContext(AuthContext);
     const { authorizedRequest } = useApi();
 
@@ -13,10 +13,10 @@ function OffersDisplayPage() {
     }, []);
 
     return ( 
-        offers ? (
+        offers.length > 0 ? (
             <div className="offer-container">
                 {offers.map(offer => 
-                    <OfferInfoPage offerData={offer} />
+                    <OfferInfoPage offerData={offer} key={offer.id}/>
                 )}
             </div>
         ) : (
@@ -34,7 +34,7 @@ function OffersDisplayPage() {
             if (response.status === 200) {
                 const data = await response.json();
                 setOffers(data);
-                // console.log(response.json());
+                console.log(data);
             }
         } catch (err) {
             console.error('Failed to fetch offers:', err);
