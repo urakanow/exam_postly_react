@@ -6,9 +6,12 @@ import reportWebVitals from './reportWebVitals';
 import PersonalPage from './components/PersonalPage';
 import Layout from './components/Layout';
 import AuthProvider from './components/AuthContext';
-import OffersDisplayPage from './components/OffersDisplayPage';
+import OffersDisplayPage from './components/OffersPage';
 import OfferPage from './components/OfferPage';
 import CreateOfferPage from './components/CreateOfferPage';
+import MyOffersPage from './components/MyOffersPage';
+import MyOfferPage from './components/MyOfferPage';
+import OffersPage from './components/OffersPage';
 
 
 const basename = process.env.REACT_APP_BASENAME;
@@ -20,10 +23,12 @@ root.render(
       <AuthProvider>
         <Layout>
           <Routes>
-            <Route path="/" element={<OffersDisplayPage /> } />
+            <Route path="/" element={<OffersPage /> } />
             <Route path="/me" element={<PersonalPage /> } />
-            <Route path='/offer/:title' element={<OfferPage />} />
+            <Route path='/offer/:id' element={<OfferPage />} />
             <Route path='/create-offer' element={<CreateOfferPage />} />
+            <Route path='/my-offers' element={<MyOffersPage />} />
+            <Route path='/my-offer/:id' element={<MyOfferPage />} />
           </Routes>
         </Layout>
       </AuthProvider>

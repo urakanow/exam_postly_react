@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 
-function OfferPage() {
+
+function MyOfferPage() {
     const { id } = useParams();
 
     return ( 
@@ -10,4 +11,4 @@ function OfferPage() {
     );
 }
 
-export default OfferPage;
+export default MyOfferPage;

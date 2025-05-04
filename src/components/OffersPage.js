@@ -2,8 +2,9 @@ import { useState, useEffect, useContext } from "react";
 import OfferInfoPage from "./OfferElement";
 import { AuthContext } from "./AuthContext";
 import useApi from "./UseApi";
+import { Grid } from "@mui/material";
 
-function OffersDisplayPage() {
+function OffersPage() {
     const [offers, setOffers] = useState([]);
     const { accessToken, setAccessToken, baseUrl } = useContext(AuthContext);
     const { authorizedRequest } = useApi();
@@ -14,11 +15,11 @@ function OffersDisplayPage() {
 
     return ( 
         offers.length > 0 ? (
-            <div className="offer-container">
+            <Grid container spacing={2} className="offer-container">
                 {offers.map(offer => 
-                    <OfferInfoPage offerData={offer} key={offer.id}/>
+                    <OfferInfoPage offerData={offer} linkUrl={"offer"} key={offer.id}/>
                 )}
-            </div>
+            </Grid>
         ) : (
             <>
                 there isnt any offers
@@ -43,4 +44,4 @@ function OffersDisplayPage() {
     }
 }
 
-export default OffersDisplayPage;
+export default OffersPage;

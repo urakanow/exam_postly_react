@@ -10,7 +10,9 @@ function Header() {
                 |
                 <Link to="/me"> Me </Link>
                 |
-                <Link to="/create-offer"> Create Offer</Link>
+                <Link to="/create-offer"> Create Offer </Link>
+                |
+                <Link to="/my-offers"> My Offers</Link>
             </nav>
         </header>
     );
