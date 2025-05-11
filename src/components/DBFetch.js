@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { AuthContext } from './AuthContext';
 
 function DBFetch() {
-    const baseUrl = process.env.REACT_APP_BASE_URL;
+    const { baseUrl } = useContext(AuthContext);
     const [users, setUsers] = useState();
 
     useEffect(() => {

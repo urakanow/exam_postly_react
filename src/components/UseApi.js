@@ -19,20 +19,47 @@ export default function useApi() {
         }
     };
 
+    // const authorizedRequest = async (config) => {
+    //     let token = accessToken;
+
+    //     if (!token || isTokenExpired(token)) {
+    //         token = await refreshToken();
+    //     }
+
+    //     const response = await axios({
+    //         ...config,
+    //         headers: {
+    //             ...config.headers,
+    //             Authorization: `Bearer ${token}`,
+    //             "Content-Type": "application/json" 
+    //         },
+    //         withCredentials: true,  // For refresh token cookie
+    //     });
+    //     return response;
+    // };
+
     const authorizedRequest = async (config) => {
         let token = accessToken;
-
+    
         if (!token || isTokenExpired(token)) {
             token = await refreshToken();
         }
-
+    
+        // Determine content type - don't set for FormData
+        const headers = {
+            ...config.headers,
+            Authorization: `Bearer ${token}`
+        };
+    
+        // If not FormData, default to JSON
+        if (!(config.data instanceof FormData)) {
+            headers['Content-Type'] = 'application/json';
+        }
+    
         const response = await axios({
             ...config,
-            headers: {
-                ...config.headers,
-                Authorization: `Bearer ${token}`
-            },
-            withCredentials: true  // For refresh token cookie
+            headers,
+            withCredentials: true,
         });
         return response;
     };

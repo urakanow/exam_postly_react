@@ -1,17 +1,3 @@
-// function PersonalPage() {
-//     const baseUrl = "https://localhost:7256";
-
-//     return (
-//         <div>
-//             name placeholder
-//             email placeholder
-//         </div>
-//     );
-    
-// }
-
-// export default PersonalPage;
-
 import { useEffect, useState, useContext } from 'react';
 import '../App.css';
 import { AuthContext } from './AuthContext';
@@ -19,11 +5,8 @@ import useApi from './UseApi';
 import AuthForm from './AuthForm';
 
 function PersonalPage() {
-    //const baseUrl = import.meta.env.VITE_API_BASE_URL;
-    const baseUrl = process.env.REACT_APP_BASE_URL;
-
     const [userData, setUserData] = useState(null);
-    const { accessToken, setAccessToken } = useContext(AuthContext);
+    const { accessToken, setAccessToken, baseUrl } = useContext(AuthContext);
     const { authorizedRequest } = useApi();
 
     useEffect(() => {
@@ -56,6 +39,8 @@ function PersonalPage() {
             });
 
             if (response.status === 200) {
+                //const data = awaitresponse.json();
+                console.log(response.data);
                 setUserData(response.data);
             }
         } catch (err) {
@@ -71,7 +56,6 @@ function PersonalPage() {
             });
 
             if (response.status === 200) {
-                //const data = await response.json();
                 console.log(response.data.message);
                 setAccessToken(null);
                 setUserData(null);

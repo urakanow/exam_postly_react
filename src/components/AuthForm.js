@@ -3,9 +3,7 @@ import '../App.css';
 import { AuthContext } from './AuthContext';
 
 function AuthForm() {
-    // const baseUrl = import.meta.env.VITE_API_BASE_URL;
-    const baseUrl = process.env.REACT_APP_BASE_URL;
-    const { setAccessToken, authErrorMessage, setAuthErrorMessage } = useContext(AuthContext);
+    const { setAccessToken, authErrorMessage, setAuthErrorMessage, baseUrl } = useContext(AuthContext);
     const [isLogin, setIsLogin] = useState(true);
 
     const [username, setUsername] = useState("");
