@@ -12,46 +12,65 @@ import { Grid, Grow, ListItem } from '@mui/material';
 function OfferElement({ offerData, linkUrl }) {
     const cld = new Cloudinary({ cloud: { cloudName: 'dxvwnanu4' } });
     const [showDefaultImage, setShowDefaultImage] = useState(true);
+    const [image, setImage] = useState(null);
     
-    async function isImageLegit(){
-        try {
-            const response = await fetch(`https://res.cloudinary.com/dxvwnanu4/image/upload/${offerData.imageUrl}`, {
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                method: 'get',
-            });
+    // async function isImageLegit(){
+    //     try {
+    //         const response = await fetch(`https://res.cloudinary.com/dxvwnanu4/image/upload/${offerData.imageUrl}`, {
+    //             headers: {
+    //                 "Content-Type": "application/json"
+    //             },
+    //             method: 'get',
+    //         });
 
-            if (response.status === 200) {
-                console.log("image url is legit");
-                setShowDefaultImage(false);
-            }
-            else{
-                console.log("image url is shit")
-            }
-        } catch (err) {
-            console.error('Failed to fetch user data:', err);
-        }
-    }
+    //         if (response.status === 200) {
+    //             setShowDefaultImage(false);
+    //         }
+    //     } catch (err) {
+    //         console.error('Failed to fetch image:', err);
+    //     }
+    // }
 
-    useEffect(() => {
-        isImageLegit();
-    }, [])
+    // useEffect(() => {
+    //     isImageLegit();
+    // }, [])
+
+    useEffect(() =>{
+        const img = cld
+        .image(offerData.imageUrl)
+        .format('auto') // Optimize delivery by resizing and applying auto-format and auto-quality
+        .quality('auto')
+        .resize(auto().gravity(autoGravity()).width(250).height(250)); // Transform the image: auto-crop to square aspect_ratio
+
+        const imgElement = new Image();
+        imgElement.src = img.toURL();
+
+        imgElement.onload = () => {
+            setImage(img);
+        };
+
+        imgElement.onerror = () => {
+            setImage(null);
+        };
+    }, [offerData.imageUrl])
     
     
-    const img = cld
-    .image(offerData.imageUrl)
-    .format('auto') // Optimize delivery by resizing and applying auto-format and auto-quality
-    .quality('auto')
-    .resize(auto().gravity(autoGravity()).width(250).height(250)); // Transform the image: auto-crop to square aspect_ratio
+    // const img = cld
+    // .image(offerData.imageUrl)
+    // .format('auto') // Optimize delivery by resizing and applying auto-format and auto-quality
+    // .quality('auto')
+    // .resize(auto().gravity(autoGravity()).width(250).height(250)); // Transform the image: auto-crop to square aspect_ratio
     
     return (
         <Grid size={Grow}>
             <ListItem >
                 <Link className="offer-block" to={`${linkUrl}/${offerData.id}`}>
                     <p className='offer-text'>{offerData.title}</p><br />
-                    {showDefaultImage ? <img src='default_image.jpg' style={{width: '250px', height: '250px', objectFit: 'cover', objectPosition: 'center'}}/>
-                    : <AdvancedImage cldImg={img}/> }
+                    {image ? (
+                        <AdvancedImage cldImg={image} onError={() => setImage(null)}/>
+                    ) : (
+                        <img src='default_image.jpg' style={{width: '250px', height: '250px', objectFit: 'cover', objectPosition: 'center'}}/>
+                    )}
                     <span className='offer-text'>{offerData.price}</span>
                 </Link>
             </ListItem>

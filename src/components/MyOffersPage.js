@@ -37,7 +37,6 @@ function MyOffersPage() {
             if (response.status === 200) {
                 // const data = await response.json();
                 setOffers(response.data);
-                console.log(response.data);
             }
         } catch (err) {
             console.error('Failed to fetch offers:', err);
