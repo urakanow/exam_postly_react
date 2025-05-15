@@ -15,10 +15,55 @@ function MyOfferPage() {
     const [image, setImage] = useState(null)
     const cld = new Cloudinary({ cloud: { cloudName: 'dxvwnanu4' } });
     const navigate = useNavigate();
-
+    const [showSaveButton, setShowSaveButton] = useState(false);
+    
     useEffect(() => {
         populateOfferData();
     }, [])
+    
+    function offerEdited() {
+        if(!showSaveButton){
+            setShowSaveButton(true);
+        }       
+    }
+
+    const handleTitleChange = (e) => {
+        setOfferData(prev => ({
+            ...prev,
+            title: e.target.value
+        }));
+        
+        offerEdited();
+    };
+
+    function isDouble(str) {
+        // Trim whitespace and check if empty
+        if (typeof str !== 'string' || str.trim() === '') {
+            return false;
+        }
+        
+        // Convert to number
+        const num = Number(str);
+        
+        // Check if it's a finite number (not NaN, not Infinity)
+        return !isNaN(num) && isFinite(num);
+    }
+
+    const handlePriceChange = (e) => {
+        let enteredPrice = e.target.value
+        
+        if(!isDouble(enteredPrice)){
+            
+            return;
+        }
+
+        setOfferData(prev => ({
+            ...prev,
+            price: enteredPrice
+        }));
+
+        offerEdited();
+    };
 
     return ( 
         <>
@@ -28,18 +73,23 @@ function MyOfferPage() {
                 </>
             ) : (
                 <>
-                    <h2>{offerData.title}</h2>
+                    <input type='text' value={offerData.title} onChange={handleTitleChange}></input>
                     {image && (
                         <AdvancedImage cldImg={image} />
                     )}
                     <p>{offerData.price}€</p>
+                    <input type='text' value={offerData.price} onChange={handlePriceChange}></input>{/*€*/}
                 </>
             )}
             <div>
                 <button onClick={() => deleteOffer()}>Delete Offer</button>
+                {showSaveButton && (
+                    <button onClick={() => editOffer()}>Save</button>
+                )} 
             </div>
         </>
     );
+
 
     async function populateOfferData(){
         try{
@@ -77,6 +127,24 @@ function MyOfferPage() {
         } catch(err) {
             console.error("failed to delete offer: ", err)
         }
+    }
+
+    async function editOffer(){
+        try{
+            const response = await authorizedRequest({
+                method: 'update',
+                url: `${baseUrl}/offer/edit-offer`,
+                data: JSON.stringify(offerData)
+            })
+
+            if(response.status === 200){
+                console.log(response.data.message)
+                setShowSaveButton(false)
+            }
+        } catch(err) {
+            console.error("failed to edit offer: ", err)
+        }
+        console.log("offer editing saved")
     }
 }
 
