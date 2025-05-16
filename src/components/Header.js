@@ -13,7 +13,7 @@ function Header() {
 
             <div className='search_bar'>
                 <img src='img/search_icon.png'/>
-                <input type='text' placeholder='Пошук' id='search_input'/>
+                <input type='text' placeholder='Пошук...' id='search_input'/>
             </div>
 
             <nav>
