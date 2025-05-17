@@ -1,6 +1,6 @@
-import '../App.css';
-import Header from './Header.js';
-import Footer from './Footer.js';
+import '../../App.css';
+import Header from '../Header/Header.js';
+import Footer from '../Footer/Footer.js';
 
 function Layout({ children }) {
     return (

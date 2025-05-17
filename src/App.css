@@ -219,7 +219,7 @@ footer p{
   margin: 0;
 }
 
-.footer_social_media_text{
+.social_media_text{
   font-size: 20px;
   font-family: IstokWebBold;
   font-weight: 700;
@@ -233,14 +233,14 @@ footer p{
   font-size: 20px;
 }
 
-.footer_social_media{
+.social_media{
   display: flex;
   flex-direction: column;
   gap: 10px;
   margin-top: 16px;
 }
 
-.footer_social_media_images{
+.social_media_images{
   display: flex;
   flex-direction: row;
   gap: 20px;
