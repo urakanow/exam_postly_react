@@ -37,23 +37,19 @@
   }
 }
 
-header {
-  height: 100px;
-  background-color: rgb(128, 68, 0);
-  color: rgb(255, 255, 255);
-  font-size: 20px;
+@font-face {
+  font-family: IstokWeb;
+  src: url(fonts/Istok_Web/IstokWeb-Regular.ttf);
 }
 
-main {
-  flex: 1;
-  display: flex;
+@font-face {
+  font-family: IstokWebBold;
+  src: url(fonts/Istok_Web/IstokWeb-Bold.ttf);
 }
 
-footer {
-  height: 100px;
-  background-color: rgb(128, 68, 0);
-  color: rgb(255, 255, 255);
-  font-size: 20px;
+@font-face {
+  font-family: Inter;
+  src: url(fonts/Inter/Inter-VariableFont_opsz\,wght.ttf);
 }
 
 body {
@@ -71,7 +67,7 @@ body {
 }
 
 main{
-  /* margin:0 auto auto auto; */
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -104,4 +100,455 @@ main{
   text-decoration: none;
   color: black;
   
+}
+
+
+/* HEADER */
+
+header {
+  height: 104px;
+  background: linear-gradient(192.08deg, #2C3331 -88.48%, #212121 141.66%);
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+  box-shadow: 0px 4px 4px 0px #00000040;
+  box-shadow: 0px 4px 4px 0px #00000040 inset;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 104px;
+}
+
+/* logo */
+
+.logo {
+  font-family: IstokWebBold;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+}
+
+.logo #gradient_part {
+  background: linear-gradient(90.02deg, rgba(255, 255, 255, 1) 0.02%, rgba(153, 153, 153, 1) 144.48%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline;
+}
+
+.logo #green_part{
+  color: #38cfa4;
+  display: inline;
+}
+
+#logo_nav_link{
+  text-decoration: none;
+}
+
+/* search bar */
+
+.search_bar{
+  width: 812px;
+  height: 32px;
+  border-radius: 12px;
+  background: rgba(217, 217, 217, 1);
+  text-align: left;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.search_bar img{
+  width: 37px;
+  height: 37px;
+  rotate: 77.48deg;
+}
+
+.search_bar input{
+  color: rgba(38, 41, 40, 1);
+  font-family: IstokWebBold;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  flex: 1;
+}
+
+#search_input{
+  border: none;
+  background: none;
+}
+
+#search_input:focus{
+  border: none;
+  outline: none;
+  background: none;
+}
+
+/* navigation */
+
+nav {
+  display: flex;
+  flex-direction: row;
+  gap: 26px;
+}
+
+nav a {
+  height: 62px;
+  width: 62px;
+  border-radius: 17px;
+  background: 
+  linear-gradient(rgba(38, 41, 40, 1), rgba(38, 41, 40, 1)) padding-box,
+  linear-gradient(256.41deg, #1BFABB -49.55%, #4B7A6D 162.92%) border-box;
+  border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+nav a img{
+  width: 28px;
+}
+
+#nav_plus{
+  font-family: IstokWebBold;
+  font-weight: 700;
+  font-size: 37px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+}
+
+#nav_plus img{
+  width: 20px;
+  height: 20px;
+}
+
+
+/* FOOTER */
+
+footer {
+  padding: 46px 0;
+  background-color: rgb(128, 68, 0);
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+  background: linear-gradient(192.08deg, #2C3331 -88.48%, #212121 141.66%);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+}
+
+footer p{
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  color: white;
+  margin: 0;
+}
+
+/* social media */
+
+.social_media_text{
+  font-size: 20px;
+  font-family: IstokWebBold;
+  font-weight: 700;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  color: white;
+}
+
+#footer_logo{
+  font-size: 20px;
+}
+
+.social_media{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.social_media_images{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+#tiktok_logo{
+  width: 52px;
+  height: 52px;
+}
+
+#youtube_logo{
+  width: 60px;
+}
+
+#instagram_logo{
+  width: 60px;
+  height: 60px;
+}
+
+/* faq */
+
+.faq{
+  display: flex;
+  flex-direction: row;
+  gap: 80px;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.faq_column{
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.faq_column span{
+  font-size: 20px;
+  font-family: IstokWebBold;
+  font-weight: 700;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  color: white;
+  text-align: left;
+}
+
+/* download buttons */
+
+.download_buttons{
+  margin-top: 66px;
+  display: flex;
+  flex-direction: row;
+  gap: 190px;
+  justify-content: center;
+}
+
+.download_buttons img{
+  height: 84px;
+}
+
+
+/* MAIN */
+
+/* top slogan */
+
+.top_slogan {
+  background-image: url('../public/img/top_slogan_background.png');
+  height: 671px;
+  width: 100%;
+  box-sizing: border-box;
+  background-size: cover; /* Scales image to fill container */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents tiling */
+  font-size: 48px;
+  font-family: IstokWebBold;
+  /* font-weight: 600; */
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  color: black;
+  text-align: left;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 100px;
+  gap: 170px;
+}
+.top_slogan span{
+  line-height: 150%;
+}
+
+.top_slogan img{
+  width: 592px;
+  height: 431px;
+}
+
+/* categories section */
+
+.categories_section{
+  height: 172px;
+  padding: 22px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 21px;
+  width: 100%;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.category_preview{
+  border: 1px solid rgba(178, 178, 178, 1);
+  border-radius: 13px;
+  display: flex;
+  flex-direction: column;
+  padding: 22px 14px 28px 14px;
+  width: calc(153px - 14px - 14px - 2px);
+}
+
+.category_preview_separator{
+  margin-top: 9px;
+  border: 1px solid rgba(178, 178, 178, 1);
+}
+
+.category_preview img{
+  height: 72px;
+  width: auto;
+  flex-shrink: 0;
+  object-fit: contain;
+  margin-top: 8;
+}
+
+.category_preview span{
+  margin-top: 18px;
+  font-family: Inter;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  color: rgba(38, 41, 40, 1);
+}
+
+#electronics{
+  font-size: 22px;
+}
+
+#real_estate{
+  font-size: 20px;
+}
+
+/* offers section */
+
+.offers_section{
+  padding: 66px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.category_name{
+  font-family: IstokWebBold;
+  /* font-weight: 700; */
+  font-size: 48px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.offers_grid{
+  padding: 0 240px;
+}
+
+.offer_element{
+  width: 328px;
+  height: 356px;
+  box-shadow: 0px 4px 11.2px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  text-align: left;
+  position: relative;
+}
+
+.offer_preview_image{
+  border-radius: 10px;
+  width: 100%;
+  height: 250px;
+  object-fit: contain; /* or 'cover' based on your needs */
+  object-position: center;
+}
+
+.offer_element h1{
+  font-family: IstokWebBold;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  margin-left: 18px;
+}
+
+.offer_element span{
+  font-family: IstokWeb;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  margin-top: 24px;
+  margin-left: 18px;
+  display: block;
+}
+
+.favorite_button{
+  position:absolute;
+  right: 16px;
+  top: 14px;
+  width: 30px;
+  /* height: 30px; */
+}
+
+.see_more{
+  background-color: #39CDA3;
+  width: 194px;
+  height: 35px;
+  margin-top: 38px;
+  color: black;
+  font-family: IstokWeb;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 10px;
+  border: none;
+}
+
+.categories_separator{
+  border: 2.5px solid #39CDA3;
+  height: 0;
+  width: 370px;
+  margin-top: 38px;
+}
+
+.banner_slogan{
+  height: 535px;
+  width: calc(100% - 100px - 100px);
+  margin: 38px 0;
+  box-sizing: border-box;
+  background: linear-gradient(0deg, #0D1211, #0D1211);
+  box-shadow: 0px 4px 4px 0px #00000040;
+  border-radius: 37px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 36px;
+}
+
+.banner_slogan img{
+  width: 384px;
+  height: 422px;
+}
+
+.banner_slogan span{
+  font-family: IstokWebBold;
+  /* font-weight: 700; */
+  font-size: 48px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  color: white;
+  line-height: 150%;
 }

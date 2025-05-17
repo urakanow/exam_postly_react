@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useContext, useState, useEffect, useRef, useMemo, useCallback } from 'react';
-import { AuthContext } from './AuthContext';
-import useApi from './UseApi';
+import { AuthContext } from './Shared/AuthContext';
+import useApi from './Shared/UseApi';
 import { AdvancedImage } from '@cloudinary/react';
 import { Cloudinary } from '@cloudinary/url-gen/index';
 import { auto } from '@cloudinary/url-gen/actions/resize';

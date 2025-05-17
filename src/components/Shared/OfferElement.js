@@ -3,7 +3,7 @@ import { Cloudinary } from '@cloudinary/url-gen';
 import { auto } from '@cloudinary/url-gen/actions/resize';
 import { autoGravity } from '@cloudinary/url-gen/qualifiers/gravity';
 import { AdvancedImage } from '@cloudinary/react';
-import '../App.css';
+import '../../App.css';
 import { Link } from 'react-router-dom';
 import  { useParams } from 'react-router-dom';
 import { Grid, Grow, ListItem } from '@mui/material';

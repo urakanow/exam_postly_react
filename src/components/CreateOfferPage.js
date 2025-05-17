@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react';
-import { AuthContext } from './AuthContext';
-import useApi from './UseApi';
+import { AuthContext } from './Shared/AuthContext';
+import useApi from './Shared/UseApi';
 import { useNavigate } from 'react-router-dom';
-import UploadWidget from './UploadWidget';
+// import UploadWidget from './Deprecated/UploadWidget';
 
 function CreateOfferPage() {
     const [title, setTitle] = useState();
@@ -33,7 +33,7 @@ function CreateOfferPage() {
                 <button type='submit'>Publish</button>
             </form>
 
-            <UploadWidget />
+            {/* <UploadWidget /> */}
         </>
     );
 
