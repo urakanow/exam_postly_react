@@ -1,8 +1,8 @@
 import CategoryPreview from "./CategoryPreview";
 
-function CategoryPreviewSection() {
+function CategoriesSection() {
     return (
-        <div className="categories_stripe">
+        <div className="categories_section">
             <CategoryPreview imgUrl="img/furniture_icon.png" categoryName="Меблі" />
 
             <CategoryPreview imgUrl="img/electronics_icon.png" categoryName="Електроніка" id="electronics" />
@@ -22,4 +22,4 @@ function CategoryPreviewSection() {
      );
 }
 
-export default CategoryPreviewSection;
+export default CategoriesSection;
