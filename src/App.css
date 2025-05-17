@@ -294,6 +294,43 @@ footer p{
   height: 84px;
 }
 
+/* .top_slogan{
+  background-image: url('../public/img/top_slogan_background.png');
+  height: 671px;
+  width: 100%;
+  background-clip: unset;
+} */
+.top_slogan {
+  background-image: url('../public/img/top_slogan_background.png');
+  height: 671px;
+  width: 100%;
+  box-sizing: border-box;
+  background-size: cover; /* Scales image to fill container */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents tiling */
+  font-size: 48px;
+  font-family: IstokWebBold;
+  /* font-weight: 600; */
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  color: black;
+  text-align: left;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 100px;
+  gap: 170px;
+}
+.top_slogan span{
+  line-height: 150%;
+}
+
+.top_slogan img{
+  width: 592px;
+  height: 431px;
+}
+
 body {
   min-height: 100vh;
   display: flex;

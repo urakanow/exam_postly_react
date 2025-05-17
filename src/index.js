@@ -13,6 +13,7 @@ import MyOffersPage from './components/MyOffersPage';
 import MyOfferPage from './components/MyOfferPage';
 import OffersPage from './components/OffersPage';
 import FavoritesPage from './components/FavoritesPage';
+import MainPage from './components/MainPage';
 
 
 const basename = process.env.REACT_APP_BASENAME;
@@ -24,7 +25,8 @@ root.render(
       <AuthProvider>
         <Layout>
           <Routes>
-            <Route path="/" element={<OffersPage /> } />
+            {/* <Route path="/" element={<OffersPage /> } /> */}
+            <Route path="/" element={<MainPage /> } />
             <Route path="/me" element={<PersonalPage /> } />
             <Route path='/offer/:id' element={<OfferPage />} />
             <Route path='/create-offer' element={<CreateOfferPage />} />
