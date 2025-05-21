@@ -8,7 +8,10 @@ import Layout from './components/Shared/Layout';
 import AuthProvider from './components/Shared/AuthContext';
 import OffersDisplayPage from './components/OffersPage';
 import OfferPage from './components/OfferPage';
-import CreateOfferPage from './components/CreateOfferPage';
+
+// import CreateOfferPage from './components/CreateOfferPage';
+import CreateOfferPage from './components/Create_Offer_Page/CreateOfferPage';
+
 import MyOffersPage from './components/MyOffersPage';
 import MyOfferPage from './components/MyOfferPage';
 import OffersPage from './components/OffersPage';
@@ -29,6 +32,7 @@ root.render(
             <Route path="/" element={<MainPage /> } />
             <Route path="/me" element={<PersonalPage /> } />
             <Route path='/offer/:id' element={<OfferPage />} />
+            {/* <Route path='/create-offer' element={<CreateOfferPage />} /> */}
             <Route path='/create-offer' element={<CreateOfferPage />} />
             <Route path='/my-offers' element={<MyOffersPage />} />
             <Route path='/favorites' element={<FavoritesPage />} />
