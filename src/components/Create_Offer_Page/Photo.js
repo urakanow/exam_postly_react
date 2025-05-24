@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 
-function Photo() {
+function Photo({ onFilesSelect }) {
     const [preview, setPreview] = useState(null);
     const fileInputRef = useRef(null);
 
@@ -15,6 +15,7 @@ function Photo() {
             const reader = new FileReader();
             reader.onload = (e) => setPreview(e.target.result);
             reader.readAsDataURL(files[0]);
+            onFilesSelect(files[0]);
         }
     };
 

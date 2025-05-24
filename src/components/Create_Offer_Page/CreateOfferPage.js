@@ -1,24 +1,26 @@
 import CategoryDropdown from "./CategoryDropdown";
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import Photo from "./Photo";
+import { data, useNavigate } from "react-router";
+import useApi from "../Shared/UseApi";
+import { AuthContext } from "../Shared/AuthContext";
 
 function CreateOfferPage() {
-    const [preview, setPreview] = useState(null);
-    const fileInputRef = useRef(null);
+    const navigate = useNavigate();
+    const { authorizedRequest } = useApi();
+    const { baseUrl } = useContext(AuthContext);
 
-    const handleClick = () => {
-        fileInputRef.current.click(); // Trigger hidden input
-    };
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
+    const [category, setCategory] = useState("");
+    const [price, setPrice] = useState("");
 
-    const handleFileChange = (e) => {
-        const files = e.target.files;
-        if (files && files.length > 0) {
-            // console.log(files) // Pass files to parent
-            const reader = new FileReader();
-            reader.onload = (e) => setPreview(e.target.result);
-            reader.readAsDataURL(files[0]);
-        }
-    };
+    const [photos, setPhotos] = useState([])
+
+    const [contacter, setContacter] = useState("")
+    const [email, setEmail] = useState("")
+    const [phoneNumber, setPhoneNumber] = useState("")
+    const [address, setAddress] = useState("")
 
     return (
         <div className="create_offer_page_container">
@@ -26,24 +28,28 @@ function CreateOfferPage() {
                 <h1 className="section_heading">Створити оголошення</h1>
 
                 <label className="form_text_input_label" htmlFor="title">Назва</label>
-                <input type="text" className="form_text_input" id="title"/>
+                <input type="text" className="form_text_input" id="title" onChange={(e) => setTitle(e.target.value)}/>
                 
                 <label className="form_text_input_label" htmlFor="description">Опишіть у подробицях</label>
-                {/* <input type="text" className="form_text_input" id="description"/> */}
-                <textarea  className="form_text_input" id="description"/>
+                <textarea className="form_text_input" id="description" onChange={(e) => setDescription(e.target.value)}/>
 
                 <label className="form_text_input_label" htmlFor="dropdown">Категорія</label>
-                <CategoryDropdown />
+                <CategoryDropdown onChange={(index) => setCategory(index)} />
+
+                <label className="form_text_input_label" htmlFor="price">Ціна</label>
+                <input type="text" className="form_text_input" id="price" onChange={(e) => setPrice(e.target.value)}/>
             </div>
 
             <div className="create_offer_page_section">
                 <h1 className="section_heading">Фото</h1>
 
-
                 <label className="form_text_input_label" htmlFor="photos_container" id="photos_label">Максимально покажіть всі деталі або дефекти, перше фото буде на обкладинці</label>
                 <div className="photos_container" id="photos_container">
                     <div className="photos_container_row">
-                        <Photo />
+                        <Photo onFilesSelect={(newPhoto) => setPhotos([
+                            ...photos,
+                            newPhoto
+                        ])}/>
                         <Photo />
                         <Photo />
                         <Photo />
@@ -55,6 +61,7 @@ function CreateOfferPage() {
                         <Photo />
                         <Photo />
                     </div>
+                    <button onClick={() => console.log(photos)}>show photos</button>
                 </div>
             </div>
 
@@ -62,22 +69,71 @@ function CreateOfferPage() {
                 <h1 className="section_heading">Контактні дані</h1>
 
                 <label className="form_text_input_label" htmlFor="contacter">Контактна особа</label>
-                <input type="text" className="form_text_input" id="contacter"/>
+                <input type="text" className="form_text_input" id="contacter" onChange={(e) => setContacter(e.target.value)}/>
                 
                 <label className="form_text_input_label" htmlFor="email">Ел. Пошта</label>
-                <input type="text" className="form_text_input" id="email"/>
+                <input type="text" className="form_text_input" id="email" onChange={(e) => setEmail(e.target.value)}/>
 
                 <label className="form_text_input_label" htmlFor="phone_number">Номер телефону</label>
-                <input type="text" className="form_text_input" id="phone_number"/>
+                <input type="text" className="form_text_input" id="phone_number" onChange={(e) => setPhoneNumber(e.target.value)}/>
 
-                <label className="form_text_input_label" htmlFor="location">Місце знаходження</label>
-                <input type="text" className="form_text_input" id="location"/>
-
+                <label className="form_text_input_label" htmlFor="address">Місце знаходження</label>
+                <input type="text" className="form_text_input" id="address" onChange={(e) => setAddress(e.target.value)}/>
             </div>
 
-            <button className="green_button">Додати Оголошення</button>
+            <button className="green_button" onClick={createOffer}>Додати Оголошення</button>
         </div>
      );
+
+     async function createOffer(){
+        try {
+            const formData = new FormData();
+                
+            // Add all text fields
+            formData.append('title', title);
+            formData.append('description', description);
+            formData.append('category', category);
+            formData.append('price', price);
+            formData.append('contacter', contacter);
+            formData.append('email', email);
+            formData.append('phoneNumber', phoneNumber);
+            formData.append('address', address);
+            
+            // Add each photo file
+            photos.forEach((photo, index) => {
+                formData.append(`Images`, photo); // Key can be just "photos" for multiple files
+            });
+
+            console.log(formData);
+
+            const response = await authorizedRequest({
+                method: 'post',
+                url: `${baseUrl}/offer/create-offer`,
+                // data: JSON.stringify({
+                //     title,
+                //     description,
+                //     category,
+                //     price,
+                //     contacter,
+                //     email,
+                //     phoneNumber,
+                //     address,
+                //     photos
+                // })
+                data: formData,
+                headers: {
+                    'Content-Type': 'multipart/form-data' // Important for file uploads
+                }
+            });
+    
+            if (response.status === 200) {
+                console.log("Offer created successfully");
+                navigate("/");
+            }
+        } catch (err) {
+            console.error('Failed to create offer:', err);
+        }
+    }
 }
 
 export default CreateOfferPage;

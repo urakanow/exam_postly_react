@@ -637,6 +637,7 @@ textarea{
   width: 462px;
   height: 62px;
   font-size: 20px;
+  margin-bottom: 47px;
 }
 
 .RootMenu[data-state="placeholder"] {
