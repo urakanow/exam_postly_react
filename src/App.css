@@ -352,7 +352,8 @@ footer p{
 /* top slogan */
 
 .top_slogan {
-  background-image: url('../public/img/top_slogan_background.png');
+  /* background-image: url('../public/img/top_slogan_background.png'); */
+  background-image: url('https://res.cloudinary.com/dxvwnanu4/image/upload/top_slogan_background_e7msp7?_a=DAJCyJB3ZAA0');
   height: 671px;
   width: 100%;
   box-sizing: border-box;
@@ -361,7 +362,6 @@ footer p{
   background-repeat: no-repeat; /* Prevents tiling */
   font-size: 48px;
   font-family: IstokWebBold;
-  /* font-weight: 600; */
   line-height: 100%;
   letter-spacing: 0%;
   text-align: center;
@@ -466,6 +466,11 @@ footer p{
   border-radius: 10px;
   text-align: left;
   position: relative;
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
 }
 
 .offer_preview_image{
@@ -786,4 +791,79 @@ textarea{
   letter-spacing: 0%;
   text-align: center;
   vertical-align: middle;
+}
+
+.offer_page_container{
+  margin: 80px;
+  box-sizing: border-box;
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  gap: 120px;
+}
+
+.offer_page_vertical_section{
+  width: 465px;
+  height: 1384px;
+  background-color: #D9F3EB;
+  border-radius: 28px;
+  padding: 20px;
+  text-align: left;
+}
+
+.small_text{
+  font-family: IstokWeb;
+  font-size: 19px;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
+
+#published_at{
+  margin-bottom: 80px;
+  display: block;
+}
+
+.large_heading{
+  font-family: IstokWebBold;
+  font-size: 48px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: black;
+}
+
+.medium_heading{
+  font-family: IstokWebBold;
+  font-size: 32px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: black;
+}
+
+#offer_page_title{
+  margin-bottom: 55px;
+}
+
+.user{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.user img{
+  height: 60px;
+  width: auto;
+}
+
+
+/* MAIN PAGE */
+
+.image_wrapper{
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  height: 250px;
+}
+
+.image_wrapper img{
+  /* max-width: 100%; */
 }

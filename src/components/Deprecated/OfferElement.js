@@ -11,29 +11,7 @@ import { Grid, Grow, ListItem } from '@mui/material';
 
 function OfferElement({ offerData, linkUrl }) {
     const cld = new Cloudinary({ cloud: { cloudName: 'dxvwnanu4' } });
-    const [showDefaultImage, setShowDefaultImage] = useState(true);
     const [image, setImage] = useState(null);
-    
-    // async function isImageLegit(){
-    //     try {
-    //         const response = await fetch(`https://res.cloudinary.com/dxvwnanu4/image/upload/${offerData.imageUrl}`, {
-    //             headers: {
-    //                 "Content-Type": "application/json"
-    //             },
-    //             method: 'get',
-    //         });
-
-    //         if (response.status === 200) {
-    //             setShowDefaultImage(false);
-    //         }
-    //     } catch (err) {
-    //         console.error('Failed to fetch image:', err);
-    //     }
-    // }
-
-    // useEffect(() => {
-    //     isImageLegit();
-    // }, [])
 
     useEffect(() =>{
         const img = cld
@@ -53,13 +31,6 @@ function OfferElement({ offerData, linkUrl }) {
             setImage(null);
         };
     }, [offerData.imageUrl])
-    
-    
-    // const img = cld
-    // .image(offerData.imageUrl)
-    // .format('auto') // Optimize delivery by resizing and applying auto-format and auto-quality
-    // .quality('auto')
-    // .resize(auto().gravity(autoGravity()).width(250).height(250)); // Transform the image: auto-crop to square aspect_ratio
     
     return (
         <Grid size={Grow}>

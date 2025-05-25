@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import OfferInfoPage from "./Shared/OfferElement";
+import OfferInfoPage from "./Deprecated/OfferElement";
 import { AuthContext } from "./Shared/AuthContext";
 import useApi from "./Shared/UseApi";
 import { Grid } from "@mui/material";

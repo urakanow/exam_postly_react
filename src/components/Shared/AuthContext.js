@@ -1,9 +1,12 @@
 import { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
+import { Cloudinary } from '@cloudinary/url-gen';
 
 export const AuthContext = createContext();
 
 function AuthProvider({ children }) {
+    const cld = new Cloudinary({ cloud: { cloudName: 'dxvwnanu4' } });
+    const options = ["Меблі", "Електроніка", "Мода", "Робота", "Іграшки", "Авто", "Тварини", "Нерухомість"];
     const baseUrl = process.env.REACT_APP_BASE_URL;
     sessionStorage.setItem('baseUrl', baseUrl);
 
@@ -34,7 +37,15 @@ function AuthProvider({ children }) {
     };
 
     return (
-        <AuthContext.Provider value={{ accessToken, setAccessToken, refreshToken, authErrorMessage, setAuthErrorMessage, baseUrl }}>
+        <AuthContext.Provider value={{
+            accessToken,
+            setAccessToken,
+            refreshToken,
+            authErrorMessage,
+            setAuthErrorMessage,
+            baseUrl,
+            options,
+            cld }}>
             {children}
         </AuthContext.Provider>
     );
