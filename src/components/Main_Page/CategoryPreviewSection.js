@@ -1,25 +1,25 @@
 import CategoryPreview from "./CategoryPreview";
 
-function CategoriesSection() {
+function CategoryPreviewSection() {
     return (
         <div className="categories_section">
-            <CategoryPreview imgUrl="img/furniture_icon.png" categoryName="Меблі" />
+            <CategoryPreview imgUrl="furniture_icon_kgmrrx" categoryName="Меблі" />
 
-            <CategoryPreview imgUrl="img/electronics_icon.png" categoryName="Електроніка" id="electronics" />
+            <CategoryPreview imgUrl="electronics_icon_sgujlx" categoryName="Електроніка" id="electronics" />
             
-            <CategoryPreview imgUrl="img/fashion_icon.png" categoryName="Мода" />
+            <CategoryPreview imgUrl="fashion_icon_ixxhbh" categoryName="Мода" />
 
-            <CategoryPreview imgUrl="img/work_icon.png" categoryName="Робота" />
+            <CategoryPreview imgUrl="work_icon_apknda" categoryName="Робота" />
 
-            <CategoryPreview imgUrl="img/toys_icon.png" categoryName="Іграшки" />
+            <CategoryPreview imgUrl="toys_icon_d203tx" categoryName="Іграшки" />
 
-            <CategoryPreview imgUrl="img/car_icon.png" categoryName="Авто" />
+            <CategoryPreview imgUrl="car_icon_qyc5mi" categoryName="Авто" />
 
-            <CategoryPreview imgUrl="img/pets_icon.png" categoryName="Тварини" />
+            <CategoryPreview imgUrl="pets_icon_xjqsnq" categoryName="Тварини" />
 
-            <CategoryPreview imgUrl="img/real_estate_icon.png" categoryName="Нерухомість" id="real_estate"/>
+            <CategoryPreview imgUrl="real_estate_icon_gvhzkj" categoryName="Нерухомість" id="real_estate"/>
         </div>
      );
 }
 
-export default CategoriesSection;
+export default CategoryPreviewSection;

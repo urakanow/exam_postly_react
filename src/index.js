@@ -7,7 +7,7 @@ import PersonalPage from './components/PersonalPage';
 import Layout from './components/Shared/Layout';
 import AuthProvider from './components/Shared/AuthContext';
 import OffersDisplayPage from './components/OffersPage';
-import OfferPage from './components/OfferPage';
+import OfferPage from './components/Offer_Page/OfferPage';
 
 // import CreateOfferPage from './components/CreateOfferPage';
 import CreateOfferPage from './components/Create_Offer_Page/CreateOfferPage';

@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "./Shared/AuthContext";
 import useApi from "./Shared/UseApi";
 import { Grid } from "@mui/material";
-import OfferElement from "./Shared/OfferElement";
+import OfferElement from "./Deprecated/OfferElement";
 
 function MyOffersPage() {
     const [offers, setOffers] = useState([]);

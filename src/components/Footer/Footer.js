@@ -1,5 +1,6 @@
 import '../../App.css';
 import Description from './Description';
+import DownloadButtons from './DownloadButtons';
 import FAQSection from './FAQSection';
 import SocialMediaSection from './SocialMediaSection';
 
@@ -12,10 +13,7 @@ function Footer() {
 
             <FAQSection />
 
-            <div className='download_buttons'>
-                <img src='img/google_play_icon.png' />
-                <img src='img/app_store_icon.png' />
-            </div>
+            <DownloadButtons />
         </footer>
     );
 }

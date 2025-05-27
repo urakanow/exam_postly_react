@@ -20,12 +20,12 @@ function Photo({ onFilesSelect }) {
     };
 
     return (
-        <>
+        <div className="add_photo_wrapper">
             <input type="file" className="photo_input" ref={fileInputRef} onChange={handleFileChange}/>   
             {!preview && <button className="photo" onClick={handleClick}>Додати фото</button>}
 
             {preview && <img className="photo" id="photo" onClick={handleClick} src={preview}/>}
-        </>
+        </div>
      );
 }
 

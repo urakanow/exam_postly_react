@@ -1,5 +1,5 @@
 import BannerSlogan from "./BannerSlogan";
-import CategoriesSection from "./CategoryPreviewSection";
+import CategoryPreviewSection from "./CategoryPreviewSection";
 import OffersBlock from "./OffersBlock";
 import Slogan from "./Slogan";
 
@@ -8,22 +8,22 @@ function MainPage() {
         <>
             <Slogan />
 
-            <CategoriesSection />
+            <CategoryPreviewSection />
 
             <div className="offers_section">
-                <OffersBlock categoryName="Електроніка" />
+                <OffersBlock categoryIndex={1} />
 
                 <div className="categories_separator" />
 
-                <OffersBlock categoryName="Мода" />
+                <OffersBlock categoryIndex={2} />
 
                 <BannerSlogan />
 
-                <OffersBlock categoryName="Іграшки" />
+                <OffersBlock categoryIndex={4} />
 
                 <div className="categories_separator" />
                 
-                <OffersBlock categoryName="Меблі" />
+                <OffersBlock categoryIndex={0} />
             </div>
         </>
      );
