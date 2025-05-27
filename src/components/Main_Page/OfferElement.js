@@ -36,7 +36,7 @@ function OfferElement({ offerData = null, linkUrl = null }) {
         <Grid size={3} className="offer_element">
             {!offerData ? (
                 <>
-                    <img className="favorite_button" src="img/favorite_icon_unselected.png" />
+                    <AdvancedImage className="favorite_button" cldImg={favorite_unselected_image} />
                     <img className="offer_preview_image" src="default_image.jpg" />
                     <h1>Осел пихає</h1>
                     <span>420 420 грн.</span>

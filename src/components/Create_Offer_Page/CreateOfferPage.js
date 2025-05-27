@@ -28,16 +28,16 @@ function CreateOfferPage() {
                 <h1 className="section_heading">Створити оголошення</h1>
 
                 <label className="form_text_input_label" htmlFor="title">Назва</label>
-                <input type="text" className="form_text_input" id="title" onChange={(e) => setTitle(e.target.value)}/>
+                <input type="text" className="form_text_input text_input" id="title" onChange={(e) => setTitle(e.target.value)}/>
                 
                 <label className="form_text_input_label" htmlFor="description">Опишіть у подробицях</label>
-                <textarea className="form_text_input" id="description" onChange={(e) => setDescription(e.target.value)}/>
+                <textarea className="form_text_input text_input" id="description" onChange={(e) => setDescription(e.target.value)}/>
 
                 <label className="form_text_input_label" htmlFor="dropdown">Категорія</label>
                 <CategoryDropdown onChange={(index) => setCategory(index)} />
 
                 <label className="form_text_input_label" htmlFor="price">Ціна</label>
-                <input type="text" className="form_text_input" id="price" onChange={(e) => setPrice(e.target.value)}/>
+                <input type="text" className="form_text_input text_input" id="price" onChange={(e) => setPrice(e.target.value)}/>
             </div>
 
             <div className="create_offer_page_section">
@@ -61,7 +61,6 @@ function CreateOfferPage() {
                         <Photo />
                         <Photo />
                     </div>
-                    <button onClick={() => console.log(photos)}>show photos</button>
                 </div>
             </div>
 
@@ -69,19 +68,19 @@ function CreateOfferPage() {
                 <h1 className="section_heading">Контактні дані</h1>
 
                 <label className="form_text_input_label" htmlFor="contacter">Контактна особа</label>
-                <input type="text" className="form_text_input" id="contacter" onChange={(e) => setContacter(e.target.value)}/>
+                <input type="text" className="form_text_input text_input" id="contacter" onChange={(e) => setContacter(e.target.value)}/>
                 
                 <label className="form_text_input_label" htmlFor="email">Ел. Пошта</label>
-                <input type="text" className="form_text_input" id="email" onChange={(e) => setEmail(e.target.value)}/>
+                <input type="text" className="form_text_input text_input" id="email" onChange={(e) => setEmail(e.target.value)}/>
 
                 <label className="form_text_input_label" htmlFor="phone_number">Номер телефону</label>
-                <input type="text" className="form_text_input" id="phone_number" onChange={(e) => setPhoneNumber(e.target.value)}/>
+                <input type="text" className="form_text_input text_input" id="phone_number" onChange={(e) => setPhoneNumber(e.target.value)}/>
 
                 <label className="form_text_input_label" htmlFor="address">Місце знаходження</label>
-                <input type="text" className="form_text_input" id="address" onChange={(e) => setAddress(e.target.value)}/>
+                <input type="text" className="form_text_input text_input" id="address" onChange={(e) => setAddress(e.target.value)}/>
             </div>
 
-            <button className="green_button" onClick={createOffer}>Додати Оголошення</button>
+            <button className="green_button" id="add_offer_button" onClick={createOffer}>Додати Оголошення</button>
         </div>
      );
 
@@ -89,7 +88,6 @@ function CreateOfferPage() {
         try {
             const formData = new FormData();
                 
-            // Add all text fields
             formData.append('title', title);
             formData.append('description', description);
             formData.append('category', category);
@@ -99,7 +97,6 @@ function CreateOfferPage() {
             formData.append('phoneNumber', phoneNumber);
             formData.append('address', address);
             
-            // Add each photo file
             photos.forEach((photo, index) => {
                 formData.append(`Images`, photo); // Key can be just "photos" for multiple files
             });
@@ -109,17 +106,6 @@ function CreateOfferPage() {
             const response = await authorizedRequest({
                 method: 'post',
                 url: `${baseUrl}/offer/create-offer`,
-                // data: JSON.stringify({
-                //     title,
-                //     description,
-                //     category,
-                //     price,
-                //     contacter,
-                //     email,
-                //     phoneNumber,
-                //     address,
-                //     photos
-                // })
                 data: formData,
                 headers: {
                     'Content-Type': 'multipart/form-data' // Important for file uploads
