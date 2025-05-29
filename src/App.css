@@ -621,7 +621,7 @@ a{
   color: #B9B9B9;
 }
 
-.form_text_input_label{
+.text_input_label{
   text-align: left;
   font-size: 20px;
   line-height: 100%;
@@ -832,6 +832,8 @@ textarea{
   background-color: #D9F3EB;
   border-radius: 28px;
   text-align: left;
+  box-shadow: 0px 4px 11.2px 0px #00000040;
+
 }
 
 .small_text{
@@ -852,6 +854,15 @@ textarea{
   line-height: 100%;
   letter-spacing: 0%;
   color: black;
+}
+
+.semi_large_heading{
+  font-family: IstokWebBold;
+  font-size: 40px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #262928;
+  margin: 0;
 }
 
 .medium_heading{
@@ -1043,4 +1054,53 @@ textarea{
   left: 0;
   height: 40px;
   width: 40px;
+}
+
+
+/* PERSONAL PAGE */
+
+#personal_page_wrapper{
+  padding: 66px 0;
+  gap: 80px;
+}
+
+#personal_page_wrapper div:last-child{
+  gap: 40px;
+}
+
+#personal_data{
+  width: 505px;
+  /* height: 1100px; */
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+#personal_data h1{
+  margin-bottom: 36px;
+}
+
+#personal_data .text_input{
+  margin-bottom: 24px;
+}
+
+#personal_data .text_input:last-child{
+  margin-bottom: 20px;
+}
+
+#my_offers{
+  width: 970px;
+  height: 400px;
+  box-sizing: border-box;
+}
+
+#messages{
+  width: 970px;
+  height: 520px;
+  box-sizing: border-box;
+}
+
+#save_button{
+  padding: 20px 30px;
+  margin-left: auto;
+  margin-top: 8px;
 }
