@@ -815,12 +815,10 @@ textarea{
   margin: 80px;
   box-sizing: border-box;
   width: auto;
-  display: flex;
-  flex-direction: row;
   gap: 120px;
 }
 
-#offer_page_left_section{
+#info_section{
   gap: 20px;
 }
 
@@ -947,7 +945,7 @@ textarea{
   right: 15px;
 }
 
-#offer_page_photo_section{
+#photo_block{
   width: 755px;
   height: 740px;
   padding: 120px 50px 24px 50px;
@@ -962,10 +960,11 @@ textarea{
   align-items: center;
 }
 
-.carouselle_photo{
+#offer_photo_wrapper{
   width: 654px;
   height: 486px;
   border-radius: 10px;
+  overflow: hidden;
 }
 
 .carouselle_indicator{

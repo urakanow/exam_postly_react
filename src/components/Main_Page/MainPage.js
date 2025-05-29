@@ -1,6 +1,5 @@
-import BannerSlogan from "./BannerSlogan";
 import CategoryPreviewSection from "./CategoryPreviewSection";
-import OffersBlock from "./OffersBlock";
+import OffersSection from "./OffersSection";
 import Slogan from "./Slogan";
 
 function MainPage() {
@@ -10,21 +9,7 @@ function MainPage() {
 
             <CategoryPreviewSection />
 
-            <div className="offers_section">
-                <OffersBlock categoryIndex={1} />
-
-                <div className="categories_separator" />
-
-                <OffersBlock categoryIndex={2} />
-
-                <BannerSlogan />
-
-                <OffersBlock categoryIndex={4} />
-
-                <div className="categories_separator" />
-                
-                <OffersBlock categoryIndex={0} />
-            </div>
+            <OffersSection />            
         </>
      );
 }
