@@ -2,9 +2,9 @@ import { useContext } from 'react';
 import { AuthContext } from '../Shared/AuthContext';
 import { AdvancedImage } from '@cloudinary/react';
 
-function PhotoBlock() {
+function PhotoBlock({ photos }) {
     const { cld } = useContext(AuthContext);
-    const offer_test_image = cld.image("e033da6d911d1afa9de7e07933784e7dc5ba243e_govgvc")
+    const offer_test_image = cld.image(photos[0].url)
     const left_arrow_image = cld.image("left_arrow_icon_xozc74")
     const right_arrow_image = cld.image("right_arrow_icon_m9px0p")
 
@@ -13,7 +13,10 @@ function PhotoBlock() {
             <div className='carouselle horizontal_container'>
                 <AdvancedImage cldImg={left_arrow_image} className="carouselle_arrow" id="left_arrow"/>
                 <AdvancedImage cldImg={right_arrow_image} className="carouselle_arrow" id="right_arrow"/>
-                <AdvancedImage cldImg={offer_test_image} className="carouselle_photo"/>
+
+                <div className='image_wrapper' id='offer_photo_wrapper'>
+                    <AdvancedImage cldImg={offer_test_image} />
+                </div>
             </div>
 
             <div className='horizontal_container' id='carouselle_indicator_container'>

@@ -960,10 +960,11 @@ textarea{
   align-items: center;
 }
 
-.carouselle_photo{
+#offer_photo_wrapper{
   width: 654px;
   height: 486px;
   border-radius: 10px;
+  overflow: hidden;
 }
 
 .carouselle_indicator{

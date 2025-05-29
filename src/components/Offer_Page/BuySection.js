@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../Shared/AuthContext';
 import { AdvancedImage } from '@cloudinary/react';
 
-function BuySection() {
+function BuySection({ data }) {
     const { cld } = useContext(AuthContext);
     const profile_picture = cld.image("profile_picture_default_icon_t9kx9b");
     const green_arrow_image = cld.image("green_arrow_icon_rmvcna");
@@ -13,15 +13,15 @@ function BuySection() {
         <div className='green_rectangle vertical_container ' id='offer_page_buy_section'>
             <span className='small_text' id='published_at'>Опубліковано Сьогодні о 13:32</span>
 
-            <h1 className='large_heading' id='offer_page_title'>Ігровий Пк</h1>
+            <h1 className='large_heading' id='offer_page_title'>{data.title}</h1>
 
-            <h2 className='medium_heading'>88 000 грн.</h2>
+            <h2 className='medium_heading'>{data.price} грн.</h2>
 
             <div className='user'>
                 <AdvancedImage cldImg={profile_picture} />
                 <div className='vertical_container' id='user_info'>
-                    <h2 className='medium_heading'>User</h2>
-                    <span className='small_text'>+380 99 453 21 87</span>
+                    <h2 className='medium_heading'>{data.username}</h2>
+                    <span className='small_text'>{data.phoneNumber}</span>
                 </div>
             </div>
 
