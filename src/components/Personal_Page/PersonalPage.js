@@ -1,4 +1,11 @@
+import { useContext } from 'react';
+import { AuthContext } from '../Shared/AuthContext';
+import { AdvancedImage } from '@cloudinary/react';
+
 function PersonalPage() {
+    const { cld } = useContext(AuthContext);
+    const right_arrow_image = cld.image("right_arrow_icon_m9px0p");
+
     return (
         <div id="personal_page_wrapper" className="horizontal_container">
             <div id="personal_data" className="green_rectangle vertical_container">
@@ -33,7 +40,40 @@ function PersonalPage() {
 
             <div className="vertical_container">
                 <div id="my_offers" className="green_rectangle vertical_container">
-                    
+                    <h1 className="semi_large_heading">Мої оголошення</h1>
+
+                    <div className="carouselle horizontal_container">
+                        <div className="horizontal_container">
+                            <div className="my_offer_preview">
+                                <div className="image_wrapper">
+                                    <img className="offer_preview_image" src="default_image.jpg" />
+                                </div>
+                                <h1>Осел пихає</h1>
+                                <span>420 420 грн.</span>
+                                <span>Активно</span>
+                            </div>
+
+                            <div className="my_offer_preview">
+                                <div className="image_wrapper">
+                                    <img className="offer_preview_image" src="default_image.jpg" />
+                                </div>
+                                <h1>Осел пихає</h1>
+                                <span>420 420 грн.</span>
+                                <span>Активно</span>
+                            </div>
+
+                            <div className="my_offer_preview">
+                                <div className="image_wrapper">
+                                    <img className="offer_preview_image" src="default_image.jpg" />
+                                </div>
+                                <h1>Осел пихає</h1>
+                                <span>420 420 грн.</span>
+                                <span>Активно</span>
+                            </div>
+                        </div>
+
+                        <AdvancedImage cldImg={right_arrow_image} className="carouselle_arrow" id="right_arrow"/>
+                    </div>
                 </div>
 
                 <div id="messages" className="green_rectangle vertical_container">

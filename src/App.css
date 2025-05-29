@@ -476,7 +476,7 @@ a{
   border-radius: 10px;
   width: 100%;
   height: 250px;
-  object-fit: contain; /* or 'cover' based on your needs */
+  object-fit: cover; /* or 'cover' based on your needs */
   object-position: center;
 }
 
@@ -1064,7 +1064,11 @@ textarea{
   gap: 80px;
 }
 
-#personal_page_wrapper div:last-child{
+#personal_page_wrapper .green_rectangle{
+  padding: 20px;
+}
+
+#personal_page_wrapper div:nth-child(2){
   gap: 40px;
 }
 
@@ -1072,7 +1076,7 @@ textarea{
   width: 505px;
   /* height: 1100px; */
   box-sizing: border-box;
-  padding: 20px;
+  /* padding: 20px; */
 }
 
 #personal_data h1{
@@ -1093,6 +1097,18 @@ textarea{
   box-sizing: border-box;
 }
 
+#my_offers h1{
+  margin-bottom: 20px;
+}
+
+#my_offers .horizontal_container:nth-child(1){
+  gap: 20px;
+}
+
+#my_offers #right_arrow{
+  right: 0;
+}
+
 #messages{
   width: 970px;
   height: 520px;
@@ -1103,4 +1119,43 @@ textarea{
   padding: 20px 30px;
   margin-left: auto;
   margin-top: 8px;
+}
+
+.my_offer_preview{
+  width: 270px;
+  height: 300px;
+  box-shadow: 0px 4px 11.2px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 17px;
+  text-align: left;
+  position: relative;
+  background-color: white;
+}
+
+.my_offer_preview .image_wrapper{
+  height: 166px;
+}
+
+.my_offer_preview img{
+  height: 100%;
+  min-width: 100%;
+}
+
+.my_offer_preview h1{
+  font-family: IstokWebBold;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  margin-left: 16px;
+  margin-bottom: 20px;
+}
+
+.my_offer_preview span{
+  font-family: IstokWeb;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  margin-bottom: 20px;
+  margin-left: 16px;
+  display: block;
 }
