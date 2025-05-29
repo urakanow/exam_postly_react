@@ -5,6 +5,7 @@ import { AdvancedImage } from '@cloudinary/react';
 function PersonalPage() {
     const { cld } = useContext(AuthContext);
     const right_arrow_image = cld.image("right_arrow_icon_m9px0p");
+    const profile_picture = cld.image("profile_picture_default_icon_t9kx9b")
 
     return (
         <div id="personal_page_wrapper" className="horizontal_container">
@@ -38,7 +39,7 @@ function PersonalPage() {
                 <button className="green_button" id="save_button">Зберегти</button>
             </div>
 
-            <div className="vertical_container">
+            <div id='personal_page_right_section' className="vertical_container">
                 <div id="my_offers" className="green_rectangle vertical_container">
                     <h1 className="semi_large_heading">Мої оголошення</h1>
 
@@ -77,7 +78,56 @@ function PersonalPage() {
                 </div>
 
                 <div id="messages" className="green_rectangle vertical_container">
+                    <h1 className="semi_large_heading">Повідомлення</h1>
 
+                    <div className='message unread_message horizontal_container' style={{zIndex: 5}}>
+                        <div className='unread_marker' />
+
+                        <div className='horizontal_container'>
+                            <AdvancedImage cldImg={profile_picture} />
+                            <h3 className='small_heading'>Євгеній</h3>
+                        </div>
+
+                        <span className='small_text'>Активний 3 г. тому</span>
+                    </div>
+
+                    <div className='message unread_message horizontal_container' style={{zIndex: 4}}>
+                        <div className='unread_marker' />
+
+                        <div className='horizontal_container'>
+                            <AdvancedImage cldImg={profile_picture} />
+                            <h3 className='small_heading'>Марина</h3>
+                        </div>
+
+                        <span className='small_text'>Активний 15 хв. тому</span>
+                    </div>
+
+                    <div className='message horizontal_container' style={{zIndex: 3}}>
+                        <div className='horizontal_container'>
+                            <AdvancedImage cldImg={profile_picture} />
+                            <h3 className='small_heading'>Pet_tale335</h3>
+                        </div>
+
+                        <span className='small_text'>Активний 3 д. тому</span>
+                    </div>
+
+                    <div className='message horizontal_container' style={{zIndex: 2}}>
+                        <div className='horizontal_container'>
+                            <AdvancedImage cldImg={profile_picture} />
+                            <h3 className='small_heading'>Andrii</h3>
+                        </div>
+
+                        <span className='small_text'>Активний зараз</span>
+                    </div>
+
+                    <div className='message horizontal_container' style={{zIndex: 1}}>
+                        <div className='horizontal_container'>
+                            <AdvancedImage cldImg={profile_picture} />
+                            <h3 className='small_heading'>Олена</h3>
+                        </div>
+
+                        <span className='small_text'>Активний 15 г. тому</span>
+                    </div>
                 </div>
             </div>
         </div>
