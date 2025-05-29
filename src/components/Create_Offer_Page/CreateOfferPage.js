@@ -27,23 +27,23 @@ function CreateOfferPage() {
             <div className="create_offer_page_section">
                 <h1 className="section_heading">Створити оголошення</h1>
 
-                <label className="form_text_input_label" htmlFor="title">Назва</label>
+                <label className="text_input_label" htmlFor="title">Назва</label>
                 <input type="text" className="form_text_input text_input" id="title" onChange={(e) => setTitle(e.target.value)}/>
                 
-                <label className="form_text_input_label" htmlFor="description">Опишіть у подробицях</label>
+                <label className="text_input_label" htmlFor="description">Опишіть у подробицях</label>
                 <textarea className="form_text_input text_input" id="description" onChange={(e) => setDescription(e.target.value)}/>
 
-                <label className="form_text_input_label" htmlFor="dropdown">Категорія</label>
+                <label className="text_input_label" htmlFor="dropdown">Категорія</label>
                 <CategoryDropdown onChange={(index) => setCategory(index)} />
 
-                <label className="form_text_input_label" htmlFor="price">Ціна</label>
+                <label className="text_input_label" htmlFor="price">Ціна</label>
                 <input type="text" className="form_text_input text_input" id="price" onChange={(e) => setPrice(e.target.value)}/>
             </div>
 
             <div className="create_offer_page_section">
                 <h1 className="section_heading">Фото</h1>
 
-                <label className="form_text_input_label" htmlFor="photos_container" id="photos_label">Максимально покажіть всі деталі або дефекти, перше фото буде на обкладинці</label>
+                <label className="text_input_label" htmlFor="photos_container" id="photos_label">Максимально покажіть всі деталі або дефекти, перше фото буде на обкладинці</label>
                 <div className="photos_container" id="photos_container">
                     <div className="photos_container_row">
                         <Photo onFilesSelect={(newPhoto) => setPhotos([
@@ -67,16 +67,16 @@ function CreateOfferPage() {
             <div className="create_offer_page_section">
                 <h1 className="section_heading">Контактні дані</h1>
 
-                <label className="form_text_input_label" htmlFor="contacter">Контактна особа</label>
+                <label className="text_input_label" htmlFor="contacter">Контактна особа</label>
                 <input type="text" className="form_text_input text_input" id="contacter" onChange={(e) => setContacter(e.target.value)}/>
                 
-                <label className="form_text_input_label" htmlFor="email">Ел. Пошта</label>
+                <label className="text_input_label" htmlFor="email">Ел. Пошта</label>
                 <input type="text" className="form_text_input text_input" id="email" onChange={(e) => setEmail(e.target.value)}/>
 
-                <label className="form_text_input_label" htmlFor="phone_number">Номер телефону</label>
+                <label className="text_input_label" htmlFor="phone_number">Номер телефону</label>
                 <input type="text" className="form_text_input text_input" id="phone_number" onChange={(e) => setPhoneNumber(e.target.value)}/>
 
-                <label className="form_text_input_label" htmlFor="address">Місце знаходження</label>
+                <label className="text_input_label" htmlFor="address">Місце знаходження</label>
                 <input type="text" className="form_text_input text_input" id="address" onChange={(e) => setAddress(e.target.value)}/>
             </div>
 

@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
 import '../App.css';
-import { AuthContext } from './Shared/AuthContext';
-import useApi from './Shared/UseApi';
+import { AuthContext } from '../Shared/AuthContext';
+import useApi from '../Shared/UseApi';
 import AuthForm from './AuthForm';
 
 function PersonalPage() {

@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
 import '../App.css';
-import { AuthContext } from './Shared/AuthContext';
+import { AuthContext } from '../Shared/AuthContext';
 
 function AuthForm() {
     const { setAccessToken, authErrorMessage, setAuthErrorMessage, baseUrl } = useContext(AuthContext);

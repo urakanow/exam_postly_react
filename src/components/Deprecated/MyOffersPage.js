@@ -1,13 +1,13 @@
 import { useState, useEffect, useContext } from "react";
-import OfferInfoPage from "./Deprecated/OfferElement";
-import { AuthContext } from "./Shared/AuthContext";
-import useApi from "./Shared/UseApi";
+import { AuthContext } from "../Shared/AuthContext";
+import useApi from "../Shared/UseApi";
 import { Grid } from "@mui/material";
+import OfferElement from "./OfferElement";
 
-function OffersPage() {
+function MyOffersPage() {
     const [offers, setOffers] = useState([]);
     const { accessToken, setAccessToken, baseUrl } = useContext(AuthContext);
-    const { authorizedRequest } = useApi();
+    const { authorizedRequest } = useApi();   
 
     useEffect(() => {
         populateOffers();
@@ -17,7 +17,7 @@ function OffersPage() {
         offers.length > 0 ? (
             <Grid container spacing={2} className="offer-container">
                 {offers.map(offer => 
-                    <OfferInfoPage offerData={offer} linkUrl={"offer"} key={offer.id}/>
+                    <OfferElement offerData={offer} linkUrl={"/my-offer"} key={offer.id}/>
                 )}
             </Grid>
         ) : (
@@ -29,13 +29,13 @@ function OffersPage() {
 
     async function populateOffers(){
         try {
-            const response = await fetch(`${baseUrl}/offer/offers`, {
-                method: 'get'
+            const response = await authorizedRequest({
+                method: 'get',
+                url: `${baseUrl}/offer/my-offers`
             });
             if (response.status === 200) {
-                const data = await response.json();
-                setOffers(data);
-                console.log(data);
+                // const data = await response.json();
+                setOffers(response.data);
             }
         } catch (err) {
             console.error('Failed to fetch offers:', err);
@@ -44,4 +44,4 @@ function OffersPage() {
     }
 }
 
-export default OffersPage;
+export default MyOffersPage;
