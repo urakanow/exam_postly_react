@@ -1210,3 +1210,12 @@ textarea{
 .message .small_text{
   color: #00000080;
 }
+
+.arrow_wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}

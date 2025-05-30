@@ -1,10 +1,10 @@
 import CategoryDropdown from "./CategoryDropdown";
 import { useContext, useEffect, useRef, useState } from "react";
-import Photo from "./Photo";
 import { data, useNavigate } from "react-router";
 import useApi from "../Shared/UseApi";
 import { AuthContext } from "../Shared/AuthContext";
 import ContactDataBlock from "./ContactDataBlock";
+import PhotosBlock from "./PhotosBlock";
 
 function CreateOfferPage() {
     const navigate = useNavigate();
@@ -16,7 +16,16 @@ function CreateOfferPage() {
     const [category, setCategory] = useState("");
     const [price, setPrice] = useState("");
 
-    const [photos, setPhotos] = useState([])
+    const [photos, setPhotos] = useState({
+        0: null,
+        1: null,
+        2: null,
+        3: null,
+        4: null,
+        5: null,
+        6: null,
+        7: null
+    })
 
     const [contactData, setContactData] = useState({
         contacter: "",
@@ -43,29 +52,7 @@ function CreateOfferPage() {
                 <input type="text" className="form_text_input text_input" id="price" onChange={(e) => setPrice(e.target.value)}/>
             </div>
 
-            <div className="create_offer_page_section">
-                <h1 className="section_heading">Фото</h1>
-
-                <label className="text_input_label" htmlFor="photos_container" id="photos_label">Максимально покажіть всі деталі або дефекти, перше фото буде на обкладинці</label>
-                <div className="photos_container" id="photos_container">
-                    <div className="photos_container_row">
-                        <Photo onFilesSelect={(newPhoto) => setPhotos([
-                            ...photos,
-                            newPhoto
-                        ])}/>
-                        <Photo />
-                        <Photo />
-                        <Photo />
-                    </div>
-
-                    <div className="photos_container_row">
-                        <Photo />
-                        <Photo />
-                        <Photo />
-                        <Photo />
-                    </div>
-                </div>
-            </div>
+            <PhotosBlock photos={photos} setPhotos={setPhotos}/>
 
             <ContactDataBlock formData={contactData} setFormData={setContactData} />
 
@@ -82,12 +69,17 @@ function CreateOfferPage() {
             formData.append('category', category);
             formData.append('price', price);
             
-            photos.forEach((photo, index) => {
-                formData.append(`Images`, photo); // Key can be just "photos" for multiple files
-            });
-            
             Object.entries(contactData).forEach(([key, value]) => {
                 formData.append(key, value);
+            });
+
+            Object.entries(photos).forEach(([key, value]) => {
+                if(value == null){
+                    return;
+                }
+
+                const file = dataURLtoFile(value, `image_${key}.png`);
+                formData.append("Images", file);
             });
             
             console.log(formData);
@@ -108,6 +100,20 @@ function CreateOfferPage() {
         } catch (err) {
             console.error('Failed to create offer:', err);
         }
+    }
+
+    function dataURLtoFile(dataurl, filename) {
+        const arr = dataurl.split(',');
+        const mime = arr[0].match(/:(.*?);/)[1];
+        const bstr = atob(arr[1]);
+        let n = bstr.length;
+        const u8arr = new Uint8Array(n);
+        
+        while (n--) {
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+        
+        return new File([u8arr], filename, { type: mime });
     }
 }
 

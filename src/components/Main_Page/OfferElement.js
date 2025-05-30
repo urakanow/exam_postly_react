@@ -46,7 +46,7 @@ function OfferElement({ offerData = null, linkUrl = null }) {
                     <AdvancedImage className="favorite_button" cldImg={favorite_unselected_image} />
                     <div className="image_wrapper">
                         {image ? (
-                            <AdvancedImage cldImg={image} onError={() => setImage(null)}/>
+                            <AdvancedImage className="offer_preview_image" cldImg={image} onError={() => setImage(null)}/>
                         ) : (
                             <img className="offer_preview_image" src="default_image.jpg" />
                         )}
