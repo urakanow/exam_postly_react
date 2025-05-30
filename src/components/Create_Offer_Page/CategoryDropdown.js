@@ -25,7 +25,7 @@ function CategoryDropdown({ onChange }) {
     }, [selected]);
 
     return (        
-        <Menu label={selected == null ? "Виберіть категорію" : selected} className={`dropdown ${!selected ? 'dropdown_placeholder' : 'dropdown_selected'}`} id='dropdown'>
+        <Menu label={selected == null ? "Виберіть категорію" : selected} className={`dropdown ${!selected ? 'dropdown_placeholder' : 'dropdown_selected'}`} id='category_dropdown'>
             {options.map((option, index) => 
                 <MenuItem label={option} key={index} onClick={() => handleSelect(option, index)}/>
             )}

@@ -16,6 +16,10 @@ function OfferPage() {
         console.log(offerData);
     }, [id])
 
+    useEffect(() =>{
+        console.log(offerData);
+    }, [offerData])
+
     return ( 
         <div className='offer_page_container horizontal_container'>
             {offerData ? (
@@ -29,6 +33,7 @@ function OfferPage() {
                     }}/>
     
                     <BuySection data={{
+                        creationDate: offerData.creationDate,
                         title: offerData.title,
                         price: offerData.price,
                         username: offerData.contacter,

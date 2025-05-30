@@ -617,6 +617,10 @@ a{
   margin-bottom: 47px;
 }
 
+.form_text_input:last-child{
+  margin-bottom: 0;
+}
+
 .form_text_input::placeholder{
   color: #B9B9B9;
 }
@@ -969,6 +973,11 @@ textarea{
 .carouselle{
   position: relative;
   align-items: center;
+  justify-content: center;
+}
+
+#my_offers_carouselle{
+  gap: 20px;
 }
 
 #offer_photo_wrapper{
@@ -1205,4 +1214,19 @@ textarea{
 
 .message .small_text{
   color: #00000080;
+}
+
+.arrow_wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.error_text{
+  margin-top: 20px;
+  color: red;
+  text-align: left;
 }

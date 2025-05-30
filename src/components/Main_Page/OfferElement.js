@@ -11,14 +11,13 @@ function OfferElement({ offerData = null, linkUrl = null }) {
     
     
     useEffect(() =>{
-        if (!offerData?.images?.[0]?.url) {
+        if (!offerData?.previewImageUrl) {
             setImage(null); // Clear image if no valid photo
             return;
         }
 
-        console.log(offerData.images[0].url);
-        const img = cld
-        .image(offerData.images[0].url)
+        // console.log(offerData.images[0].url);
+        const img = cld.image(offerData.previewImageUrl)
 
         const imgElement = new Image();
         imgElement.src = img.toURL();
@@ -46,7 +45,7 @@ function OfferElement({ offerData = null, linkUrl = null }) {
                     <AdvancedImage className="favorite_button" cldImg={favorite_unselected_image} />
                     <div className="image_wrapper">
                         {image ? (
-                            <AdvancedImage cldImg={image} onError={() => setImage(null)}/>
+                            <AdvancedImage className="offer_preview_image" cldImg={image} onError={() => setImage(null)}/>
                         ) : (
                             <img className="offer_preview_image" src="default_image.jpg" />
                         )}

@@ -1,106 +1,123 @@
-import CategoryDropdown from "./CategoryDropdown";
-import { useContext, useRef, useState } from "react";
-import Photo from "./Photo";
+import { useContext, useEffect, useRef, useState } from "react";
 import { data, useNavigate } from "react-router";
 import useApi from "../Shared/UseApi";
 import { AuthContext } from "../Shared/AuthContext";
+import ContactDataBlock from "./ContactDataBlock";
+import PhotosBlock from "./PhotosBlock";
+import GeneralDataBlock from "./GeneralDataBlock";
 
 function CreateOfferPage() {
     const navigate = useNavigate();
     const { authorizedRequest } = useApi();
     const { baseUrl } = useContext(AuthContext);
+    const [error, setError] = useState("");
 
-    const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("");
-    const [category, setCategory] = useState("");
-    const [price, setPrice] = useState("");
+    const[generalData, setGeneralData] = useState({
+        title: "",
+        description: "",
+        category: "",
+        price: "",
+        state: ""
+    });
 
-    const [photos, setPhotos] = useState([])
+    const [photos, setPhotos] = useState({
+        0: null,
+        1: null,
+        2: null,
+        3: null,
+        4: null,
+        5: null,
+        6: null,
+        7: null
+    });
 
-    const [contacter, setContacter] = useState("")
-    const [email, setEmail] = useState("")
-    const [phoneNumber, setPhoneNumber] = useState("")
-    const [address, setAddress] = useState("")
+    const [contactData, setContactData] = useState({
+        contacter: "",
+        email: "",
+        phoneNumber: "",
+        address: "",
+    });
+
+    useEffect(() => {
+        console.log(generalData);
+    }, [generalData])
 
     return (
         <div className="create_offer_page_container">
-            <div className="create_offer_page_section">
-                <h1 className="section_heading">Створити оголошення</h1>
+            <GeneralDataBlock setGeneralData={setGeneralData}/>
 
-                <label className="text_input_label" htmlFor="title">Назва</label>
-                <input type="text" className="form_text_input text_input" id="title" onChange={(e) => setTitle(e.target.value)}/>
-                
-                <label className="text_input_label" htmlFor="description">Опишіть у подробицях</label>
-                <textarea className="form_text_input text_input" id="description" onChange={(e) => setDescription(e.target.value)}/>
+            <PhotosBlock photos={photos} setPhotos={setPhotos}/>
 
-                <label className="text_input_label" htmlFor="dropdown">Категорія</label>
-                <CategoryDropdown onChange={(index) => setCategory(index)} />
-
-                <label className="text_input_label" htmlFor="price">Ціна</label>
-                <input type="text" className="form_text_input text_input" id="price" onChange={(e) => setPrice(e.target.value)}/>
-            </div>
-
-            <div className="create_offer_page_section">
-                <h1 className="section_heading">Фото</h1>
-
-                <label className="text_input_label" htmlFor="photos_container" id="photos_label">Максимально покажіть всі деталі або дефекти, перше фото буде на обкладинці</label>
-                <div className="photos_container" id="photos_container">
-                    <div className="photos_container_row">
-                        <Photo onFilesSelect={(newPhoto) => setPhotos([
-                            ...photos,
-                            newPhoto
-                        ])}/>
-                        <Photo />
-                        <Photo />
-                        <Photo />
-                    </div>
-
-                    <div className="photos_container_row">
-                        <Photo />
-                        <Photo />
-                        <Photo />
-                        <Photo />
-                    </div>
-                </div>
-            </div>
-
-            <div className="create_offer_page_section">
-                <h1 className="section_heading">Контактні дані</h1>
-
-                <label className="text_input_label" htmlFor="contacter">Контактна особа</label>
-                <input type="text" className="form_text_input text_input" id="contacter" onChange={(e) => setContacter(e.target.value)}/>
-                
-                <label className="text_input_label" htmlFor="email">Ел. Пошта</label>
-                <input type="text" className="form_text_input text_input" id="email" onChange={(e) => setEmail(e.target.value)}/>
-
-                <label className="text_input_label" htmlFor="phone_number">Номер телефону</label>
-                <input type="text" className="form_text_input text_input" id="phone_number" onChange={(e) => setPhoneNumber(e.target.value)}/>
-
-                <label className="text_input_label" htmlFor="address">Місце знаходження</label>
-                <input type="text" className="form_text_input text_input" id="address" onChange={(e) => setAddress(e.target.value)}/>
-            </div>
+            <ContactDataBlock formData={contactData} setFormData={setContactData} />
 
             <button className="green_button" id="add_offer_button" onClick={createOffer}>Додати Оголошення</button>
-        </div>
-     );
 
-     async function createOffer(){
+            {error && <span className="small_text error_text">{error}</span>}
+        </div>
+    );
+    
+    function isFilled() {
+        // Check general data
+        const isGeneralDataValid = 
+            generalData.title.trim() !== "" &&
+            generalData.description.trim() !== "" &&
+            !isNaN(Number(generalData.category)) && // Category should be a number
+            !isNaN(Number(generalData.state)) && // State should be a number
+            !isNaN(parseFloat(generalData.price)) && // Price should be a valid number
+            parseFloat(generalData.price) > 0; // Price should be positive
+
+        // Check contact data
+        const isContactDataValid = 
+            contactData.contacter.trim() !== "" &&
+            contactData.email.trim() !== "" &&
+            contactData.phoneNumber.trim() !== "" &&
+            contactData.address.trim() !== "";
+
+        // Check at least first photo is set
+        const isPhotoValid = photos[0] !== null;
+
+        return isGeneralDataValid && isContactDataValid && isPhotoValid;
+    }
+
+    function showError(message){
+        console.error(message);
+        setError(message);
+    }
+
+    async function createOffer(){
+        if(!isFilled()){
+            showError("not all fields are filled or filled incorrectly")
+            return;
+        }
+
         try {
             const formData = new FormData();
                 
-            formData.append('title', title);
-            formData.append('description', description);
-            formData.append('category', category);
-            formData.append('price', price);
-            formData.append('contacter', contacter);
-            formData.append('email', email);
-            formData.append('phoneNumber', phoneNumber);
-            formData.append('address', address);
-            
-            photos.forEach((photo, index) => {
-                formData.append(`Images`, photo); // Key can be just "photos" for multiple files
+            Object.entries(generalData).forEach(([key, value]) => {
+                formData.append(key, value);
             });
 
+            Object.entries(contactData).forEach(([key, value]) => {
+                formData.append(key, value);
+            });
+
+            Object.entries(photos).forEach(([key, value]) => {
+                if(value == null){
+                    return;
+                }
+
+                // Extract the real MIME type from the Data URL
+                const matches = value.match(/^data:(.+?);base64/);
+                const mimeType = matches?.[1] || 'image/png'; // Fallback to PNG if unknown
+                
+                // Map MIME type to correct extension
+                const extension = mimeType.split('/')[1] || 'png';
+                
+                // Create file with proper extension
+                const file = dataURLtoFile(value, `image_${key}.${extension}`);
+                formData.append("Images", file);
+            });
+            
             console.log(formData);
 
             const response = await authorizedRequest({
@@ -119,6 +136,20 @@ function CreateOfferPage() {
         } catch (err) {
             console.error('Failed to create offer:', err);
         }
+    }
+
+    function dataURLtoFile(dataurl, filename) {
+        const arr = dataurl.split(',');
+        const mimeMatch = arr[0].match(/:(.*?);/);
+        const mime = mimeMatch ? mimeMatch[1] : 'image/png';
+        const bstr = atob(arr[1]);
+        const u8arr = new Uint8Array(bstr.length);
+        
+        for (let i = 0; i < bstr.length; i++) {
+            u8arr[i] = bstr.charCodeAt(i);
+        }
+        
+        return new File([u8arr], filename, { type: mime });
     }
 }
 

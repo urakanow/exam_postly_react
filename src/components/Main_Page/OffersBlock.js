@@ -31,10 +31,7 @@ function OffersBlock({ categoryIndex }) {
                 {Array.from({ length: Math.max(0, pageSize - offers.length) }).map((_, index) => (
                     <OfferElement key={`placeholder-${index}`} />
                 ))}
-                {/* <OfferElement />
-                <OfferElement />
-                <OfferElement />
-                <OfferElement /> */}
+
             </Grid>
 
             <button className="see_more">Див. більше</button>
