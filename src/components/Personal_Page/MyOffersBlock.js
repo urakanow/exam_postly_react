@@ -3,7 +3,7 @@ import { AuthContext } from '../Shared/AuthContext';
 import { AdvancedImage } from '@cloudinary/react';
 import MyOfferPreview from './MyOfferPreview';
 
-function MyOffersBlock() {
+function MyOffersBlock({ offers }) {
     const { cld } = useContext(AuthContext);
     const right_arrow_image = cld.image("right_arrow_icon_m9px0p");
 
@@ -13,11 +13,7 @@ function MyOffersBlock() {
 
             <div className="carouselle horizontal_container">
                 <div className="horizontal_container">
-                    <MyOfferPreview />
-
-                    <MyOfferPreview />
-
-                    <MyOfferPreview />
+                    {offers.map((offer, index) => <MyOfferPreview offer={offer} key={index}/>)}
                 </div>
 
                 <AdvancedImage cldImg={right_arrow_image} className="carouselle_arrow" id="right_arrow"/>

@@ -1,11 +1,18 @@
-function MyOfferPreview() {
+import { useContext } from 'react';
+import { AuthContext } from '../Shared/AuthContext';
+import { AdvancedImage } from '@cloudinary/react';
+
+function MyOfferPreview({ offer }) {
+    const { cld } = useContext(AuthContext);
+    const image = cld.image(offer.previewImageUrl);
+
     return (
         <div className="my_offer_preview">
             <div className="image_wrapper">
-                <img className="offer_preview_image" src="default_image.jpg" />
+                <AdvancedImage cldImg={image} className="offer_preview_image"/>
             </div>
-            <h1>Осел пихає</h1>
-            <span>420 420 грн.</span>
+            <h1>{offer.title}</h1>
+            <span>{offer.price} грн.</span>
             <span>Активно</span>
         </div>
     );
