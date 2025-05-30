@@ -11,14 +11,13 @@ function OfferElement({ offerData = null, linkUrl = null }) {
     
     
     useEffect(() =>{
-        if (!offerData?.images?.[0]?.url) {
+        if (!offerData?.previewImageUrl) {
             setImage(null); // Clear image if no valid photo
             return;
         }
 
-        console.log(offerData.images[0].url);
-        const img = cld
-        .image(offerData.images[0].url)
+        // console.log(offerData.images[0].url);
+        const img = cld.image(offerData.previewImageUrl)
 
         const imgElement = new Image();
         imgElement.src = img.toURL();

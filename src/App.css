@@ -973,6 +973,11 @@ textarea{
 .carouselle{
   position: relative;
   align-items: center;
+  justify-content: center;
+}
+
+#my_offers_carouselle{
+  gap: 20px;
 }
 
 #offer_photo_wrapper{
@@ -1218,4 +1223,10 @@ textarea{
   background: transparent;
   border: none;
   cursor: pointer;
+}
+
+.error_text{
+  margin-top: 20px;
+  color: red;
+  text-align: left;
 }

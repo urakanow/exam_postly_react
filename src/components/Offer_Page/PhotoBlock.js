@@ -28,13 +28,17 @@ function PhotoBlock({ photos }) {
     return (
         <div className='green_rectangle vertical_container' id='photo_block'>
             <div className='carouselle horizontal_container'>
-                <button className='arrow_wrapper' onClick={moveLeft}>
-                    <AdvancedImage cldImg={left_arrow_image} className="carouselle_arrow" id="left_arrow"/>
-                </button>
+                {photoIndex > 0 &&
+                    <button className='arrow_wrapper' onClick={moveLeft}>
+                        <AdvancedImage cldImg={left_arrow_image} className="carouselle_arrow" id="left_arrow"/>
+                    </button>
+                }
 
-                <button className='arrow_wrapper' onClick={moveRight}>
-                    <AdvancedImage cldImg={right_arrow_image} className="carouselle_arrow" id="right_arrow"/>
-                </button>
+                {photoIndex < photos.length - 1 &&
+                    <button className='arrow_wrapper' onClick={moveRight}>
+                        <AdvancedImage cldImg={right_arrow_image} className="carouselle_arrow" id="right_arrow"/>
+                    </button>
+                }
 
                 <div className='image_wrapper' id='offer_photo_wrapper'>
                     <AdvancedImage cldImg={offer_test_image} />
@@ -45,8 +49,6 @@ function PhotoBlock({ photos }) {
                 {photos.map((value, index) => 
                     <div key={index} className='carouselle_indicator' id={index === photoIndex ? 'carouselle_indicator_selected' : undefined}/>
                 )}
-                {/* <div className='carouselle_indicator'/>
-                <div className='carouselle_indicator'/> */}
             </div>
         </div>
      );
