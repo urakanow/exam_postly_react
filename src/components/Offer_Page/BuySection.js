@@ -9,9 +9,24 @@ function BuySection({ data }) {
     const ukrpost_image = cld.image("ukrpost_icon_rxne6a");
     const novapost_image = cld.image("nova_post_icon_coq0n8")
 
+    function getFormattedDate(isoDate) {
+        const date = new Date(isoDate);
+        
+        // Extract date components
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+        const year = date.getFullYear();
+        
+        // Extract time components
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+        
+        return `${day}.${month}.${year} о ${hours}:${minutes}`;
+    }
+
     return (
         <div className='green_rectangle vertical_container ' id='offer_page_buy_section'>
-            <span className='small_text' id='published_at'>Опубліковано Сьогодні о 13:32</span>
+            <span className='small_text' id='published_at'>Опубліковано {getFormattedDate(data.creationDate)}</span>
 
             <h1 className='large_heading' id='offer_page_title'>{data.title}</h1>
 

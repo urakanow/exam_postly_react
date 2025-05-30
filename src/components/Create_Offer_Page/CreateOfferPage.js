@@ -16,7 +16,8 @@ function CreateOfferPage() {
         title: "",
         description: "",
         category: "",
-        price: ""
+        price: "",
+        state: ""
     });
 
     const [photos, setPhotos] = useState({
@@ -61,6 +62,7 @@ function CreateOfferPage() {
             generalData.title.trim() !== "" &&
             generalData.description.trim() !== "" &&
             !isNaN(Number(generalData.category)) && // Category should be a number
+            !isNaN(Number(generalData.state)) && // State should be a number
             !isNaN(parseFloat(generalData.price)) && // Price should be a valid number
             parseFloat(generalData.price) > 0; // Price should be positive
 

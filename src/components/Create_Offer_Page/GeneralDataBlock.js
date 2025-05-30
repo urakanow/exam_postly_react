@@ -1,4 +1,5 @@
 import CategoryDropdown from "./CategoryDropdown";
+import StateDropdown from "./StateDropdown";
 
 function GeneralDataBlock({ setGeneralData }) {
     const handleChange = (e) => {
@@ -19,11 +20,20 @@ function GeneralDataBlock({ setGeneralData }) {
             <label className="text_input_label" htmlFor="description">Опишіть у подробицях</label>
             <textarea className="form_text_input text_input" id="description" onChange={handleChange}/>
 
-            <label className="text_input_label" htmlFor="dropdown">Категорія</label>
+            <label className="text_input_label" htmlFor="category_dropdown">Категорія</label>
             <CategoryDropdown onChange={(index) => {
                     setGeneralData(prev => ({
                         ...prev,
                         ["category"]: index
+                    }))
+                }
+            }/>
+
+            <label className="text_input_label" htmlFor="state_dropdown">Стан</label>
+            <StateDropdown onChange={(index) => {
+                    setGeneralData(prev => ({
+                        ...prev,
+                        ["state"]: index
                     }))
                 }
             }/>
