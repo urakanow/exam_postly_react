@@ -617,6 +617,10 @@ a{
   margin-bottom: 47px;
 }
 
+.form_text_input:last-child{
+  margin-bottom: 0;
+}
+
 .form_text_input::placeholder{
   color: #B9B9B9;
 }
