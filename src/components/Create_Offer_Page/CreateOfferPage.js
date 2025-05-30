@@ -77,8 +77,16 @@ function CreateOfferPage() {
                 if(value == null){
                     return;
                 }
-
-                const file = dataURLtoFile(value, `image_${key}.png`);
+                
+                // Extract the real MIME type from the Data URL
+                const matches = value.match(/^data:(.+?);base64/);
+                const mimeType = matches?.[1] || 'image/png'; // Fallback to PNG if unknown
+                
+                // Map MIME type to correct extension
+                const extension = mimeType.split('/')[1] || 'png';
+                
+                // Create file with proper extension
+                const file = dataURLtoFile(value, `image_${key}.${extension}`);
                 formData.append("Images", file);
             });
             
@@ -104,13 +112,13 @@ function CreateOfferPage() {
 
     function dataURLtoFile(dataurl, filename) {
         const arr = dataurl.split(',');
-        const mime = arr[0].match(/:(.*?);/)[1];
+        const mimeMatch = arr[0].match(/:(.*?);/);
+        const mime = mimeMatch ? mimeMatch[1] : 'image/png';
         const bstr = atob(arr[1]);
-        let n = bstr.length;
-        const u8arr = new Uint8Array(n);
+        const u8arr = new Uint8Array(bstr.length);
         
-        while (n--) {
-            u8arr[n] = bstr.charCodeAt(n);
+        for (let i = 0; i < bstr.length; i++) {
+            u8arr[i] = bstr.charCodeAt(i);
         }
         
         return new File([u8arr], filename, { type: mime });
