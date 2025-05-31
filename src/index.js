@@ -15,7 +15,7 @@ import CreateOfferPage from './components/Create_Offer_Page/CreateOfferPage';
 // import MyOffersPage from './components/MyOffersPage';
 // import MyOfferPage from './components/MyOfferPage';
 // import OffersPage from './components/OffersPage';
-import FavoritesPage from './components/FavoritesPage';
+import FavoritesPage from './components/Favorites_Page/FavoritesPage';
 import MainPage from './components/Main_Page/MainPage';
 
 
