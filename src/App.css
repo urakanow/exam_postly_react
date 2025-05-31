@@ -1241,6 +1241,10 @@ textarea{
   position: relative;
 }
 
+.offer_element_content_wrapper a{
+  width: 100%;
+}
+
 
 /* FAVORITES PAGE */
 
