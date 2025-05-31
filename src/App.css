@@ -1230,3 +1230,7 @@ textarea{
   color: red;
   text-align: left;
 }
+
+.offer_element.css-1lgyuji-MuiGrid-root{
+  width: 320px;
+}
