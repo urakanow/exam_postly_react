@@ -511,6 +511,7 @@ a{
   right: 16px;
   top: 14px;
   width: 30px;
+  cursor: pointer;
   /* height: 30px; */
 }
 
@@ -1233,4 +1234,16 @@ textarea{
 
 .offer_element.css-1lgyuji-MuiGrid-root{
   width: 320px;
+}
+
+.offer_element_content_wrapper{
+  display: flex;
+  position: relative;
+}
+
+
+/* FAVORITES PAGE */
+
+#favorites_page_container{
+  padding: 30px;
 }
