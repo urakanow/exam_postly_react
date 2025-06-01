@@ -13,6 +13,7 @@ import MainPage from './components/Main_Page/MainPage';
 import LoginPage from './components/Auth_Page/LoginPage';
 import SignUpPage from './components/Auth_Page/SignUpPage';
 import RestorePasswordPage from './components/Auth_Page/RestorePasswordPage';
+import ProtectedRoute from './components/Shared/ProtectedRoute';
 
 
 const basename = process.env.REACT_APP_BASENAME;
@@ -25,11 +26,21 @@ root.render(
         <Layout>
           <Routes>
             <Route path="/" element={<MainPage /> } />
-            <Route path="/me" element={<PersonalPage /> } />
+            {/* <Route path="/me" element={<PersonalPage /> } /> */}
+            <Route path="/me" element={
+              <ProtectedRoute>
+                <PersonalPage />
+              </ProtectedRoute>
+            } />
             <Route path='/offer/:id' element={<OfferPage />} />
             <Route path='/create-offer' element={<CreateOfferPage />} />
             {/* <Route path='/my-offers' element={<MyOffersPage />} /> */}
-            <Route path='/favorites' element={<FavoritesPage />} />
+            {/* <Route path='/favorites' element={<FavoritesPage />} /> */}
+            <Route path='/favorites' element={
+              <ProtectedRoute>
+                <FavoritesPage />
+              </ProtectedRoute>
+            } />
             <Route path='/login' element={<LoginPage />} />
             <Route path='/signup' element={<SignUpPage />} />
             <Route path='/restore-password' element={<RestorePasswordPage />} />

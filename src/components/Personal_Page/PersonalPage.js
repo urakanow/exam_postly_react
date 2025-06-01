@@ -10,7 +10,7 @@ function PersonalPage() {
     const [userData, setUserData] = useState(null);
     const { authorizedRequest } = useApi();
     const { baseUrl, setAccessToken } = useContext(AuthContext);
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     useEffect(() => {
         fetchUserData();
@@ -60,13 +60,7 @@ function PersonalPage() {
                 console.log(response.data);
             }
         } catch(err) {
-            if(err.response.status === 401){
-                console.error(err.response.data.message)
-                navigate("/login")
-            }
-            else{
-                console.error("failed to fetch user: ", err);
-            }
+            console.error("failed to fetch user: ", err);
         }
     }
 

@@ -19,21 +19,21 @@ function SignUpPage() {
                         <div className="auth_input_image_wrapper vertical_container">
                             <AdvancedImage cldImg={login_image} />
                         </div>
-                        <input type="text" class="text_input auth_input auth_medium_heading" placeholder="Логін" />
+                        <input type="text" className="text_input auth_input auth_medium_heading" placeholder="Логін" />
                     </div>
 
                     <div className="auth_input_wrapper horizontal_container">
                         <div className="auth_input_image_wrapper vertical_container">
                             <AdvancedImage cldImg={phone_image} />
                         </div>
-                        <input type="text" class="text_input auth_input auth_medium_heading" placeholder="Номер тел." />
+                        <input type="text" className="text_input auth_input auth_medium_heading" placeholder="Номер тел." />
                     </div>
 
                     <div className="auth_input_wrapper horizontal_container">
                         <div className="auth_input_image_wrapper vertical_container">
                             <AdvancedImage cldImg={password_image} />
                         </div>
-                        <input type="password" class="text_input auth_input auth_medium_heading" placeholder="Пароль" />
+                        <input type="password" className="text_input auth_input auth_medium_heading" placeholder="Пароль" />
                     </div>
                 </div>
 

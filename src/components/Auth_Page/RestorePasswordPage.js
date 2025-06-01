@@ -13,7 +13,7 @@ function RestorePasswordPage() {
                 <h1 className="large_heading auth_page_heading">Відновлення пароля</h1>
 
                 <span className='auth_medium_text'>
-                    Вам буде надіслано інструкцію<br/>
+                    Вам на пошту буде надіслано інструкцію<br/>
                     з відновлення пароля
                 </span>
 
@@ -22,7 +22,7 @@ function RestorePasswordPage() {
                         <div className="auth_input_image_wrapper vertical_container">
                             <AdvancedImage cldImg={restore_password_image} />
                         </div>
-                        <input type="text" class="text_input auth_input auth_medium_heading" placeholder="Ел. пошта" />
+                        <input type="text" className="text_input auth_input auth_medium_heading" placeholder="Ел. пошта" />
                     </div>
                 </div>
 
