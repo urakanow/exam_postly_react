@@ -1316,6 +1316,8 @@ textarea{
   border-radius: 50px;
   background-color: white;
   align-items: center;
+  padding-right: 20px;
+  box-sizing: border-box;
 }
 
 .auth_input{

@@ -9,6 +9,7 @@ function LoginPage() {
     const password_image = cld.image("password_icon_vilhyw")
     const [username, setLogin] = useState("");
     const [password, setPassword] = useState("");
+
     const { baseUrl, setAccessToken } = useContext(AuthContext);
     const [error, setError] = useState("");
 
@@ -47,6 +48,7 @@ function LoginPage() {
 
                     {error && <span className="small_text error_text">{error}</span>}
                 </form>
+
                 <span className='auth_medium_text'>Немає аккаунта? <Link to={"/signup"} className='change_auth_link'>Створити</Link></span>
             </div>
         </div>
