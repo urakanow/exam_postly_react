@@ -4,11 +4,13 @@ import MessagesBlock from './MessagesBlock';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../Shared/AuthContext';
 import useApi from '../Shared/UseApi';
+import { useNavigate } from 'react-router';
 
 function PersonalPage() {
     const [userData, setUserData] = useState(null);
     const { authorizedRequest } = useApi();
-    const { baseUrl } = useContext(AuthContext);
+    const { baseUrl, setAccessToken } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetchUserData();
@@ -34,6 +36,8 @@ function PersonalPage() {
                         <MyOffersBlock offers={userData.offers} />
 
                         <MessagesBlock />
+
+                        <button id='logout_button' className='green_button' onClick={logout}>logout</button>
                     </div>
                 </>
             ) : (
@@ -56,9 +60,38 @@ function PersonalPage() {
                 console.log(response.data);
             }
         } catch(err) {
-            console.error("failed to fetch user: ", err);
+            if(err.response.status === 401){
+                console.error(err.response.data.message)
+                navigate("/login")
+            }
+            else{
+                console.error("failed to fetch user: ", err);
+            }
         }
-     }
+    }
+
+    async function logout(){
+        setAccessToken(null)
+        sessionStorage.removeItem('accessToken');
+        try{
+            const response = await authorizedRequest({
+                url: `${baseUrl}/user/logout`,
+                method: "post"
+            })
+
+            if(response.status === 200){
+                console.log(response.data.message);
+                setAccessToken(null)
+                sessionStorage.removeItem('accessToken');
+            }
+
+            console.log(response.data.message);
+            setAccessToken(null)
+            sessionStorage.removeItem('accessToken');
+        } catch(err) {
+            console.error("failed to logout: ", err);
+        }
+    }
 }
 
 export default PersonalPage;

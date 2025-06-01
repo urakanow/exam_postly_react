@@ -10,6 +10,9 @@ import OfferPage from './components/Offer_Page/OfferPage';
 import CreateOfferPage from './components/Create_Offer_Page/CreateOfferPage';
 import FavoritesPage from './components/Favorites_Page/FavoritesPage';
 import MainPage from './components/Main_Page/MainPage';
+import LoginPage from './components/Auth_Page/LoginPage';
+import SignUpPage from './components/Auth_Page/SignUpPage';
+import RestorePasswordPage from './components/Auth_Page/RestorePasswordPage';
 
 
 const basename = process.env.REACT_APP_BASENAME;
@@ -27,6 +30,9 @@ root.render(
             <Route path='/create-offer' element={<CreateOfferPage />} />
             {/* <Route path='/my-offers' element={<MyOffersPage />} /> */}
             <Route path='/favorites' element={<FavoritesPage />} />
+            <Route path='/login' element={<LoginPage />} />
+            <Route path='/signup' element={<SignUpPage />} />
+            <Route path='/restore-password' element={<RestorePasswordPage />} />
             {/* <Route path='/my-offer/:id' element={<MyOfferPage />} /> */}
           </Routes>
         </Layout>
