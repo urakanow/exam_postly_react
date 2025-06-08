@@ -1358,6 +1358,8 @@ textarea{
   color: white;
   margin-bottom: 30px;
   margin-top: 40px;
+  cursor: pointer;
+  height: 100px;
 }
 
 .change_auth_link{
@@ -1373,4 +1375,22 @@ textarea{
 
 #restore_password_input_container{
   margin: 100px 0 60px 0;
+}
+
+#send_email_button{
+  background-color: transparent;
+  align-items: center;
+  /* justify-content: center; */
+  position: relative;
+}
+
+#send_email_button .auth_input_image_wrapper{
+  position: absolute;
+  top: 40px;
+  background-color: white;
+  right: 0;
+}
+
+.disabled_button{
+  cursor: not-allowed;
 }

@@ -42,7 +42,7 @@ function LoginPage() {
                         </div>
                     </div>
 
-                    <span className='auth_medium_text'><Link to={"/restore-password"}>Забули пароль?</Link></span>
+                    <span className='auth_medium_text'><Link to={"/forgot-password"}>Забули пароль?</Link></span>
 
                     <input className='auth_button auth_medium_heading' type='submit' value={"Увійти"}></input>
 

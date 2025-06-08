@@ -6,10 +6,13 @@ import { Link, useLocation, useNavigate } from 'react-router';
 function SignUpPage() {
     const { cld } = useContext(AuthContext);
     const login_image = cld.image("login_icon_h5yruj")
+    const email_image = cld.image("restore_password_icon_qdzoys")
     const phone_image = cld.image("phone_number_icon_lnxjlg")
     const password_image = cld.image("password_icon_vilhyw")
 
+
     const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
     const [password, setPassword] = useState("");
 
@@ -19,6 +22,7 @@ function SignUpPage() {
     const location = useLocation();
     const navigate = useNavigate();
     const from = location.state?.from?.pathname || '/';
+
 
     return (
         <div id="authorize_page_container">
@@ -35,6 +39,15 @@ function SignUpPage() {
                                 <AdvancedImage cldImg={login_image} />
                             </div>
                             <input name='username' type="text" required minLength={3} maxLength={20} className="text_input auth_input auth_medium_heading" placeholder="Логін" onChange={(e) => setUsername(e.target.value)} />
+                        </div>
+
+                        <div className='auth_input_container vertical_container'>
+                            <div className="auth_input_wrapper horizontal_container">
+                                <div className="auth_input_image_wrapper vertical_container">
+                                    <AdvancedImage cldImg={email_image} />
+                                </div>
+                                <input type="email" required className="text_input auth_input auth_medium_heading" placeholder="Ел. пошта" onChange={(e) => setEmail(e.target.value)} />
+                            </div>
                         </div>
 
                         <div className="auth_input_wrapper horizontal_container">
@@ -68,7 +81,7 @@ function SignUpPage() {
                 "Content-Type": "application/json",
             },
             method: 'POST',
-            body: JSON.stringify({ username, phoneNumber, password }),
+            body: JSON.stringify({ username, email, phoneNumber, password }),
             credentials: "include"
         });
 
