@@ -1400,3 +1400,9 @@ form{
   flex-direction: column;
   text-align: center;
 }
+
+#my_offers_page_container{
+  padding: 120px;
+  box-sizing: border-box;
+  width: 100%;
+}

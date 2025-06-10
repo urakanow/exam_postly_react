@@ -2,6 +2,7 @@ import { useContext, useState } from 'react';
 import { AuthContext } from '../Shared/AuthContext';
 import { AdvancedImage } from '@cloudinary/react';
 import MyOfferPreview from './MyOfferPreview';
+import { Link } from 'react-router';
 
 function MyOffersBlock({ offers }) {
     const { cld } = useContext(AuthContext);
@@ -30,7 +31,9 @@ function MyOffersBlock({ offers }) {
 
     return (
         <div id="my_offers" className="green_rectangle vertical_container">
-            <h1 className="semi_large_heading">Мої оголошення</h1>
+            <Link to={"/my-offers"}>
+                <h1 className="semi_large_heading">Мої оголошення</h1>
+            </Link>
 
             <div className="carouselle horizontal_container">
                 {firstIndex > 0 && 

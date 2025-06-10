@@ -78,10 +78,12 @@ function ContactDataBlock({ formData, setFormData }) {
                     ...prev,
                     ["phoneNumber"]: data.phoneNumber
                 }));
-                setFormData(prev => ({
-                    ...prev,
-                    ["address"]: `${data.address}${data.apartmentNumber && ` кв. ${data.apartmentNumber}`}, м. ${data.city} ${data.postCode}`
-                }));//вул. Тараса Шевченка 14 кв. 2, м. Дніпро 42069
+                if(data.address && data.apartmentNumber && data.city && data.postCode){
+                    setFormData(prev => ({
+                        ...prev,
+                        ["address"]: `${data.address}${data.apartmentNumber && ` кв. ${data.apartmentNumber}`}, м. ${data.city} ${data.postCode}`
+                    }));//вул. Тараса Шевченка 14 кв. 2, м. Дніпро 42069
+                }
             }
         } catch (err) {
             console.error('Failed to fetch personal data:', err);
