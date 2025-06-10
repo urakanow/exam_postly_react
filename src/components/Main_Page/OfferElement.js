@@ -12,7 +12,7 @@ function OfferElement({ offerData = null, linkUrl = null, onFavoriteClick = null
     const favorite_selected_image = cld.image("favorite_icon_selected_fj3vta");
     const [image, setImage] = useState(null);
     const [favorite, setFavorite] = useState(null);
-    const { baseUrl } = useContext(AuthContext);
+    const { baseUrl, accessToken } = useContext(AuthContext);
     const { authorizedRequest } = useApi()
     
     useEffect(() => {
@@ -128,6 +128,10 @@ function OfferElement({ offerData = null, linkUrl = null, onFavoriteClick = null
             return;
         }
 
+        if(!accessToken){
+            return;
+        }
+
         try{
             const response = await authorizedRequest({
                 method: 'post',
@@ -139,6 +143,9 @@ function OfferElement({ offerData = null, linkUrl = null, onFavoriteClick = null
                 console.log(`${offerData.id} is ${response.data} favorite`)
                 console.log(response.data)
                 setFavorite(response.data);
+            }
+            else if(response.status === 401){
+                console.log("unauthorized favorites")
             }
         } catch(err) {
             console.error("failed to fetch favorite: ", err)
