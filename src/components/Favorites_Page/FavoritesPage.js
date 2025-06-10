@@ -29,7 +29,7 @@ function FavoritesPage() {
                                 setFavorites(prev => prev.filter(offer => offer.id !== id));
                             }}/>
                         )}
-
+                        {favorites.length == 0 && <span className="small_text">Вибрані оголошення з'являтимуться тут</span>}
                     </Grid>
                     
                 </div>
