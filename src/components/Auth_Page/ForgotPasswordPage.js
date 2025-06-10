@@ -41,6 +41,7 @@ function ForgotPasswordPage() {
             setError("this email is not registered");
         } else if(sendingStatus === "error"){
             setError("unexpected error. please try again later");
+            setButtonText("Надіслати повторно");
         }
     }, [sendingStatus])
 

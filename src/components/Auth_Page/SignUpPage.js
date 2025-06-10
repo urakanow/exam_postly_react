@@ -23,54 +23,70 @@ function SignUpPage() {
     const navigate = useNavigate();
     const from = location.state?.from?.pathname || '/';
 
+    const [isRegistered, setIsRegistered] = useState(false);
+
 
     return (
         <div id="authorize_page_container">
             <div className="auth_form vertical_container">
                 <h1 className="large_heading auth_page_heading">Реєстрація</h1>
 
-                <form onSubmit={(e) => {
-                    e.preventDefault();
-                    signup();
-                }}>
-                    <div className='auth_input_container vertical_container'>
-                        <div className="auth_input_wrapper horizontal_container">
-                            <div className="auth_input_image_wrapper vertical_container">
-                                <AdvancedImage cldImg={login_image} />
-                            </div>
-                            <input name='username' type="text" required minLength={3} maxLength={20} className="text_input auth_input auth_medium_heading" placeholder="Логін" onChange={(e) => setUsername(e.target.value)} />
-                        </div>
-
-                        <div className='auth_input_container vertical_container'>
-                            <div className="auth_input_wrapper horizontal_container">
-                                <div className="auth_input_image_wrapper vertical_container">
-                                    <AdvancedImage cldImg={email_image} />
+                {!isRegistered ? (
+                    <>
+                        <form onSubmit={(e) => {
+                            e.preventDefault();
+                            signup();
+                        }}>
+                            <div className='auth_input_container vertical_container'>
+                                <div className="auth_input_wrapper horizontal_container">
+                                    <div className="auth_input_image_wrapper vertical_container">
+                                        <AdvancedImage cldImg={login_image} />
+                                    </div>
+                                    <input name='username' type="text" required minLength={3} maxLength={20} className="text_input auth_input auth_medium_heading" placeholder="Логін" onChange={(e) => setUsername(e.target.value)} />
                                 </div>
-                                <input type="email" required className="text_input auth_input auth_medium_heading" placeholder="Ел. пошта" onChange={(e) => setEmail(e.target.value)} />
+
+                                <div className='auth_input_container vertical_container'>
+                                    <div className="auth_input_wrapper horizontal_container">
+                                        <div className="auth_input_image_wrapper vertical_container">
+                                            <AdvancedImage cldImg={email_image} />
+                                        </div>
+                                        <input type="email" required className="text_input auth_input auth_medium_heading" placeholder="Ел. пошта" onChange={(e) => setEmail(e.target.value)} />
+                                    </div>
+                                </div>
+
+                                <div className="auth_input_wrapper horizontal_container">
+                                    <div className="auth_input_image_wrapper vertical_container">
+                                        <AdvancedImage cldImg={phone_image} />
+                                    </div>
+                                    <input type="tel" pattern="^(\+38|38)?\s?(0\d{2})\s?(\d{3})\s?(\d{2})\s?(\d{2})$" title="+380 123 456 789" required className="text_input auth_input auth_medium_heading" placeholder="Номер тел." onChange={(e) => setPhoneNumber(e.target.value)} />
+                                </div>
+
+                                <div className="auth_input_wrapper horizontal_container">
+                                    <div className="auth_input_image_wrapper vertical_container">
+                                        <AdvancedImage cldImg={password_image} />
+                                    </div>
+                                    <input type="password" required minLength={8} maxLength={20} className="text_input auth_input auth_medium_heading" placeholder="Пароль" onChange={(e) => setPassword(e.target.value)} />
+                                </div>
                             </div>
-                        </div>
 
-                        <div className="auth_input_wrapper horizontal_container">
-                            <div className="auth_input_image_wrapper vertical_container">
-                                <AdvancedImage cldImg={phone_image} />
-                            </div>
-                            <input type="tel" pattern="^(\+38|38)?\s?(0\d{2})\s?(\d{3})\s?(\d{2})\s?(\d{2})$" title="+380 123 456 789" required className="text_input auth_input auth_medium_heading" placeholder="Номер тел." onChange={(e) => setPhoneNumber(e.target.value)} />
-                        </div>
+                            <input type='submit' className='auth_button auth_medium_heading' value={"Створити"} />
 
-                        <div className="auth_input_wrapper horizontal_container">
-                            <div className="auth_input_image_wrapper vertical_container">
-                                <AdvancedImage cldImg={password_image} />
-                            </div>
-                            <input type="password" required minLength={8} maxLength={20} className="text_input auth_input auth_medium_heading" placeholder="Пароль" onChange={(e) => setPassword(e.target.value)} />
-                        </div>
-                    </div>
+                            {error && <span className="small_text error_text">{error}</span>}
+                        </form>
 
-                    <input type='submit' className='auth_button auth_medium_heading' value={"Створити"} />
+                        <span className='auth_medium_text'>Вже є аккаунт? <Link to={"/login"} className='change_auth_link'>Увійти</Link></span>
+                    </>
+                ) : (
+                    <>
+                        <span className='auth_medium_text'>
+                            На вашу електронну пошту було надіслано лист.<br />
+                            Слідуйте наведеним там інструкціям<br />
+                            для верифікації електронної адреси
+                        </span>
 
-                    {error && <span className="small_text error_text">{error}</span>}
-                </form>
-
-                <span className='auth_medium_text'>Вже є аккаунт? <Link to={"/login"} className='change_auth_link'>Увійти</Link></span>
+                        <button className='auth_button auth_medium_heading' onClick={() => navigate("/login")}>Назад до входу</button>
+                    </>
+                )}
             </div>
         </div>
     );
@@ -89,11 +105,12 @@ function SignUpPage() {
     }
 
     async function handleResponse(response) {
-        const data = await response.json();
+        // const data = await response.json();
         if (response.ok) {
-            setAccessToken(data.accessToken);
+            // setAccessToken(data.accessToken);
             setError("");
-            navigate(from, {replace: true})
+            setIsRegistered(true);
+            // navigate(from, {replace: true})
         }
         else {
             setError("Unexpected error. please try again later");

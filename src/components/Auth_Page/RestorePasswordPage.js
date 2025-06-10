@@ -37,17 +37,26 @@ function RestorePasswordPage() {
                 <h1 className="large_heading auth_page_heading">Створення пароля</h1>
 
                 <span className='auth_medium_text'>
-                    {sendingStatus === "unauthorized" ? 
+                    {sendingStatus === "unauthorized" ? (
                     <>
                         Виникла проблема з вашим запитом.<br />
                         Будь ласка поверніться до сторінки входу<br />
                         та слідуйте інструкціям
                     </>
-                    : 
-                    "введіть новий пароль"}
+                    ) : ( sendingStatus === "success" ? (
+                        <>
+                            Ваш пароль відновлено.<br />
+                            Повертайтеся на сторінку входу
+                        </>
+                    ) : (
+                        <>
+                            введіть новий пароль
+                        </>
+                    )
+                    )}
                 </span>
 
-                {sendingStatus === "unauthorized" ? (
+                {sendingStatus === "unauthorized" || sendingStatus === "success"? (
                     <button className='auth_button auth_medium_heading' onClick={() => navigate("/login")}>Повернутися</button>
                 ) : (
                     <form onSubmit={(e) => {
@@ -70,7 +79,7 @@ function RestorePasswordPage() {
                     </form>
                 )}
 
-                {sendingStatus !== "unauthorized" && <span className='auth_medium_text'><Link to={"/login"}>Назад до входу</Link></span>}
+                {sendingStatus !== "unauthorized" && sendingStatus !== "success" && <span className='auth_medium_text'><Link to={"/login"}>Назад до входу</Link></span>}
             </div>
         </div>
     );

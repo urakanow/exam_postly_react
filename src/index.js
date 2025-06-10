@@ -15,6 +15,7 @@ import SignUpPage from './components/Auth_Page/SignUpPage';
 import RestorePasswordPage from './components/Auth_Page/RestorePasswordPage';
 import ProtectedRoute from './components/Shared/ProtectedRoute';
 import ForgotPasswordPage from './components/Auth_Page/ForgotPasswordPage';
+import VerifyEmailPage from './components/Auth_Page/VerifyEmailPage';
 
 
 const basename = process.env.REACT_APP_BASENAME;
@@ -46,6 +47,7 @@ root.render(
             <Route path='/signup' element={<SignUpPage />} />
             <Route path='/forgot-password' element={<ForgotPasswordPage />} />
             <Route path='/restore-password' element={<RestorePasswordPage />} />
+            <Route path='/verify-email' element={<VerifyEmailPage />} />
             {/* <Route path='/my-offer/:id' element={<MyOfferPage />} /> */}
           </Routes>
         </Layout>

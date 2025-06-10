@@ -37,7 +37,11 @@ function PersonalPage() {
 
                         <MessagesBlock />
 
-                        <button id='logout_button' className='green_button' onClick={logout}>logout</button>
+                        <div className='horizontal_container'>
+                            <button id='logout_button' className='green_button' onClick={logout}>logout</button>
+                            <button id='logout_button' className='green_button' onClick={deleteAccount}>delete account</button>
+
+                        </div>
                     </div>
                 </>
             ) : (
@@ -84,6 +88,29 @@ function PersonalPage() {
             sessionStorage.removeItem('accessToken');
         } catch(err) {
             console.error("failed to logout: ", err);
+        }
+    }
+
+    async function deleteAccount(){
+        setAccessToken(null)
+        sessionStorage.removeItem('accessToken');
+        try{
+            const response = await authorizedRequest({
+                url: `${baseUrl}/user/delete-user`,
+                method: "delete"
+            })
+
+            if(response.status === 200){
+                console.log(response.data.message);
+                setAccessToken(null)
+                sessionStorage.removeItem('accessToken');
+            }
+
+            console.log(response.data.message);
+            setAccessToken(null)
+            sessionStorage.removeItem('accessToken');
+        } catch(err) {
+            console.error("failed to delete: ", err);
         }
     }
 }
