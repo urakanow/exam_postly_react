@@ -2,7 +2,7 @@ import { Grid } from "@mui/material";
 import { Cloudinary } from '@cloudinary/url-gen';
 import { AdvancedImage } from '@cloudinary/react';
 import { useEffect, useRef, useState, useContext } from "react";
-import { data, Link } from "react-router";
+import { data, Link, useNavigate } from "react-router";
 import useApi from "../Shared/UseApi";
 import { AuthContext } from "../Shared/AuthContext";
 
@@ -12,8 +12,9 @@ function OfferElement({ offerData = null, linkUrl = null, onFavoriteClick = null
     const favorite_selected_image = cld.image("favorite_icon_selected_fj3vta");
     const [image, setImage] = useState(null);
     const [favorite, setFavorite] = useState(null);
-    const { baseUrl } = useContext(AuthContext);
+    const { baseUrl, accessToken } = useContext(AuthContext);
     const { authorizedRequest } = useApi()
+    const navigate = useNavigate();
     
     useEffect(() => {
         fetchFavorite();
@@ -103,7 +104,14 @@ function OfferElement({ offerData = null, linkUrl = null, onFavoriteClick = null
                 console.log("favorite added")
             }
         } catch(err) {
+            // const data = await err.json();
+            // console.log(err.response.status)
+            if(err.response.status === 401){
+                // console.log("unauthorized");
+                navigate("login");
+            }
             console.error("failed to add favorite: ", err)
+            setFavorite(false);
         }
     }
 
@@ -128,6 +136,10 @@ function OfferElement({ offerData = null, linkUrl = null, onFavoriteClick = null
             return;
         }
 
+        if(!accessToken){
+            return;
+        }
+
         try{
             const response = await authorizedRequest({
                 method: 'post',
@@ -139,6 +151,9 @@ function OfferElement({ offerData = null, linkUrl = null, onFavoriteClick = null
                 console.log(`${offerData.id} is ${response.data} favorite`)
                 console.log(response.data)
                 setFavorite(response.data);
+            }
+            else if(response.status === 401){
+                console.log("unauthorized favorites")
             }
         } catch(err) {
             console.error("failed to fetch favorite: ", err)

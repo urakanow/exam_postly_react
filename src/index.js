@@ -35,7 +35,11 @@ root.render(
               </ProtectedRoute>
             } />
             <Route path='/offer/:id' element={<OfferPage />} />
-            <Route path='/create-offer' element={<CreateOfferPage />} />
+            <Route path='/create-offer' element={
+              <ProtectedRoute>
+                <CreateOfferPage />
+              </ProtectedRoute>
+              } />
             {/* <Route path='/my-offers' element={<MyOffersPage />} /> */}
             {/* <Route path='/favorites' element={<FavoritesPage />} /> */}
             <Route path='/favorites' element={

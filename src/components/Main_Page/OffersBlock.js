@@ -46,13 +46,28 @@ function OffersBlock({ categoryIndex }) {
             if (filters.page != undefined) params.append('page', filters.page);
             if (filters.pageSize != undefined) params.append('pageSize', filters.pageSize);
 
-            const response = await authorizedRequest({
+            // const response = await authorizedRequest({
+            //     method: 'get',
+            //     url: `${baseUrl}/offer/filtered-offers?${params.toString()}`
+            // })
+            const response = await fetch(`${baseUrl}/offer/filtered-offers?${params.toString()}`, {
                 method: 'get',
-                url: `${baseUrl}/offer/filtered-offers?${params.toString()}`
+                // url: `${baseUrl}/offer/filtered-offers?${params.toString()}`
             })
 
+            // const response = await fetch(`${baseUrl}/user/signup`, {
+            //     headers: {
+            //         "Content-Type": "application/json",
+            //     },
+            //     method: 'POST',
+            //     body: JSON.stringify({ username, email, phoneNumber, password }),
+            //     credentials: "include"
+            // });
+
             if (response.status === 200) {
-                setOffers(response.data)
+                const data = await response.json();
+                // console.log(data)
+                setOffers(data)
                 // console.log("Offers fetched successfully", filters.category, response.data);
             }
 
