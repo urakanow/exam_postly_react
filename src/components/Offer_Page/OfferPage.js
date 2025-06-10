@@ -50,13 +50,19 @@ function OfferPage() {
 
     async function fetchOfferData() {
         try{
-            const response = await authorizedRequest({
+            // const response = await authorizedRequest({
+            //     method: 'get',
+            //     url: `${baseUrl}/offer/offer/${id}`
+            // })
+            const response = await fetch(`${baseUrl}/offer/offer/${id}`, {
                 method: 'get',
-                url: `${baseUrl}/offer/offer/${id}`
+                // url: `${baseUrl}/offer/filtered-offers?${params.toString()}`
             })
 
             if(response.status === 200){
-                setOfferData(response.data);
+                const data = await response.json();
+
+                setOfferData(data);
             }
         } catch(err){
             console.error("failed to fetch offer data: ", err)
