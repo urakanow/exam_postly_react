@@ -2,7 +2,7 @@ import { Grid } from "@mui/material";
 import { Cloudinary } from '@cloudinary/url-gen';
 import { AdvancedImage } from '@cloudinary/react';
 import { useEffect, useRef, useState, useContext } from "react";
-import { data, Link } from "react-router";
+import { data, Link, useNavigate } from "react-router";
 import useApi from "../Shared/UseApi";
 import { AuthContext } from "../Shared/AuthContext";
 
@@ -14,6 +14,7 @@ function OfferElement({ offerData = null, linkUrl = null, onFavoriteClick = null
     const [favorite, setFavorite] = useState(null);
     const { baseUrl, accessToken } = useContext(AuthContext);
     const { authorizedRequest } = useApi()
+    const navigate = useNavigate();
     
     useEffect(() => {
         fetchFavorite();
@@ -103,7 +104,14 @@ function OfferElement({ offerData = null, linkUrl = null, onFavoriteClick = null
                 console.log("favorite added")
             }
         } catch(err) {
+            // const data = await err.json();
+            // console.log(err.response.status)
+            if(err.response.status === 401){
+                // console.log("unauthorized");
+                navigate("login");
+            }
             console.error("failed to add favorite: ", err)
+            setFavorite(false);
         }
     }
 
