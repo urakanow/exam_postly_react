@@ -38,19 +38,21 @@ function PhotosBlock({ photos, setPhotos }) {
 
             <label className="text_input_label" htmlFor="photos_container" id="photos_label">Максимально покажіть всі деталі або дефекти, перше фото буде на обкладинці</label>
             <div className="photos_container" id="photos_container">
-                <div className="photos_container_row">
-                    <Photo onFilesSelect={handlePhotoUpload} photoData={photos[0]} index={0}/>
-                    <Photo onFilesSelect={handlePhotoUpload} photoData={photos[1]} index={1}/>
-                    <Photo onFilesSelect={handlePhotoUpload} photoData={photos[2]} index={2}/>
-                    <Photo onFilesSelect={handlePhotoUpload} photoData={photos[3]} index={3}/>
-                </div>
-
-                <div className="photos_container_row">
-                    <Photo onFilesSelect={handlePhotoUpload} photoData={photos[4]} index={4}/>
-                    <Photo onFilesSelect={handlePhotoUpload} photoData={photos[5]} index={5}/>
-                    <Photo onFilesSelect={handlePhotoUpload} photoData={photos[6]} index={6}/>
-                    <Photo onFilesSelect={handlePhotoUpload} photoData={photos[7]} index={7}/>
-                </div>
+                {Array.from({ length: 2 }).map((_, i) => (
+                    <div className="photos_container_row">
+                        {Array.from({ length: 4 }).map((_, j) => (
+                            <Photo key={j} onFilesSelect={handlePhotoUpload}
+                                photoData={
+                                    photos[i * 4 + j] ? 
+                                    (photos[i * 4 + j].url ? 
+                                        `https://res.cloudinary.com/dxvwnanu4/image/upload/${photos[i * 4 + j].url}?_a=DAJCyJB3ZAA0`
+                                        : photos[i * 4 + j])
+                                    : null
+                                }
+                                index={i * 4 + j}/>
+                        ))}
+                    </div>
+                ))}
             </div>
         </div>
     );

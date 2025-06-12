@@ -18,7 +18,7 @@ function FavoritesPage() {
     }, [favorites])
 
     return (
-        <div id="favorites_page_container">
+        <div className="offers_display_page">
             <h1 className="large_heading">Вибрані</h1>
             {favorites ? (
                 <div className="offers_block">

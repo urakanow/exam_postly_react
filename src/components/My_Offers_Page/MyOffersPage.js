@@ -1,7 +1,12 @@
+import OffersBlock from "../Main_Page/OffersBlock";
+import MyOffersBlock from "./MyOffersBlock";
+
 function MyOffersPage() {
     return (
-        <div id="my_offers_page_container" className="vertical_container">
-            my offers
+        <div className="vertical_container offers_display_page">
+            <h1 className="large_heading">Мої оголошення</h1>
+
+            <MyOffersBlock categoryIndex={1} />
         </div>
     );
 }

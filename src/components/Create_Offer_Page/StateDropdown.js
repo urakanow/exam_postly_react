@@ -2,16 +2,16 @@ import { Menu, MenuItem } from './DropdownMenu.tsx';
 import { useState, useEffect, useContext, useRef } from 'react';
 import { AuthContext } from '../Shared/AuthContext.js';
 
-function StateDropdown({ onChange }) {
+function StateDropdown({ onChange, selectedIndex = null }) {
     const dropdownRef = useRef(null);
     const [selectedState, setSelectedState] = useState(null);
-    const [selected, setSelected] = useState(null);
+    // const [selected, setSelected] = useState(null);
     const options = ["Нове", "Вживане", "З дефектом"];
     // const { options } = useContext(AuthContext);
 
     const handleSelect = (option, index) => {
         // console.log("Selected option:", option);
-        setSelected(option);
+        // setSelected(option);
         setSelectedState(index)
         onChange(index);
     };
@@ -25,6 +25,11 @@ function StateDropdown({ onChange }) {
     //         }
     //     }
     // }, [selected]);
+    useEffect(() =>{
+        if(selectedIndex){
+            setSelectedState(true);
+        }
+    }, [selectedIndex])
 
     useEffect(() => {
         if (dropdownRef.current) {
@@ -32,8 +37,9 @@ function StateDropdown({ onChange }) {
         }
     }, [selectedState]);
 
+
     return (        
-        <Menu label={selected == null ? "Виберіть стан" : selected} className={`dropdown ${!selected ? 'dropdown_placeholder' : 'dropdown_selected'}`} id='state_dropdown' ref={dropdownRef}>
+        <Menu label={selectedIndex == null ? "Виберіть стан" : options[selectedIndex]} ref={dropdownRef}>
             {options.map((option, index) => 
                 <MenuItem label={option} key={index} onClick={() => handleSelect(option, index)}/>
             )}

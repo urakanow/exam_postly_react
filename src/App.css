@@ -665,9 +665,17 @@ textarea{
   color: #B9B9B9;
 }
 
+/* .dropdown_placeholder{
+  color: #B9B9B9;
+} */
+
 .RootMenu[data-state="selected"] {
   color: black;
 }
+
+/* .dropdown_selected{
+  color: black;
+} */
 
 .RootMenu:focus{
   outline: none;
@@ -803,7 +811,8 @@ textarea{
   vertical-align: middle;
   font-family: Inter;
   border: none;
-  color: #262928
+  color: #262928;
+  cursor: pointer;
 }
 
 #add_offer_button{
@@ -1254,7 +1263,7 @@ textarea{
 
 /* FAVORITES PAGE */
 
-#favorites_page_container{
+.offers_display_page{
   padding: 30px;
 }
 
@@ -1405,4 +1414,44 @@ form{
   padding: 120px;
   box-sizing: border-box;
   width: 100%;
+  align-items: center;
+}
+
+#my_offers_page_container .semi_large_heading{
+  text-align: left;
+}
+
+#my_offer_element{
+  height: auto;
+}
+
+#my_offer_element .green_button{
+  padding: 12px 20px;
+  border-radius: 10px;
+}
+
+#my_offer_element .green_button:nth-child(1){
+  flex: 1;
+}
+
+
+#delete_button{
+  background-color: #2C3331;
+}
+
+#delete_button img{
+  width: 34px;
+  height: 34px;
+}
+
+.offer_element .horizontal_container{
+  /* justify-content: space-between; */
+  /* margin-top: 26px; */
+  gap: 20px;
+}
+
+#my_offer_element a{
+  /* margin-bottom: 26px; */
+  padding-bottom: 26px;
+  box-sizing: border-box;
 }
