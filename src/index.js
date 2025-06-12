@@ -16,6 +16,8 @@ import RestorePasswordPage from './components/Auth_Page/RestorePasswordPage';
 import ProtectedRoute from './components/Shared/ProtectedRoute';
 import ForgotPasswordPage from './components/Auth_Page/ForgotPasswordPage';
 import VerifyEmailPage from './components/Auth_Page/VerifyEmailPage';
+import MyOffersPage from './components/My_Offers_Page/MyOffersPage';
+import MyOfferPage from './components/My_Offer_Page/MyOfferPage';
 
 
 const basename = process.env.REACT_APP_BASENAME;
@@ -45,6 +47,16 @@ root.render(
             <Route path='/favorites' element={
               <ProtectedRoute>
                 <FavoritesPage />
+              </ProtectedRoute>
+            } />
+            <Route path='/my-offers' element={
+              <ProtectedRoute>
+                <MyOffersPage />
+              </ProtectedRoute>
+            } />
+            <Route path='/my-offer/:id' element={
+              <ProtectedRoute>
+                <CreateOfferPage />
               </ProtectedRoute>
             } />
             <Route path='/login' element={<LoginPage />} />

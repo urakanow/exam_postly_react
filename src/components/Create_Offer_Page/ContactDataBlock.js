@@ -66,22 +66,35 @@ function ContactDataBlock({ formData, setFormData }) {
             if (response.status === 200) {
                 var data = response.data;
 
-                setFormData(prev => ({
-                    ...prev,
-                    ["contacter"]: `${data.firstName} ${data.lastName}`
-                }));
-                setFormData(prev => ({
-                    ...prev,
-                    ["email"]: data.email
-                }));
-                setFormData(prev => ({
-                    ...prev,
-                    ["phoneNumber"]: data.phoneNumber
-                }));
-                setFormData(prev => ({
-                    ...prev,
-                    ["address"]: `${data.address}${data.apartmentNumber && ` кв. ${data.apartmentNumber}`}, м. ${data.city} ${data.postCode}`
-                }));//вул. Тараса Шевченка 14 кв. 2, м. Дніпро 42069
+                if(!formData.contacter){
+                    setFormData(prev => ({
+                        ...prev,
+                        ["contacter"]: `${data.firstName} ${data.lastName}`
+                    }));
+                }
+
+                if(!formData.email){
+                    setFormData(prev => ({
+                        ...prev,
+                        ["email"]: data.email
+                    }));
+                }
+
+                if(!formData.phoneNumber){
+                    setFormData(prev => ({
+                        ...prev,
+                        ["phoneNumber"]: data.phoneNumber
+                    }));
+                }
+
+                if(!formData.address){
+                    if(data.address && data.apartmentNumber && data.city && data.postCode){
+                        setFormData(prev => ({
+                            ...prev,
+                            ["address"]: `${data.address}${data.apartmentNumber && ` кв. ${data.apartmentNumber}`}, м. ${data.city} ${data.postCode}`
+                        }));//вул. Тараса Шевченка 14 кв. 2, м. Дніпро 42069
+                    }
+                }
             }
         } catch (err) {
             console.error('Failed to fetch personal data:', err);
