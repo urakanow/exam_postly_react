@@ -3,12 +3,15 @@ import OfferElement from "./OfferElement";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Shared/AuthContext";
 import useApi from "../Shared/UseApi";
+import { useNavigate } from "react-router";
 
 
 function OffersBlock({ categoryIndex }) {
     const { options, baseUrl } = useContext(AuthContext);
     const { authorizedRequest } = useApi();
     const [offers, setOffers] = useState([])
+
+    const navigate = useNavigate();
 
     const pageSize = 4;
 
@@ -34,7 +37,7 @@ function OffersBlock({ categoryIndex }) {
 
             </Grid>
 
-            <button className="see_more">Див. більше</button>
+            <button className="see_more" onClick={() => navigate(`/category/${categoryIndex}`)}>Див. більше</button>
         </div>
     );
 
