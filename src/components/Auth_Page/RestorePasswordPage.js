@@ -26,10 +26,6 @@ function RestorePasswordPage() {
         validateToken();
     }, [])
 
-    async function showError(response){
-        const data = await response.json();
-        console.log(data);
-    }
 
     return (
         <div id="authorize_page_container">
@@ -85,12 +81,6 @@ function RestorePasswordPage() {
     );
 
     async function validateToken() {
-        // if(!token){
-        //     // navigate("/login");
-        //     console.log("token null")
-        //     return;
-        // }
-
         try{
             const response = await fetch(`${baseUrl}/user/validate-restore-token`, {
                 method: 'POST',
@@ -105,8 +95,6 @@ function RestorePasswordPage() {
                 setSendingStatus("validated")
             }
             else if(response.status === 401){
-                // navigate("/login"); 
-                // showError(response);
                 setError("token invalid or expired");
                 setSendingStatus("unauthorized");
             }
@@ -114,17 +102,11 @@ function RestorePasswordPage() {
         catch(err){
             console.error("error when validating token: ", err);
             setSendingStatus("error");
-            // showError(err.message);
             setError("unexpected error. please try again later");
         }
     }
 
     async function restorePassword(){
-        // if(!token){
-        //     navigate("/login");
-        //     return;
-        // }
-        
         try{
             const response = await fetch(`${baseUrl}/user/restore-password`, {
                 method: 'POST',
@@ -138,7 +120,6 @@ function RestorePasswordPage() {
                 setSendingStatus("success")
             }
             else if(response.status === 401){
-                // showError(response);
                 setError("token invalid or expired");
                 setSendingStatus("unauthorized");
             }
@@ -146,8 +127,7 @@ function RestorePasswordPage() {
         catch(err){
             console.error("error when validating token: ", err);
             setSendingStatus("error");
-            // showError(err.message);
-            setError("unexpected error. please try again later");
+            setError("unexpected server error. please try again later");
         }
     }    
 }

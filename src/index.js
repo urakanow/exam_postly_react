@@ -31,7 +31,7 @@ root.render(
       <AuthProvider>
         <Layout>
           <Routes>
-            <Route path="/" element={<MainPage /> } />
+            <Route index element={<MainPage /> } />
             {/* <Route path="/me" element={<PersonalPage /> } /> */}
             <Route path="/me" element={
               <ProtectedRoute>

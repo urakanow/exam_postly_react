@@ -59,7 +59,7 @@ function OfferElement({ offerData = null, linkUrl = null, onFavoriteClick = null
         imgElement.onerror = () => {
             setImage(null);
         };
-    }, [offerData?.images])
+    }, [offerData?.previewImageUrl])
     
     return (
         <Grid size={3} className="offer_element">
