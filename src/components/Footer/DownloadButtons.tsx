@@ -1,9 +1,9 @@
 import { AdvancedImage } from '@cloudinary/react';
 import { useContext } from 'react';
-import { AuthContext } from '../Shared/AuthContext';
+import { useAuth } from '../Shared/AuthContext';
 
 function DownloadButtons() {
-    const { cld } = useContext(AuthContext);
+    const { cld } = useAuth();
     const google_play_image = cld.image("google_play_icon_zxnsjp");
     const app_store_image = cld.image("app_store_icon_exsbm3");
 

@@ -1,13 +1,31 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect, ReactNode, useContext } from 'react';
 import axios from 'axios';
 import { Cloudinary } from '@cloudinary/url-gen';
 
-export const AuthContext = createContext();
+interface AuthContextType {
+    accessToken: string | null;
+    setAccessToken: (token: string | null) => void;
+    authErrorMessage: string;
+    setAuthErrorMessage: (message: string) => void;
+    baseUrl: string;
+    options: string[];
+    cld: Cloudinary;
+}
 
-function AuthProvider({ children }) {
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
+
+export function useAuth() {
+  const context = useContext(AuthContext);
+  if (context === undefined) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
+}
+
+function AuthProvider({ children } : {children: ReactNode}) {
     const cld = new Cloudinary({ cloud: { cloudName: 'dxvwnanu4' } });
     const options = ["Меблі", "Електроніка", "Мода", "Робота", "Іграшки", "Авто", "Тварини", "Нерухомість"];
-    const baseUrl = process.env.REACT_APP_BASE_URL;
+    const baseUrl:string = process.env.REACT_APP_BASE_URL ? process.env.REACT_APP_BASE_URL : "";
     sessionStorage.setItem('baseUrl', baseUrl);
 
     const [accessToken, setAccessToken] = useState(() => {

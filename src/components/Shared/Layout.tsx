@@ -1,8 +1,9 @@
 import '../../App.css';
-import Header from '../Header/Header.js';
-import Footer from '../Footer/Footer.js';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
+import { ReactNode } from 'react';
 
-function Layout({ children }) {
+function Layout({ children }: {children: ReactNode}) {
     return (
         <>
             <Header />

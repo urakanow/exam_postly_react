@@ -2,10 +2,10 @@ import Logo from "../Header/Logo";
 import { AdvancedImage } from '@cloudinary/react';
 import { Cloudinary } from '@cloudinary/url-gen';
 import { useContext } from "react";
-import { AuthContext } from "../Shared/AuthContext";
+import { useAuth } from "../Shared/AuthContext";
 
 function SocialMediaSection() {
-    const { cld } = useContext(AuthContext);
+    const { cld } = useAuth();
     const tiktok_image = cld.image("tiktok_icon_gipkai");
     const youtube_image = cld.image("youtube_icon_iiogjg");
     const instagram_image = cld.image("instagram_icon_kq6ssd");
