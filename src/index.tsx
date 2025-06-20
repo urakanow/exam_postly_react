@@ -10,7 +10,7 @@ import AuthProvider from './components/Shared/AuthContext';
 // import OfferPage from './components/Offer_Page/OfferPage';
 // import CreateOfferPage from './components/Create_Offer_Page/CreateOfferPage';
 // import FavoritesPage from './components/Favorites_Page/FavoritesPage';
-// import MainPage from './components/Main_Page/MainPage';
+import MainPage from './components/Main_Page/MainPage';
 // import LoginPage from './components/Auth_Page/LoginPage';
 // import SignUpPage from './components/Auth_Page/SignUpPage';
 // import RestorePasswordPage from './components/Auth_Page/RestorePasswordPage';
@@ -35,8 +35,8 @@ root.render(
       <AuthProvider>
         <Layout>
           <Routes>
-            {/* <Route index element={<MainPage /> } />
-            <Route path="/me" element={
+            <Route index element={<MainPage /> } />
+            {/*<Route path="/me" element={
               <ProtectedRoute>
                 <PersonalPage />
               </ProtectedRoute>

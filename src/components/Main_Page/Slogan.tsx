@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import { AuthContext } from "../Shared/AuthContext";
 import { AdvancedImage } from "@cloudinary/react";
+import { useAuth } from "../Shared/AuthContext";
 
 function Slogan() {
-    const { cld } = useContext(AuthContext);
+    const { cld } = useAuth(); 
     const image = cld.image("top_slogan_image_rebaxd");
     
     return (

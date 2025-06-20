@@ -1,10 +1,10 @@
 import { useContext } from 'react';
-import { AuthContext } from './AuthContext';
 import { jwtDecode } from 'jwt-decode';
-import axios from 'axios';
+import axios, { AxiosProxyConfig, AxiosRequestConfig, RawAxiosRequestHeaders } from 'axios';
+import { useAuth } from './AuthContext';
 
 export default function useApi() {
-    const { accessToken, setAccessToken, baseUrl } = useContext(AuthContext);
+    const { accessToken, setAccessToken, baseUrl } = useAuth();
 
     const refreshToken = async () => {
         try {
@@ -19,20 +19,22 @@ export default function useApi() {
         }
     };
 
-    const isTokenExpired = (token) => {
+    const isTokenExpired = (token: string) => {
         if (!token) return true;
 
         try {
             const { exp } = jwtDecode(token);
             const currentUtcTime = Math.floor(Date.now() / 1000); // Current time in UTC seconds
-            return currentUtcTime >= exp; // Compare as UNIX timestamps
+            if(exp !== undefined){
+                return currentUtcTime >= exp; // Compare as UNIX timestamps
+            }
         } catch (error) {
             console.error('Invalid token:', error);
             return true;
         }
     };
 
-    const authorizedRequest = async (config) => {
+    const authorizedRequest = async (config: AxiosRequestConfig) => {
         let token = accessToken;
     
             if (!token) {
@@ -63,10 +65,16 @@ export default function useApi() {
         }
     
         // Determine content type - don't set for FormData
-        const headers = {
+        // const headers = {
+        //     ...config.headers,
+        //     Authorization: `Bearer ${token}`
+        // };
+
+        const headers: RawAxiosRequestHeaders = {
             ...config.headers,
             Authorization: `Bearer ${token}`
         };
+
     
         // If not FormData, default to JSON
         if (!(config.data instanceof FormData)) {

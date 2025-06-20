@@ -1,9 +1,15 @@
 import { useContext } from "react";
-import { AuthContext } from "../Shared/AuthContext";
 import { AdvancedImage } from "@cloudinary/react";
+import { useAuth } from "../Shared/AuthContext";
 
-function CategoryPreview({ imgUrl, categoryName, id=""}) {
-    const { cld } = useContext(AuthContext);
+interface CategoryPreviewProps {
+    imgUrl: string,
+    categoryName: string,
+    styleId?: string | null
+}
+
+function CategoryPreview({ imgUrl, categoryName, styleId = null }: CategoryPreviewProps) {
+    const { cld } = useAuth();
     const image = cld.image(imgUrl)
 
     return (
@@ -11,7 +17,7 @@ function CategoryPreview({ imgUrl, categoryName, id=""}) {
             {/* <img src={imgUrl}/> */}
             <AdvancedImage cldImg={image} />
             <div className="category_preview_separator" />
-            <span id={id || undefined}>{categoryName}</span>
+            <span id={styleId || undefined}>{categoryName}</span>
         </div>
      );
 }

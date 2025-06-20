@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import { AuthContext } from "../Shared/AuthContext";
 import { AdvancedImage } from "@cloudinary/react";
+import { useAuth } from "../Shared/AuthContext";
 
 function BannerSlogan() {
-    const { cld } = useContext(AuthContext);
+    const { cld } = useAuth();
     const image = cld.image("banner_image_airpods_jdwkao");
 
     return (

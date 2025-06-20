@@ -9,7 +9,7 @@ function CategoryPreviewSection() {
             </Link>
             
             <Link to={`/category/${1}`}>
-                <CategoryPreview imgUrl="electronics_icon_sgujlx" categoryName="Електроніка" id="electronics" />
+                <CategoryPreview imgUrl="electronics_icon_sgujlx" categoryName="Електроніка" styleId="electronics" />
             </Link>
             
             <Link to={`/category/${2}`}>
@@ -33,7 +33,7 @@ function CategoryPreviewSection() {
             </Link>
 
             <Link to={`/category/${7}`}>
-                <CategoryPreview imgUrl="real_estate_icon_gvhzkj" categoryName="Нерухомість" id="real_estate"/>
+                <CategoryPreview imgUrl="real_estate_icon_gvhzkj" categoryName="Нерухомість" styleId="real_estate"/>
             </Link>
         </div>
      );

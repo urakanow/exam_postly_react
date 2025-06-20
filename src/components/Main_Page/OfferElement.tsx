@@ -1,18 +1,32 @@
 import { Grid } from "@mui/material";
-import { Cloudinary } from '@cloudinary/url-gen';
+import { Cloudinary, CloudinaryImage } from '@cloudinary/url-gen';
 import { AdvancedImage } from '@cloudinary/react';
 import { useEffect, useRef, useState, useContext } from "react";
 import { data, Link, useNavigate } from "react-router";
 import useApi from "../Shared/UseApi";
-import { AuthContext } from "../Shared/AuthContext";
+import { useAuth } from "../Shared/AuthContext";
+import { AxiosError } from "axios";
 
-function OfferElement({ offerData = null, linkUrl = null, onFavoriteClick = null }) {
+interface IOfferData {
+    id: number,
+    previewImageUrl: string,
+    title: string,
+    price: number
+}
+
+interface OfferElementProps {
+    offerData?: IOfferData | null,
+    linkUrl?: string | null,
+    onFavoriteClick?: ((id: number) => void) | null
+}
+
+function OfferElement({ offerData = null, linkUrl = null, onFavoriteClick = null }: OfferElementProps) {
     const cld = new Cloudinary({ cloud: { cloudName: 'dxvwnanu4' } });
     const favorite_unselected_image = cld.image("favorite_icon_unselected_g0i9ol");
     const favorite_selected_image = cld.image("favorite_icon_selected_fj3vta");
-    const [image, setImage] = useState(null);
-    const [favorite, setFavorite] = useState(null);
-    const { baseUrl, accessToken } = useContext(AuthContext);
+    const [image, setImage] = useState<CloudinaryImage | null>(null);
+    const [favorite, setFavorite] = useState<boolean>(false);
+    const { baseUrl, accessToken } = useAuth();
     const { authorizedRequest } = useApi()
     const navigate = useNavigate();
     
@@ -21,7 +35,7 @@ function OfferElement({ offerData = null, linkUrl = null, onFavoriteClick = null
     }, [])
 
     const handleFavoriteClick = async () => {
-        if(onFavoriteClick){
+        if(onFavoriteClick && offerData){
             onFavoriteClick(offerData.id);
         }
 
@@ -97,20 +111,22 @@ function OfferElement({ offerData = null, linkUrl = null, onFavoriteClick = null
             const response = await authorizedRequest({
                 method: 'post',
                 url: `${baseUrl}/favorite/add-favorite`,
-                data: JSON.stringify(offerData.id)
+                data: JSON.stringify(offerData?.id)
             })
 
             if(response.status === 200){
                 console.log("favorite added")
             }
-        } catch(err) {
-            // const data = await err.json();
-            // console.log(err.response.status)
-            if(err.response.status === 401){
-                // console.log("unauthorized");
-                navigate("login");
+        } catch(err: unknown) {
+            if (typeof err === 'object' && err !== null && 'isAxiosError' in err) {
+                const axiosError = err as AxiosError;
+                if (axiosError.response?.status === 401) {
+                    navigate("/login"); // Note: added leading slash for absolute path
+                    return; // Important to return after navigation
+                }
             }
-            console.error("failed to add favorite: ", err)
+            
+            console.error("failed to add favorite: ", err);
             setFavorite(false);
         }
     }
@@ -120,7 +136,7 @@ function OfferElement({ offerData = null, linkUrl = null, onFavoriteClick = null
             const response = await authorizedRequest({
                 method: 'delete',
                 url: `${baseUrl}/favorite/delete-favorite`,
-                data: JSON.stringify(offerData.id)
+                data: JSON.stringify(offerData?.id)
             })
 
             if(response.status === 200){
