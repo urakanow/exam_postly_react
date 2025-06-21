@@ -1,10 +1,10 @@
 import { use, useContext, useState } from 'react';
-import { AuthContext } from '../Shared/AuthContext';
+import { useAuth } from '../Shared/AuthContext';
 import { AdvancedImage } from '@cloudinary/react';
 import { Link, useLocation, useNavigate } from 'react-router';
 
 function SignUpPage() {
-    const { cld } = useContext(AuthContext);
+    const { cld } = useAuth();
     const login_image = cld.image("login_icon_h5yruj")
     const email_image = cld.image("restore_password_icon_qdzoys")
     const phone_image = cld.image("phone_number_icon_lnxjlg")
@@ -16,7 +16,7 @@ function SignUpPage() {
     const [phoneNumber, setPhoneNumber] = useState("");
     const [password, setPassword] = useState("");
 
-    const { baseUrl, setAccessToken } = useContext(AuthContext);
+    const { baseUrl, setAccessToken } = useAuth();
     const [error, setError] = useState("");
 
     const location = useLocation();
@@ -104,7 +104,7 @@ function SignUpPage() {
         await handleResponse(response);
     }
 
-    async function handleResponse(response) {
+    async function handleResponse(response: Response) {
         // const data = await response.json();
         if (response.ok) {
             // setAccessToken(data.accessToken);

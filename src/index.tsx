@@ -11,12 +11,12 @@ import AuthProvider from './components/Shared/AuthContext';
 // import CreateOfferPage from './components/Create_Offer_Page/CreateOfferPage';
 // import FavoritesPage from './components/Favorites_Page/FavoritesPage';
 import MainPage from './components/Main_Page/MainPage';
-// import LoginPage from './components/Auth_Page/LoginPage';
-// import SignUpPage from './components/Auth_Page/SignUpPage';
-// import RestorePasswordPage from './components/Auth_Page/RestorePasswordPage';
+import LoginPage from './components/Auth_Page/LoginPage';
+import SignUpPage from './components/Auth_Page/SignUpPage';
+import RestorePasswordPage from './components/Auth_Page/RestorePasswordPage';
 import ProtectedRoute from './components/Shared/ProtectedRoute';
-// import ForgotPasswordPage from './components/Auth_Page/ForgotPasswordPage';
-// import VerifyEmailPage from './components/Auth_Page/VerifyEmailPage';
+import ForgotPasswordPage from './components/Auth_Page/ForgotPasswordPage';
+import VerifyEmailPage from './components/Auth_Page/VerifyEmailPage';
 // import MyOffersPage from './components/My_Offers_Page/MyOffersPage';
 // import MyOfferPage from './components/My_Offer_Page/MyOfferPage';
 // import CategoryPage from './components/CategoryPage/CategoryPage';
@@ -63,12 +63,12 @@ root.render(
               </ProtectedRoute>
             } />
             <Route path='/category/:categoryIndex' element={<CategoryPage />} />
-            <Route path='/search' element={<SearchPage />} />
-            <Route path='/login' element={<LoginPage />} />
+            <Route path='/search' element={<SearchPage />} /> */}
             <Route path='/signup' element={<SignUpPage />} />
             <Route path='/forgot-password' element={<ForgotPasswordPage />} />
             <Route path='/restore-password' element={<RestorePasswordPage />} />
-            <Route path='/verify-email' element={<VerifyEmailPage />} /> */}
+            <Route path='/verify-email' element={<VerifyEmailPage />} />
+            <Route path='/login' element={<LoginPage />} />
           </Routes>
         </Layout>
       </AuthProvider>

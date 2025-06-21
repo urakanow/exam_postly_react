@@ -1,13 +1,13 @@
 import { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../Shared/AuthContext';
+import { useAuth } from '../Shared/AuthContext';
 import { AdvancedImage } from '@cloudinary/react';
 import { Link } from 'react-router';
 import Countdown from 'react-countdown';
 
 function ForgotPasswordPage() {
-    const { cld } = useContext(AuthContext);
+    const { cld } = useAuth();
     const restore_password_image = cld.image("restore_password_icon_qdzoys")
-    const { baseUrl } = useContext(AuthContext);
+    const { baseUrl } = useAuth();
     const [email, setEmail] = useState("");
 
     const [sendingStatus, setSendingStatus] = useState("not sent");
@@ -15,12 +15,18 @@ function ForgotPasswordPage() {
     const [buttonText, setButtonText] = useState("Надіслати інструкцію");
 
     const [error, setError] = useState("");
-
-    const renderer = ({ minutes, seconds, completed }) => {
+    
+    interface RendererProps {
+        minutes: number,
+        seconds: number,
+        completed: boolean
+    }
+    
+    const renderer = ({ minutes, seconds, completed }: RendererProps) => {
         if (completed) {
             // Render a completed state
             setSendingStatus("send again");
-            return <span>done</span>;
+            return;
         } else {
             // Render a countdown
             return <span>{minutes}:{seconds.toString().padStart(2, '0')}</span>;
@@ -119,8 +125,15 @@ export default ForgotPasswordPage;
 
 
 
+
+
+
+
+
+
+
 // import { useContext, useEffect, useState } from 'react';
-// import { AuthContext } from '../Shared/AuthContext';
+// import { useAuth } from '../Shared/AuthContext';
 // import { AdvancedImage } from '@cloudinary/react';
 // import { Link } from 'react-router-dom'; // Fixed import - should be react-router-dom
 // import { Cloudinary } from '@cloudinary/url-gen';
@@ -128,13 +141,13 @@ export default ForgotPasswordPage;
 // // Define types for your component
 // type SendingStatus = 'not sent' | 'sending' | 'sent' | 'unauthorized' | 'error';
 
-// interface AuthContextType {
+// interface useAuthType {
 //   cld: Cloudinary;
 //   baseUrl: string;
 // }
 
 // function ForgotPasswordPage() {
-//     const { cld, baseUrl } = useContext(AuthContext) as AuthContextType;
+//     const { cld, baseUrl } = useAuth() as useAuthType;
 //     const restore_password_image = cld.image("restore_password_icon_qdzoys");
 //     const [email, setEmail] = useState<string>("");
 //     const [sendingStatus, setSendingStatus] = useState<SendingStatus>("not sent");

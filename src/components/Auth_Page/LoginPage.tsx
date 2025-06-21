@@ -1,16 +1,17 @@
 import { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../Shared/AuthContext';
+import { useAuth } from '../Shared/AuthContext';
 import { AdvancedImage } from '@cloudinary/react';
 import { Link, useLocation, useNavigate } from 'react-router';
+import { AxiosResponse } from 'axios';
 
 function LoginPage() {
-    const { cld } = useContext(AuthContext);
+    const { cld } = useAuth();
     const login_image = cld.image("login_icon_h5yruj")
     const password_image = cld.image("password_icon_vilhyw")
     const [username, setLogin] = useState("");
     const [password, setPassword] = useState("");
 
-    const { baseUrl, setAccessToken } = useContext(AuthContext);
+    const { baseUrl, setAccessToken } = useAuth();
     const [error, setError] = useState("");
 
     const location = useLocation();
@@ -72,8 +73,8 @@ function LoginPage() {
             console.error(err);
         }
     }
-
-    async function handleResponse(response) {
+    
+    async function handleResponse(response: Response) {
         const data = await response.json();
         if (response.ok) {
             setAccessToken(data.accessToken);

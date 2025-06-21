@@ -1,16 +1,15 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router";
-import { AuthContext } from "../Shared/AuthContext";
+import { useAuth } from "../Shared/AuthContext";
 import { AdvancedImage } from '@cloudinary/react';
 import { Link } from 'react-router';
 
 function RestorePasswordPage() {
-    const { cld } = useContext(AuthContext);
+    const { cld, baseUrl } = useAuth();
     const password_image = cld.image("password_icon_vilhyw")
 
     const [ searchParams ] = useSearchParams();
     const token = searchParams.get('token');
-    const { baseUrl } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const [newPassword, setNewPassword] = useState("");
@@ -65,7 +64,7 @@ function RestorePasswordPage() {
                                 <div className="auth_input_image_wrapper vertical_container">
                                     <AdvancedImage cldImg={password_image} />
                                 </div>
-                                <input type="password" className="text_input auth_input auth_medium_heading" placeholder="Ел. пошта" onChange={(e) => setNewPassword(e.target.value)}/>
+                                <input type="password" className="text_input auth_input auth_medium_heading" placeholder="Пароль" onChange={(e) => setNewPassword(e.target.value)}/>
                             </div>
                         </div>
             

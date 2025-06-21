@@ -1,9 +1,9 @@
 import { useContext, useEffect, useLayoutEffect, useState } from "react";
 import { useSearchParams } from "react-router";
-import { AuthContext } from "../Shared/AuthContext";
+import { useAuth } from "../Shared/AuthContext";
 
 function VerifyEmailPage() {
-    const { baseUrl } = useContext(AuthContext);
+    const { baseUrl } = useAuth();
     const [ searchParams ] = useSearchParams();
     const token = searchParams.get('token');
 
