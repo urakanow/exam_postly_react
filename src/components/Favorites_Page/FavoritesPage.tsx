@@ -1,12 +1,19 @@
 import { useContext, useEffect, useState } from "react";
 import useApi from "../Shared/UseApi";
-import { AuthContext } from "../Shared/AuthContext";
+import { useAuth } from "../Shared/AuthContext";
 import { Grid } from "@mui/material";
 import OfferElement from "../Main_Page/OfferElement";
 
+interface OfferPreview{
+    id: number,
+    previewImageUrl: string,
+    title: string,
+    price: number,
+}
+
 function FavoritesPage() {
-    const { baseUrl } = useContext(AuthContext);
-    const [favorites, setFavorites] = useState(null);
+    const { baseUrl } = useAuth();
+    const [favorites, setFavorites] = useState<OfferPreview[]>([]);
     const { authorizedRequest } = useApi()
 
     useEffect(() => {

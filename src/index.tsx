@@ -2,14 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router';
 import './index.css';
-// import reportWebVitals from './reportWebVitals';
 import reportWebVitals from './reportWebVitals';
 import Layout from './components/Shared/Layout';
 import PersonalPage from './components/Personal_Page/PersonalPage';
 import AuthProvider from './components/Shared/AuthContext';
 // import OfferPage from './components/Offer_Page/OfferPage';
 // import CreateOfferPage from './components/Create_Offer_Page/CreateOfferPage';
-// import FavoritesPage from './components/Favorites_Page/FavoritesPage';
+import FavoritesPage from './components/Favorites_Page/FavoritesPage';
 import MainPage from './components/Main_Page/MainPage';
 import LoginPage from './components/Auth_Page/LoginPage';
 import SignUpPage from './components/Auth_Page/SignUpPage';
@@ -46,13 +45,13 @@ root.render(
               <ProtectedRoute>
                 <CreateOfferPage />
               </ProtectedRoute>
-              } />
+              } /> */}
             <Route path='/favorites' element={
               <ProtectedRoute>
                 <FavoritesPage />
               </ProtectedRoute>
             } />
-            <Route path='/my-offers' element={
+            {/*<Route path='/my-offers' element={
               <ProtectedRoute>
                 <MyOffersPage />
               </ProtectedRoute>
