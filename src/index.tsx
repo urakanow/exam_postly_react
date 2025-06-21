@@ -5,7 +5,7 @@ import './index.css';
 // import reportWebVitals from './reportWebVitals';
 import reportWebVitals from './reportWebVitals';
 import Layout from './components/Shared/Layout';
-// import PersonalPage from './components/Personal_Page/PersonalPage';
+import PersonalPage from './components/Personal_Page/PersonalPage';
 import AuthProvider from './components/Shared/AuthContext';
 // import OfferPage from './components/Offer_Page/OfferPage';
 // import CreateOfferPage from './components/Create_Offer_Page/CreateOfferPage';
@@ -14,7 +14,7 @@ import MainPage from './components/Main_Page/MainPage';
 // import LoginPage from './components/Auth_Page/LoginPage';
 // import SignUpPage from './components/Auth_Page/SignUpPage';
 // import RestorePasswordPage from './components/Auth_Page/RestorePasswordPage';
-// import ProtectedRoute from './components/Shared/ProtectedRoute';
+import ProtectedRoute from './components/Shared/ProtectedRoute';
 // import ForgotPasswordPage from './components/Auth_Page/ForgotPasswordPage';
 // import VerifyEmailPage from './components/Auth_Page/VerifyEmailPage';
 // import MyOffersPage from './components/My_Offers_Page/MyOffersPage';
@@ -36,12 +36,12 @@ root.render(
         <Layout>
           <Routes>
             <Route index element={<MainPage /> } />
-            {/*<Route path="/me" element={
+            <Route path="/me" element={
               <ProtectedRoute>
                 <PersonalPage />
               </ProtectedRoute>
             } />
-            <Route path='/offer/:id' element={<OfferPage />} />
+            {/* <Route path='/offer/:id' element={<OfferPage />} /> 
             <Route path='/create-offer' element={
               <ProtectedRoute>
                 <CreateOfferPage />

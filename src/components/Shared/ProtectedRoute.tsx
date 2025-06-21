@@ -1,10 +1,10 @@
 // ProtectedRoute.js
 import { Navigate, useLocation } from 'react-router-dom';
-import { useContext } from 'react';
-import { AuthContext } from './AuthContext';
+import { ReactNode, useContext } from 'react';
+import { useAuth } from './AuthContext';
 
-function ProtectedRoute({ children }) {
-  const { accessToken } = useContext(AuthContext);
+function ProtectedRoute({ children }: { children: ReactNode})  {
+  const { accessToken } = useAuth();
   const location = useLocation();
 
   if (!accessToken) {

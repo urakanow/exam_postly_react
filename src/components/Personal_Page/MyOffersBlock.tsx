@@ -1,11 +1,22 @@
 import { useContext, useState } from 'react';
-import { AuthContext } from '../Shared/AuthContext';
+import { useAuth } from '../Shared/AuthContext';
 import { AdvancedImage } from '@cloudinary/react';
 import MyOfferPreview from './MyOfferPreview';
 import { Link } from 'react-router';
 
-function MyOffersBlock({ offers }) {
-    const { cld } = useContext(AuthContext);
+interface OfferPreview{
+    id: number,
+    previewImageUrl: string,
+    title: string,
+    price: number,
+}
+
+interface MyOffersBlockProps {
+    offers: OfferPreview[]
+}
+
+function MyOffersBlock({ offers }: MyOffersBlockProps) {
+    const { cld } = useAuth();
     const left_arrow_image = cld.image("left_arrow_icon_xozc74")
     const right_arrow_image = cld.image("right_arrow_icon_m9px0p");
     const [firstIndex, setFirstIndex] = useState(0);

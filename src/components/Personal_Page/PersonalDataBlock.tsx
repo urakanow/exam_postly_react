@@ -1,10 +1,26 @@
-import { useContext, useState } from "react";
-import { AuthContext } from '../Shared/AuthContext';
+import { ChangeEvent, useContext, useState } from "react";
+import { useAuth } from '../Shared/AuthContext';
 import useApi from '../Shared/UseApi';
 
-function PersonalDataBlock({ data }) {
+interface Data {
+    username: string,
+    email: string,
+    phoneNumber: string
+    firstName?: string,
+    lastName?: string,
+    city?: string,
+    postCode?: string,
+    address?: string,
+    apartmentNumber?: string,
+}
+
+interface PersonalDataBlockProps {
+    data: Data
+}
+
+function PersonalDataBlock({ data }: PersonalDataBlockProps) {
     const { authorizedRequest } = useApi();
-    const { baseUrl } = useContext(AuthContext);
+    const { baseUrl } = useAuth();
     const [isChanged, setIsChanged] = useState(false);
 
     const [formData, setFormData] = useState({
@@ -19,7 +35,7 @@ function PersonalDataBlock({ data }) {
         phoneNumber: data.phoneNumber
     });
 
-    const handleChange = (e) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         if(!isChanged){
             setIsChanged(true);
         }

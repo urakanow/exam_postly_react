@@ -1,9 +1,13 @@
 import { useContext } from 'react';
-import { AuthContext } from '../Shared/AuthContext';
+import { useAuth } from '../Shared/AuthContext';
 import { AdvancedImage } from '@cloudinary/react';
 
-function Message({ unread }) {
-    const { cld } = useContext(AuthContext);
+interface MessageProps {
+    unread?: boolean
+}
+
+function Message({ unread = false }: MessageProps) {
+    const { cld } = useAuth();
     const profile_picture = cld.image("profile_picture_default_icon_t9kx9b")
 
     return (

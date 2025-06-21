@@ -1,9 +1,20 @@
 import { useContext } from 'react';
-import { AuthContext } from '../Shared/AuthContext';
+import { useAuth } from '../Shared/AuthContext';
 import { AdvancedImage } from '@cloudinary/react';
 
-function MyOfferPreview({ offer }) {
-    const { cld } = useContext(AuthContext);
+interface OfferPreview{
+    id: number,
+    previewImageUrl: string,
+    title: string,
+    price: number,
+}
+
+interface MyOfferPreviewProps {
+    offer: OfferPreview
+}
+
+function MyOfferPreview({ offer }: MyOfferPreviewProps) {
+    const { cld } = useAuth();
     const image = cld.image(offer.previewImageUrl);
 
     return (

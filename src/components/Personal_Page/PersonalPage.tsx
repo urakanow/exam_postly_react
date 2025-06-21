@@ -2,14 +2,39 @@ import PersonalDataBlock from './PersonalDataBlock';
 import MyOffersBlock from './MyOffersBlock';
 import MessagesBlock from './MessagesBlock';
 import { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../Shared/AuthContext';
+import { useAuth } from '../Shared/AuthContext';
 import useApi from '../Shared/UseApi';
 import { useNavigate } from 'react-router';
 
+interface OfferPreview{
+    id: number,
+    previewImageUrl: string,
+    title: string,
+    price: number,
+}
+
+interface PersonalData{
+    username: string,
+    email: string,
+    phoneNumber: string,
+    firstName?: string,
+    lastName?: string,
+    city?: string,
+    postCode?: string,
+    address?: string,
+    apartmentNumber?: string,
+}
+
+interface UserData {
+    address?: string,
+    personalData: PersonalData,
+    offers: OfferPreview[]
+}
+
 function PersonalPage() {
-    const [userData, setUserData] = useState(null);
+    const [userData, setUserData] = useState<UserData>();
     const { authorizedRequest } = useApi();
-    const { baseUrl, setAccessToken } = useContext(AuthContext);
+    const { baseUrl, setAccessToken } = useAuth();
     // const navigate = useNavigate();
 
     useEffect(() => {
