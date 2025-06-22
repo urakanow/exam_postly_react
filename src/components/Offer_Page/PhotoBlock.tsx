@@ -1,9 +1,14 @@
-import { useContext, useState } from 'react';
-import { AuthContext } from '../Shared/AuthContext';
+import { useState } from 'react';
+import { useAuth } from '../Shared/AuthContext';
 import { AdvancedImage } from '@cloudinary/react';
+import { Photo } from '../../models/Photo';
 
-function PhotoBlock({ photos }) {
-    const { cld } = useContext(AuthContext);
+interface PhotoBlockProps{
+    photos: Photo[]
+}
+
+function PhotoBlock({ photos }: PhotoBlockProps) {
+    const { cld } = useAuth();
     const [photoIndex, setPhotoIndex] = useState(0);
     const offer_test_image = cld.image(photos[photoIndex].url)
     const left_arrow_image = cld.image("left_arrow_icon_xozc74")

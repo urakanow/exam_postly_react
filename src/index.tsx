@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import Layout from './components/Shared/Layout';
 import PersonalPage from './components/Personal_Page/PersonalPage';
 import AuthProvider from './components/Shared/AuthContext';
-// import OfferPage from './components/Offer_Page/OfferPage';
+import OfferPage from './components/Offer_Page/OfferPage';
 // import CreateOfferPage from './components/Create_Offer_Page/CreateOfferPage';
 import FavoritesPage from './components/Favorites_Page/FavoritesPage';
 import MainPage from './components/Main_Page/MainPage';
@@ -40,8 +40,8 @@ root.render(
                 <PersonalPage />
               </ProtectedRoute>
             } />
-            {/* <Route path='/offer/:id' element={<OfferPage />} /> 
-            <Route path='/create-offer' element={
+            <Route path='/offer/:id' element={<OfferPage />} /> 
+            {/* <Route path='/create-offer' element={
               <ProtectedRoute>
                 <CreateOfferPage />
               </ProtectedRoute>

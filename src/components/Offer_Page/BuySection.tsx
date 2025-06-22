@@ -1,15 +1,28 @@
 import { useContext } from 'react';
-import { AuthContext } from '../Shared/AuthContext';
+import { useAuth } from '../Shared/AuthContext';
 import { AdvancedImage } from '@cloudinary/react';
 
-function BuySection({ data }) {
-    const { cld } = useContext(AuthContext);
+interface Data {
+    creationDate: string,
+    title: string,
+    price: number,
+    username: string,
+    phoneNumber: string
+
+}
+
+interface BuySectionProps{
+    data: Data
+}
+
+function BuySection({ data }: BuySectionProps) {
+    const { cld } = useAuth();
     const profile_picture = cld.image("profile_picture_default_icon_t9kx9b");
     const green_arrow_image = cld.image("green_arrow_icon_rmvcna");
     const ukrpost_image = cld.image("ukrpost_icon_rxne6a");
     const novapost_image = cld.image("nova_post_icon_coq0n8")
 
-    function getFormattedDate(isoDate) {
+    function getFormattedDate(isoDate: string) {
         const date = new Date(isoDate);
         
         // Extract date components

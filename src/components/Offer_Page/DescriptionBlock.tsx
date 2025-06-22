@@ -1,4 +1,13 @@
-function DescriptionBlock({ data }) {
+interface Data {
+    id: number,
+    description: string
+}
+
+interface DescriptionBlockProps {
+    data: Data
+}
+
+function DescriptionBlock({ data }: DescriptionBlockProps) {
     return (
         <div className='green_rectangle vertical_container' id='description_display'>
             <h1 className='medium_heading'>Опис</h1>

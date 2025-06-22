@@ -1,15 +1,28 @@
 import { useParams } from 'react-router-dom';
 import BuySection from './BuySection';
 import InfoSection from './InfoSection';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import useApi from '../Shared/UseApi';
-import { AuthContext } from '../Shared/AuthContext';
+import { useAuth } from '../Shared/AuthContext';
+import { Photo } from '../../models/Photo';
+
+interface OfferData{
+    images: Photo[],
+    category: number,
+    description: string,
+    address: string,
+    creationDate: string,
+    title: string,
+    price: number,
+    contacter: string,
+    phoneNumber: string
+}
 
 function OfferPage() {
-    const { id } = useParams();
-    const [offerData, setOfferData] = useState(null)
+    const { id } = useParams<{ id: string }>();
+    const [offerData, setOfferData] = useState<OfferData>()
     const { authorizedRequest } = useApi()
-    const { baseUrl } = useContext(AuthContext);
+    const { baseUrl } = useAuth();
 
     useEffect(() => {
         fetchOfferData();
@@ -19,6 +32,10 @@ function OfferPage() {
     useEffect(() =>{
         console.log(offerData);
     }, [offerData])
+    
+    if (!id) {
+        return <div>Error: Missing offer ID</div>;
+    }
 
     return ( 
         <div className='offer_page_container horizontal_container'>
@@ -28,7 +45,7 @@ function OfferPage() {
                         photos: offerData.images,
                         category: offerData.category,
                         description: offerData.description,
-                        id: id,
+                        id: parseInt(id),
                         address: offerData.address
                     }}/>
     

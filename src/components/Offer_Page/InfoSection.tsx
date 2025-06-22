@@ -1,11 +1,23 @@
-import { useContext } from 'react';
-import { AuthContext } from '../Shared/AuthContext';
+import { useAuth } from '../Shared/AuthContext';
 import { AdvancedImage } from '@cloudinary/react';
 import DescriptionBlock from "./DescriptionBlock";
 import PhotoBlock from "./PhotoBlock";
+import { Photo } from '../../models/Photo';
 
-function InfoSection({ data }) {
-    const { cld, options } = useContext(AuthContext);
+interface Data{
+    photos: Photo[],
+    category: number,
+    description: string,
+    id: number,
+    address: string
+}
+
+interface InfoSectionProps {
+    data: Data
+}
+
+function InfoSection({ data }: InfoSectionProps) {
+    const { cld, options } = useAuth();
     const location_image = cld.image("location_icon_szvvv8")
 
     return (
