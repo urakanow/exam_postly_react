@@ -6,15 +6,17 @@ import useApi from '../Shared/UseApi';
 import { useAuth } from '../Shared/AuthContext';
 import { Photo } from '../../models/Photo';
 
-interface OfferData{
+export interface OfferData{
     images: Photo[],
     category: number,
+    state: number,
     description: string,
     address: string,
     creationDate: string,
     title: string,
     price: number,
     contacter: string,
+    email: string,
     phoneNumber: string
 }
 

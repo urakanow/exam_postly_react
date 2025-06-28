@@ -7,7 +7,7 @@ import Layout from './components/Shared/Layout';
 import PersonalPage from './components/Personal_Page/PersonalPage';
 import AuthProvider from './components/Shared/AuthContext';
 import OfferPage from './components/Offer_Page/OfferPage';
-// import CreateOfferPage from './components/Create_Offer_Page/CreateOfferPage';
+import CreateOfferPage from './components/Create_Offer_Page/CreateOfferPage';
 import FavoritesPage from './components/Favorites_Page/FavoritesPage';
 import MainPage from './components/Main_Page/MainPage';
 import LoginPage from './components/Auth_Page/LoginPage';
@@ -41,11 +41,11 @@ root.render(
               </ProtectedRoute>
             } />
             <Route path='/offer/:id' element={<OfferPage />} /> 
-            {/* <Route path='/create-offer' element={
+            <Route path='/create-offer' element={
               <ProtectedRoute>
                 <CreateOfferPage />
               </ProtectedRoute>
-              } /> */}
+            } />
             <Route path='/favorites' element={
               <ProtectedRoute>
                 <FavoritesPage />

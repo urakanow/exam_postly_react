@@ -1,9 +1,15 @@
-import { useEffect } from "react";
+import { ChangeEvent, useEffect } from "react";
 import CategoryDropdown from "./CategoryDropdown";
 import StateDropdown from "./StateDropdown";
+import { GeneralData } from "./CreateOfferPage";
 
-function GeneralDataBlock({ setGeneralData, generalData = null }) {
-    const handleChange = (e) => {
+interface GeneralDataBlockProps {
+    setGeneralData: React.Dispatch<React.SetStateAction<GeneralData>>,
+    generalData?: GeneralData
+}
+
+function GeneralDataBlock({ setGeneralData, generalData }: GeneralDataBlockProps) {
+    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { id, value } = e.target;
         setGeneralData(prev => ({
             ...prev,
@@ -26,7 +32,7 @@ function GeneralDataBlock({ setGeneralData, generalData = null }) {
             <textarea className="form_text_input text_input" id="description" defaultValue={generalData ? generalData.description : ""} onChange={handleChange}/>
 
             <label className="text_input_label" htmlFor="category_dropdown">Категорія</label>
-            <CategoryDropdown selectedIndex={generalData ? generalData.category : undefined} onChange={(index) => {
+            <CategoryDropdown selectedIndex={generalData?.category ? generalData.category : undefined} onChange={(index) => {
                     setGeneralData(prev => ({
                         ...prev,
                         ["category"]: index
@@ -35,7 +41,7 @@ function GeneralDataBlock({ setGeneralData, generalData = null }) {
             }/>
 
             <label className="text_input_label" htmlFor="state_dropdown">Стан</label>
-            <StateDropdown selectedIndex={generalData ? generalData.state : undefined} onChange={(index) => {
+            <StateDropdown selectedIndex={generalData?.state ? generalData.state : undefined} onChange={(index) => {
                     setGeneralData(prev => ({
                         ...prev,
                         ["state"]: index

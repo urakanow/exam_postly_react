@@ -1,28 +1,42 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { data, useNavigate, useParams } from "react-router";
 import useApi from "../Shared/UseApi";
-import { AuthContext } from "../Shared/AuthContext";
+import { useAuth } from "../Shared/AuthContext";
 import ContactDataBlock from "./ContactDataBlock";
 import PhotosBlock from "./PhotosBlock";
 import GeneralDataBlock from "./GeneralDataBlock";
 import { jsx } from "react/jsx-runtime";
+import { OfferData } from "../Offer_Page/OfferPage";
+import { Photo } from "../../models/Photo";
+
+export type PhotosType = {
+    [index: number]: string | Photo | null; 
+};
+
+export interface GeneralData {
+    title: string;
+    description: string;
+    category: number | null;
+    price: number;  // or number if you'll convert it
+    state: number | null;
+}
 
 function CreateOfferPage() {
     const navigate = useNavigate();
     const { authorizedRequest } = useApi();
-    const { baseUrl } = useContext(AuthContext);
+    const { baseUrl } = useAuth();
     const [error, setError] = useState("");
     const { id } = useParams();
 
-    const[generalData, setGeneralData] = useState({
+    const[generalData, setGeneralData] = useState<GeneralData>({
         title: "",
         description: "",
-        category: "",
-        price: "",
-        state: ""
+        category: null,
+        price: 0,
+        state: null
     });
 
-    const [photos, setPhotos] = useState({
+    const [photos, setPhotos] = useState<PhotosType>({
         0: null,
         1: null,
         2: null,
@@ -61,7 +75,7 @@ function CreateOfferPage() {
         </div>
     );
 
-    function initializeData(offerData){
+    function initializeData(offerData: OfferData){
         console.log(offerData.title)
         setGeneralData({
             title: offerData.title,
@@ -115,8 +129,8 @@ function CreateOfferPage() {
             generalData.description.trim() !== "" &&
             !isNaN(Number(generalData.category)) && // Category should be a number
             !isNaN(Number(generalData.state)) && // State should be a number
-            !isNaN(parseFloat(generalData.price)) && // Price should be a valid number
-            parseFloat(generalData.price) > 0; // Price should be positive
+            !isNaN(generalData.price) && // Price should be a valid number
+            generalData.price > 0; // Price should be positive
 
         // Check contact data
         const isContactDataValid = 
@@ -131,7 +145,7 @@ function CreateOfferPage() {
         return isGeneralDataValid && isContactDataValid && isPhotoValid;
     }
 
-    function showError(message){
+    function showError(message: string){
         console.error(message);
         setError(message);
     }
@@ -157,16 +171,28 @@ function CreateOfferPage() {
                 if(value == null){
                     return;
                 }
+                
+                const matches: RegExpMatchArray | null = null;
+                if(typeof value === 'string'){
+                    const matches = value.match(/^data:(.+?);base64/);
+                }
+                else if('url' in value){
+                    const matches = value.url.match(/^data:(.+?);base64/);
+                }
 
                 // Extract the real MIME type from the Data URL
                 
-                const matches = value.match(/^data:(.+?);base64/);
+                // const matches = value.match(/^data:(.+?);base64/);
                 const mimeType = matches?.[1] || 'image/png'; // Fallback to PNG if unknown
                 
                 // Map MIME type to correct extension
                 const extension = mimeType.split('/')[1] || 'png';
                 
                 // Create file with proper extension
+                if(typeof value !== 'string' && 'url' in value){
+                    console.log("cloudinary object");
+                    return;
+                }
                 const file = dataURLtoFile(value, `image_${key}.${extension}`);
                 formData.append("Images", file);
             });
@@ -198,6 +224,10 @@ function CreateOfferPage() {
         }
 
         try {
+            if(id === undefined){
+                return;
+            }
+
             const formData = new FormData();
 
             formData.append("id", id);
@@ -217,19 +247,7 @@ function CreateOfferPage() {
                     return;
                 }
 
-                if(value.url){
-                    console.log("cloudinary object")
-                    // formData.append("Images", value);
-                    formData.append(
-                        `Images`,
-                        JSON.stringify({
-                            id: value.id,
-                            url: value.url,
-                            offerId: value.offerId
-                        })
-                    );
-                }
-                else if (typeof value === 'string' && value.startsWith('data:image')) {
+                if (typeof value === 'string'){
                     console.log("image file")
                     const matches = value.match(/^data:(.+?);base64/);
                     const mimeType = matches?.[1] || 'image/png'; // Fallback to PNG if unknown
@@ -243,13 +261,47 @@ function CreateOfferPage() {
                     // formData.append(`Images[${key}].FileImage`, file);
                     formData.append(
                         `Images`,
-                        {
+                        JSON.stringify({
                             cloudinaryImage: null,
                             FileImage: file
-                        }
+                        })
                         // file
                     );
+
                 }
+                else if('url' in value){
+                    console.log("cloudinary object")
+                    // formData.append("Images", value);
+                    formData.append(
+                        `Images`,
+                        JSON.stringify({
+                            id: value.id,
+                            url: value.url,
+                            offerId: value.offerId
+                        })
+                    );
+                }
+                // else if (typeof value === 'string' && value.startsWith('data:image')) {
+                //     console.log("image file")
+                //     const matches = value.match(/^data:(.+?);base64/);
+                //     const mimeType = matches?.[1] || 'image/png'; // Fallback to PNG if unknown
+                    
+                //     // Map MIME type to correct extension
+                //     const extension = mimeType.split('/')[1] || 'png';
+                    
+                //     // Create file with proper extension
+                //     const file = dataURLtoFile(value, `image_${key}.${extension}`);
+                //     // formData.append("Images", file);
+                //     // formData.append(`Images[${key}].FileImage`, file);
+                //     formData.append(
+                //         `Images`,
+                //         {
+                //             cloudinaryImage: null,
+                //             FileImage: file
+                //         }
+                //         // file
+                //     );
+                // }
                 else{
                     console.log("unexpected data type")
                 }
@@ -277,7 +329,7 @@ function CreateOfferPage() {
         }        
     }
 
-    function dataURLtoFile(dataurl, filename) {
+    function dataURLtoFile(dataurl: string, filename: string) {
         const arr = dataurl.split(',');
         const mimeMatch = arr[0].match(/:(.*?);/);
         const mime = mimeMatch ? mimeMatch[1] : 'image/png';

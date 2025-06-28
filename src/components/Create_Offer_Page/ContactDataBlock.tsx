@@ -1,10 +1,22 @@
-import { useContext, useEffect, useState } from "react";
+import { ChangeEvent, useContext, useEffect, useState } from "react";
 import useApi from "../Shared/UseApi";
-import { AuthContext } from "../Shared/AuthContext";
+import { useAuth } from "../Shared/AuthContext";
 
-function ContactDataBlock({ formData, setFormData }) {
+interface FormData {
+    contacter: string,
+    email: string,
+    phoneNumber: string,
+    address: string,   
+}
+
+interface ContactDataBlockProps {
+    formData: FormData,
+    setFormData: React.Dispatch<React.SetStateAction<FormData>>
+}
+
+function ContactDataBlock({formData, setFormData}: ContactDataBlockProps) {
     const { authorizedRequest } = useApi();
-    const { baseUrl } = useContext(AuthContext);
+    const { baseUrl } = useAuth();
 
     // const [formData, setFormData] = useState({
     //     contacter: "",
@@ -13,7 +25,7 @@ function ContactDataBlock({ formData, setFormData }) {
     //     address: "",
     // });
     
-    const handleChange = (e) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { id, value } = e.target;
         setFormData(prev => ({
             ...prev,
@@ -29,7 +41,7 @@ function ContactDataBlock({ formData, setFormData }) {
         return Object.values(formData).some(value => value.trim() === "");
     }
 
-    function showError(text){
+    function showError(text: string){
         console.error(text);
     }
 

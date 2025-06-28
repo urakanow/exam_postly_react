@@ -1,15 +1,19 @@
-import { Menu, MenuItem } from './DropdownMenu.tsx';
+import { Menu, MenuItem } from './DropdownMenu';
 import { useState, useEffect, useContext, useRef } from 'react';
-import { AuthContext } from '../Shared/AuthContext.js';
 
-function StateDropdown({ onChange, selectedIndex = null }) {
+interface StateDropdownProps {
+    onChange: (index: number) => void,
+    selectedIndex?: number
+}
+
+function StateDropdown({ onChange, selectedIndex }: StateDropdownProps) {
     const dropdownRef = useRef(null);
-    const [selectedState, setSelectedState] = useState(null);
+    const [selectedState, setSelectedState] = useState<number | undefined>(undefined);
     // const [selected, setSelected] = useState(null);
     const options = ["Нове", "Вживане", "З дефектом"];
     // const { options } = useContext(AuthContext);
 
-    const handleSelect = (option, index) => {
+    const handleSelect = (option: string, index: number) => {
         // console.log("Selected option:", option);
         // setSelected(option);
         setSelectedState(index)
@@ -27,15 +31,15 @@ function StateDropdown({ onChange, selectedIndex = null }) {
     // }, [selected]);
     useEffect(() =>{
         if(selectedIndex){
-            setSelectedState(true);
+            setSelectedState(selectedIndex);
         }
     }, [selectedIndex])
 
-    useEffect(() => {
-        if (dropdownRef.current) {
-            dropdownRef.current.dataset.state = selectedState === null ? 'placeholder' : 'selected';
-        }
-    }, [selectedState]);
+    // useEffect(() => {
+    //     if (dropdownRef.current) {
+    //         dropdownRef.current.dataset.state = selectedState === null ? 'placeholder' : 'selected';
+    //     }
+    // }, [selectedState]);
 
 
     return (        
