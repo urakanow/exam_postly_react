@@ -6,16 +6,11 @@ import { data, Link, useNavigate } from "react-router";
 import useApi from "../Shared/UseApi";
 import { useAuth } from "../Shared/AuthContext";
 import { AxiosError } from "axios";
+import { OfferPreview } from "../../models/OfferPreview";
 
-interface IOfferData {
-    id: number,
-    previewImageUrl: string,
-    title: string,
-    price: number
-}
 
 interface OfferElementProps {
-    offerData?: IOfferData | null,
+    offerData?: OfferPreview | null,
     linkUrl?: string | null,
     onFavoriteClick?: ((id: number) => void) | null
 }

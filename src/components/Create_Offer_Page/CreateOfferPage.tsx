@@ -6,8 +6,8 @@ import ContactDataBlock from "./ContactDataBlock";
 import PhotosBlock from "./PhotosBlock";
 import GeneralDataBlock from "./GeneralDataBlock";
 import { jsx } from "react/jsx-runtime";
-import { OfferData } from "../Offer_Page/OfferPage";
 import { Photo } from "../../models/Photo";
+import { Offer } from "../../models/Offer";
 
 export type PhotosType = {
     [index: number]: string | Photo | null; 
@@ -75,7 +75,7 @@ function CreateOfferPage() {
         </div>
     );
 
-    function initializeData(offerData: OfferData){
+    function initializeData(offerData: Offer){
         console.log(offerData.title)
         setGeneralData({
             title: offerData.title,

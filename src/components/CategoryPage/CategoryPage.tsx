@@ -1,24 +1,28 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { AuthContext } from "../Shared/AuthContext";
-import OfferElement from "../Main_Page/OfferElement";
+import { useAuth } from "../Shared/AuthContext";
 import { Grid } from "@mui/material";
+import { Offer } from "../../models/Offer";
+import { OfferPreview } from "../../models/OfferPreview";
+import OfferElement from "../Main_Page/OfferElement";
+import { Filters } from "../../models/Filters";
 
 function CategoryPage() {
     const { categoryIndex } = useParams();
-    const { baseUrl, options } = useContext(AuthContext);
+    const categoryId = parseInt(categoryIndex || "") || 0;
+    const { baseUrl, categories } = useAuth();
 
-    const [offers, setOffers] = useState(null);
+    const [offers, setOffers] = useState<OfferPreview[]>();
 
     useEffect(() => {
         fetchCategoryOffers({
-            category: categoryIndex,
+            categoryIndex: categoryId,
             pageSize: 20
         })
     }, [])
     return (
         <div className="offers_display_page">
-            <h1 className="large_heading">{options[categoryIndex]}</h1>
+            <h1 className="large_heading">{categories[categoryId]}</h1>
             {offers ? (
                 <div className="offers_block">
                     <Grid container spacing={2} className="offers_grid">
@@ -35,13 +39,14 @@ function CategoryPage() {
         </div>
     );
 
-    async function fetchCategoryOffers(filters = {}){
+    async function fetchCategoryOffers(filters: Filters){
         try{
             const params = new URLSearchParams();
                 
-            if (filters.category != undefined) params.append('categoryId', filters.category);
-            if (filters.page != undefined) params.append('page', filters.page);
-            if (filters.pageSize != undefined) params.append('pageSize', filters.pageSize);
+            if (filters.categoryIndex !== undefined) params.append('categoryId', filters.categoryIndex.toString());
+            else { return; }
+            if (filters.pageIndex !== undefined) params.append('page', filters.pageIndex.toString());
+            if (filters.pageSize !== undefined) params.append('pageSize', filters.pageSize.toString());
 
             const response = await fetch(`${baseUrl}/offer/filtered-offers?${params.toString()}`, {
                 method: 'get',

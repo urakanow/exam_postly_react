@@ -5,24 +5,12 @@ import { useEffect, useState } from 'react';
 import useApi from '../Shared/UseApi';
 import { useAuth } from '../Shared/AuthContext';
 import { Photo } from '../../models/Photo';
+import { Offer } from '../../models/Offer';
 
-export interface OfferData{
-    images: Photo[],
-    category: number,
-    state: number,
-    description: string,
-    address: string,
-    creationDate: string,
-    title: string,
-    price: number,
-    contacter: string,
-    email: string,
-    phoneNumber: string
-}
 
 function OfferPage() {
     const { id } = useParams<{ id: string }>();
-    const [offerData, setOfferData] = useState<OfferData>()
+    const [offerData, setOfferData] = useState<Offer>()
     const { authorizedRequest } = useApi()
     const { baseUrl } = useAuth();
 

@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { useAuth } from "../Shared/AuthContext";
 import useApi from "../Shared/UseApi";
 import { useNavigate } from "react-router";
+import { Filters } from "../../models/Filters";
 
 interface OffersBlockProps {
     categoryIndex: number
@@ -45,11 +46,6 @@ function OffersBlock({ categoryIndex }: OffersBlockProps) {
         </div>
     );
 
-    interface Filters {
-        categoryIndex: number,
-        pageIndex?: number,
-        pageSize?: number
-    }
 
     async function FetchFilteredOffers(filters: Filters ){
         try{
