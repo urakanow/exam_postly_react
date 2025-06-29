@@ -1,20 +1,25 @@
 import { Grid } from "@mui/material";
-import { Cloudinary } from '@cloudinary/url-gen';
+import { Cloudinary, CloudinaryImage } from '@cloudinary/url-gen';
 import { AdvancedImage } from '@cloudinary/react';
 import { useEffect, useState} from "react";
 import { Link, useNavigate } from "react-router";
 import { useContext } from "react";
-import { AuthContext } from "../Shared/AuthContext";
+import { useAuth } from "../Shared/AuthContext";
 import useApi from "../Shared/UseApi";
+import { OfferPreview } from "../../models/OfferPreview";
 
+interface MyOfferElementProps {
+    offerData: OfferPreview,
+    onDelete: () => void
+}
 
-function MyOfferElement({ offerData = null, onDelete }) {
-    const { baseUrl } = useContext(AuthContext);
+function MyOfferElement({ offerData, onDelete }: MyOfferElementProps) {
+    const { baseUrl } = useAuth();
     const { authorizedRequest } = useApi();
     
     const cld = new Cloudinary({ cloud: { cloudName: 'dxvwnanu4' } });
     const delete_image = cld.image("delete_icon_om93sn");
-    const [image, setImage] = useState(null);
+    const [image, setImage] = useState<CloudinaryImage | null>(null);
 
     const navigate = useNavigate();
 
@@ -36,7 +41,7 @@ function MyOfferElement({ offerData = null, onDelete }) {
         imgElement.onerror = () => {
             setImage(null);
         };
-    }, [offerData?.images])
+    }, [offerData.previewImageUrl])
     
     return (
         <Grid size={3} id="my_offer_element" className="offer_element">

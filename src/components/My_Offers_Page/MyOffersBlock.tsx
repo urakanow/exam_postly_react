@@ -1,14 +1,15 @@
 import { Grid, Grow } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../Shared/AuthContext";
+import { useAuth } from "../Shared/AuthContext";
 import useApi from "../Shared/UseApi";
 import OfferElement from "../Main_Page/OfferElement";
 import MyOfferElement from "./MyOfferElement";
+import { OfferPreview } from "../../models/OfferPreview";
 
 function MyOffersBlock() {
-    const { baseUrl } = useContext(AuthContext);
+    const { baseUrl } = useAuth();
     const { authorizedRequest } = useApi();
-    const [offers, setOffers] = useState([])
+    const [offers, setOffers] = useState<OfferPreview[]>([])
 
     useEffect(() => {
         fetchMyOffers()

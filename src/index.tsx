@@ -16,7 +16,7 @@ import RestorePasswordPage from './components/Auth_Page/RestorePasswordPage';
 import ProtectedRoute from './components/Shared/ProtectedRoute';
 import ForgotPasswordPage from './components/Auth_Page/ForgotPasswordPage';
 import VerifyEmailPage from './components/Auth_Page/VerifyEmailPage';
-// import MyOffersPage from './components/My_Offers_Page/MyOffersPage';
+import MyOffersPage from './components/My_Offers_Page/MyOffersPage';
 // import MyOfferPage from './components/My_Offer_Page/MyOfferPage';
 import CategoryPage from './components/CategoryPage/CategoryPage';
 // import SearchPage from './components/Search_Page/SearchPage';
@@ -51,11 +51,12 @@ root.render(
                 <FavoritesPage />
               </ProtectedRoute>
             } />
-            {/*<Route path='/my-offers' element={
+            <Route path='/my-offers' element={
               <ProtectedRoute>
                 <MyOffersPage />
               </ProtectedRoute>
             } />
+            {/*
             <Route path='/my-offer/:id' element={
               <ProtectedRoute>
                 <CreateOfferPage />
