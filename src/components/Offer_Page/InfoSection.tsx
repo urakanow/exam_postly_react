@@ -17,7 +17,7 @@ interface InfoSectionProps {
 }
 
 function InfoSection({ data }: InfoSectionProps) {
-    const { cld, options } = useAuth();
+    const { cld, categories: options } = useAuth();
     const location_image = cld.image("location_icon_szvvv8")
 
     return (

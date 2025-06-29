@@ -17,7 +17,7 @@ export interface GeneralData {
     title: string;
     description: string;
     category: number | null;
-    price: number;  // or number if you'll convert it
+    price: number;
     state: number | null;
 }
 
@@ -123,23 +123,19 @@ function CreateOfferPage() {
     }
     
     function isFilled() {
-        // Check general data
         const isGeneralDataValid = 
             generalData.title.trim() !== "" &&
             generalData.description.trim() !== "" &&
-            !isNaN(Number(generalData.category)) && // Category should be a number
-            !isNaN(Number(generalData.state)) && // State should be a number
-            !isNaN(generalData.price) && // Price should be a valid number
-            generalData.price > 0; // Price should be positive
+            generalData.category !== null &&
+            generalData.state !== null &&
+            generalData.price > 0;
 
-        // Check contact data
         const isContactDataValid = 
             contactData.contacter.trim() !== "" &&
             contactData.email.trim() !== "" &&
             contactData.phoneNumber.trim() !== "" &&
             contactData.address.trim() !== "";
 
-        // Check at least first photo is set
         const isPhotoValid = photos[0] !== null;
 
         return isGeneralDataValid && isContactDataValid && isPhotoValid;
@@ -197,7 +193,7 @@ function CreateOfferPage() {
                 formData.append("Images", file);
             });
             
-            console.log(formData);
+            console.log("form data: ", formData);
 
             const response = await authorizedRequest({
                 method: 'post',
@@ -207,7 +203,8 @@ function CreateOfferPage() {
                     'Content-Type': 'multipart/form-data' // Important for file uploads
                 }
             });
-    
+            
+            console.log("got response")
             if (response.status === 200) {
                 console.log("Offer created successfully");
                 navigate("/");

@@ -10,7 +10,7 @@ interface OffersBlockProps {
 }
 
 function OffersBlock({ categoryIndex }: OffersBlockProps) {
-    const { options, baseUrl } = useAuth();
+    const { categories: options, baseUrl } = useAuth();
     const { authorizedRequest } = useApi();
     const [offers, setOffers] = useState([])
 

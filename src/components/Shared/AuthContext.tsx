@@ -8,7 +8,7 @@ interface AuthContextType {
     authErrorMessage: string;
     setAuthErrorMessage: (message: string) => void;
     baseUrl: string;
-    options: string[];
+    categories: string[];
     cld: Cloudinary;
 }
 
@@ -24,7 +24,7 @@ export function useAuth() {
 
 function AuthProvider({ children } : {children: ReactNode}) {
     const cld = new Cloudinary({ cloud: { cloudName: 'dxvwnanu4' } });
-    const options = ["Меблі", "Електроніка", "Мода", "Робота", "Іграшки", "Авто", "Тварини", "Нерухомість"];
+    const categories = ["Меблі", "Електроніка", "Мода", "Робота", "Іграшки", "Авто", "Тварини", "Нерухомість"];
     const baseUrl:string = process.env.REACT_APP_BASE_URL ? process.env.REACT_APP_BASE_URL : "";
     sessionStorage.setItem('baseUrl', baseUrl);
 
@@ -50,7 +50,7 @@ function AuthProvider({ children } : {children: ReactNode}) {
             authErrorMessage,
             setAuthErrorMessage,
             baseUrl,
-            options,
+            categories,
             cld }}>
             {children}
         </AuthContext.Provider>

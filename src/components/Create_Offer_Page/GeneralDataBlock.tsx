@@ -1,7 +1,7 @@
 import { ChangeEvent, useEffect } from "react";
-import CategoryDropdown from "./CategoryDropdown";
-import StateDropdown from "./StateDropdown";
 import { GeneralData } from "./CreateOfferPage";
+import { DropdownMenu } from "./DropdownMenu";
+import { useAuth } from "../Shared/AuthContext";
 
 interface GeneralDataBlockProps {
     setGeneralData: React.Dispatch<React.SetStateAction<GeneralData>>,
@@ -9,6 +9,8 @@ interface GeneralDataBlockProps {
 }
 
 function GeneralDataBlock({ setGeneralData, generalData }: GeneralDataBlockProps) {
+    const { categories } = useAuth();
+    const states = ["Нове", "Вживане", "З дефектом"];
     const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { id, value } = e.target;
         setGeneralData(prev => ({
@@ -32,22 +34,26 @@ function GeneralDataBlock({ setGeneralData, generalData }: GeneralDataBlockProps
             <textarea className="form_text_input text_input" id="description" defaultValue={generalData ? generalData.description : ""} onChange={handleChange}/>
 
             <label className="text_input_label" htmlFor="category_dropdown">Категорія</label>
-            <CategoryDropdown selectedIndex={generalData?.category ? generalData.category : undefined} onChange={(index) => {
+            <DropdownMenu
+            items={categories}
+            onSelect={(index) => {
                     setGeneralData(prev => ({
                         ...prev,
-                        ["category"]: index
-                    }))
-                }
-            }/>
+                        category: index
+                    }))}}
+            initialText="Виберіть категорію"
+            />
 
             <label className="text_input_label" htmlFor="state_dropdown">Стан</label>
-            <StateDropdown selectedIndex={generalData?.state ? generalData.state : undefined} onChange={(index) => {
+            <DropdownMenu
+            items={states}
+            onSelect={(index) => {
                     setGeneralData(prev => ({
                         ...prev,
-                        ["state"]: index
-                    }))
-                }
-            }/>
+                        state: index
+                    }))}}
+            initialText="Виберіть стан"
+            />
 
             <label className="text_input_label" htmlFor="price">Ціна</label>
             <input type="text" className="form_text_input text_input" id="price" defaultValue={generalData ? generalData.price : ""} onChange={handleChange}/>
