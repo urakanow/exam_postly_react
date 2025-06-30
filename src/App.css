@@ -445,6 +445,10 @@ footer p{
   align-items: center;
 }
 
+.Rootmenu-unselected{
+  color: red;
+}
+
 .category_name{
   font-family: IstokWebBold;
   font-size: 48px;
@@ -659,6 +663,47 @@ textarea{
   height: 62px;
   font-size: 20px;
   margin-bottom: 47px;
+}
+
+.dropdown-item{
+  padding: 20px 22px;
+  background: white;
+  text-align: left;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 462px;
+  height: 62px;
+  font-size: 20px;
+  border-bottom: none;
+}
+
+
+.dropdown-item-unselected{
+  color: #B9B9B9;
+}
+
+.dropdown-button{
+  border-bottom: 1px solid black;
+  margin-bottom: 47px;
+}
+
+.dropdown-item-selected{
+  background-color: #d9d9d9;
+  /* cursor: not-allowed; */
+  cursor:default;
+}
+
+.dropdown-container{
+  display: flex;
+}
+
+.dropdown-menu{
+  z-index: 100;
+  gap: 0;
+}
+
+.dropdown-container .dropdown-item:last-child{
+  border-bottom: 1px solid black;
 }
 
 .RootMenu[data-state="placeholder"] {
