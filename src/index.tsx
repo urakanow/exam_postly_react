@@ -19,7 +19,7 @@ import VerifyEmailPage from './components/Auth_Page/VerifyEmailPage';
 import MyOffersPage from './components/My_Offers_Page/MyOffersPage';
 // import MyOfferPage from './components/My_Offer_Page/MyOfferPage';
 import CategoryPage from './components/CategoryPage/CategoryPage';
-// import SearchPage from './components/Search_Page/SearchPage';
+import SearchPage from './components/Search_Page/SearchPage';
 
 
 const basename = process.env.REACT_APP_BASENAME;
@@ -62,7 +62,7 @@ root.render(
               </ProtectedRoute>
             } />
             <Route path='/category/:categoryIndex' element={<CategoryPage />} />
-            {/* <Route path='/search' element={<SearchPage />} />  */}
+            <Route path='/search' element={<SearchPage />} /> 
             <Route path='/signup' element={<SignUpPage />} />
             <Route path='/forgot-password' element={<ForgotPasswordPage />} />
             <Route path='/restore-password' element={<RestorePasswordPage />} />
