@@ -56,12 +56,11 @@ root.render(
                 <MyOffersPage />
               </ProtectedRoute>
             } />
-            {/*
             <Route path='/my-offer/:id' element={
               <ProtectedRoute>
                 <CreateOfferPage />
               </ProtectedRoute>
-            } /> */}
+            } />
             <Route path='/category/:categoryIndex' element={<CategoryPage />} />
             {/* <Route path='/search' element={<SearchPage />} />  */}
             <Route path='/signup' element={<SignUpPage />} />

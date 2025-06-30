@@ -42,6 +42,7 @@ function GeneralDataBlock({ setGeneralData, generalData }: GeneralDataBlockProps
                         category: index
                     }))}}
             initialText="Виберіть категорію"
+            selectedIndex={generalData?.category ? generalData?.category : undefined}
             />
 
             <label className="text_input_label" htmlFor="state_dropdown">Стан</label>
@@ -53,6 +54,7 @@ function GeneralDataBlock({ setGeneralData, generalData }: GeneralDataBlockProps
                         state: index
                     }))}}
             initialText="Виберіть стан"
+            selectedIndex={generalData?.state ? generalData?.state : undefined}
             />
 
             <label className="text_input_label" htmlFor="price">Ціна</label>

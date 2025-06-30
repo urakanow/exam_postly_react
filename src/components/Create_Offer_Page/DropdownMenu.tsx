@@ -4,13 +4,15 @@ import { useFloating, autoUpdate, offset, shift, useClick, useDismiss, useIntera
 interface DropdownMenuProps {
   items: string[],
   onSelect: (index: number) => void,
-  initialText: string
+  initialText: string,
+  selectedIndex?: number
 }
 
 export const DropdownMenu: React.FC<DropdownMenuProps> = ({
   items,
   onSelect,
-  initialText = ""
+  initialText = "",
+  selectedIndex
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -32,6 +34,12 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
     dismiss,
     role,
   ]);
+
+  useEffect(() => {
+    if(selectedIndex !== undefined){
+      setActiveIndex(selectedIndex);
+    }
+  }, [selectedIndex])
 
   const handleSelect = (index: number) => {
     setActiveIndex(index);
