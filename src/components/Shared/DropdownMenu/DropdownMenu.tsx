@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useFloating, autoUpdate, offset, shift, useClick, useDismiss, useInteractions, useRole } from "@floating-ui/react";
+import './style.css';
 
 interface DropdownMenuProps {
   items: string[],

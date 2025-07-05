@@ -6,7 +6,7 @@ import useApi from '../../../hooks/UseApi';
 import { useAuth } from '../../Shared/AuthContext/AuthContext';
 import { Photo } from '../../../models/Photo';
 import { Offer } from '../../../models/Offer';
-
+import './style.css';
 
 function OfferPage() {
     const { id } = useParams<{ id: string }>();

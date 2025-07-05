@@ -1,10 +1,11 @@
-import { Grid, Grow } from "@mui/material";
-import OfferElement from "./OfferElement";
-import { useContext, useEffect, useState } from "react";
+import { Grid } from "@mui/material";
+import { useEffect, useState } from "react";
 import { useAuth } from "../../Shared/AuthContext/AuthContext";
 import useApi from "../../../hooks/UseApi";
 import { useNavigate } from "react-router";
 import { Filters } from "../../../models/Filters";
+import OfferElement from "../../Shared/OfferElement/OfferElement";
+import DefaultOfferElement from "./DefaultOfferElement";
 
 interface OffersBlockProps {
     categoryIndex: number
@@ -22,8 +23,6 @@ function OffersBlock({ categoryIndex }: OffersBlockProps) {
     useEffect(() => {
         FetchFilteredOffers({
             categoryIndex: categoryIndex,
-            // pageSize: pageSize,
-            // pageIndex: 0
         })
     }, [categoryIndex])
 
@@ -33,11 +32,11 @@ function OffersBlock({ categoryIndex }: OffersBlockProps) {
 
             <Grid container spacing={2} className="offers_grid">
                 {offers.map((offer, index) =>
-                    <OfferElement key={index} offerData={offer} linkUrl={"offer"}/>
+                    <OfferElement key={index} offerData={offer} />
                 )}
 
                 {Array.from({ length: Math.max(0, pageSize - offers.length) }).map((_, index) => (
-                    <OfferElement key={`placeholder-${index}`} />
+                    <DefaultOfferElement />
                 ))}
 
             </Grid>

@@ -2,6 +2,7 @@ import { use, useContext, useState } from 'react';
 import { useAuth } from '../../Shared/AuthContext/AuthContext';
 import { AdvancedImage } from '@cloudinary/react';
 import { Link, useLocation, useNavigate } from 'react-router';
+import './style.css';
 
 function SignUpPage() {
     const { cld } = useAuth();

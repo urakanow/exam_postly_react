@@ -1,13 +1,14 @@
 import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { useSearchParams } from "react-router";
 import { Grid } from "@mui/material";
-import OfferElement from "../MainPage/OfferElement";
 import { useAuth } from "../../Shared/AuthContext/AuthContext";
 import { Filters } from "../../../models/Filters";
 import { OfferPreview } from "../../../models/OfferPreview";
-import { DropdownMenu } from "../CreateOfferPage/DropdownMenu";
+import { DropdownMenu } from "../../Shared/DropdownMenu/DropdownMenu";
+import OfferElement from "../../Shared/OfferElement/OfferElement";
 // import CategoryDropdown from "../Create_Offer_Page/CategoryDropdown";
 // import StateDropdown from "../Create_Offer_Page/StateDropdown";
+import OffersDisplayPage from "../../Shared/OffersDisplayPage/OffersDisplayPage";
 
 function SearchPage() {
     const { baseUrl, categories } = useAuth();
@@ -77,7 +78,7 @@ function SearchPage() {
     }, [searchParams])
 
     return (
-        <div className="offers_display_page">
+        <OffersDisplayPage title="Фільтри">
             <h1 className="large_heading">Фільтри</h1>
 
             {/* <CategoryDropdown selectedIndex={filters.categoryId ? filters.categoryId : undefined} onChange={(index) => handleFilterChange("categoryId", index)} /> */}
@@ -100,7 +101,7 @@ function SearchPage() {
                 <div className="offers_block horizontal_container">
                     <Grid container direction="row" sx={{justifyContent: "flex-start"}} spacing={2} className="offers_grid">
                         {offers.map((offer, index) =>
-                            <OfferElement key={index} offerData={offer} linkUrl={"offer"} />
+                            <OfferElement key={index} offerData={offer} />
                         )}
                         {offers.length == 0 && <span className="small_text">Не знайдено оголошень, що відповідають пошуку</span>}
                     </Grid>
@@ -111,7 +112,7 @@ function SearchPage() {
                     loading...
                 </>
             )}
-        </div>
+        </OffersDisplayPage>
     );
 
     async function search(filters: Filters ){

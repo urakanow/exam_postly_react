@@ -1,11 +1,11 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { useAuth } from "../../Shared/AuthContext/AuthContext";
 import { Grid } from "@mui/material";
-import { Offer } from "../../../models/Offer";
 import { OfferPreview } from "../../../models/OfferPreview";
-import OfferElement from "../MainPage/OfferElement";
 import { Filters } from "../../../models/Filters";
+import OfferElement from "../../Shared/OfferElement/OfferElement";
+import OffersDisplayPage from "../../Shared/OffersDisplayPage/OffersDisplayPage";
 
 function CategoryPage() {
     const { categoryIndex } = useParams();
@@ -21,13 +21,12 @@ function CategoryPage() {
         })
     }, [])
     return (
-        <div className="offers_display_page">
-            <h1 className="large_heading">{categories[categoryId]}</h1>
+        <OffersDisplayPage title={categories[categoryId]}>
             {offers ? (
                 <div className="offers_block">
                     <Grid container spacing={2} className="offers_grid">
                         {offers.map((offer, index) =>
-                            <OfferElement key={index} offerData={offer} linkUrl={"offer"} />
+                            <OfferElement key={index} offerData={offer} />
                         )}
                     </Grid>
                 </div>
@@ -36,7 +35,7 @@ function CategoryPage() {
                     loading...
                 </>
             )}
-        </div>
+        </OffersDisplayPage>
     );
 
     async function fetchCategoryOffers(filters: Filters){

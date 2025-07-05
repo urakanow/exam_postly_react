@@ -1,0 +1,16 @@
+.offer_element.css-1lgyuji-MuiGrid-root{
+  width: 320px;
+  height: auto;
+}
+
+.offer_element_content_wrapper{
+  display: flex;
+  position: relative;
+  height: auto;
+}
+
+.offer_element_content_wrapper a{
+  width: 100%;
+  padding-bottom: 26px;
+  box-sizing: border-box;
+}

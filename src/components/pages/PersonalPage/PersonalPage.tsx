@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import useApi from '../../../hooks/UseApi';
 import { useAuth } from '../../Shared/AuthContext/AuthContext';
+import './style.css';
 
 interface OfferPreview{
     id: number,

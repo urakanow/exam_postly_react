@@ -1,4 +1,4 @@
-import Logo from './Logo';
+import Logo from '../Logo/Logo';
 import SearchBar from './SearchBar';
 import Navigation from './Navigation';
 import './style.css';

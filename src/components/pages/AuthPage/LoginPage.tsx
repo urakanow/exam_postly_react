@@ -3,6 +3,7 @@ import { useAuth } from '../../Shared/AuthContext/AuthContext';
 import { AdvancedImage } from '@cloudinary/react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { AxiosResponse } from 'axios';
+import './style.css';
 
 function LoginPage() {
     const { cld } = useAuth();

@@ -1,6 +1,7 @@
 import { useContext, useEffect, useLayoutEffect, useState } from "react";
 import { useSearchParams } from "react-router";
 import { useAuth } from "../../Shared/AuthContext/AuthContext";
+import './style.css';
 
 function VerifyEmailPage() {
     const { baseUrl } = useAuth();

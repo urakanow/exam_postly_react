@@ -1,5 +1,5 @@
-import Header from '../../pages/Header/Header';
-import Footer from '../../pages/Footer/Footer';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 import { ReactNode } from 'react';
 import './style.css'
 

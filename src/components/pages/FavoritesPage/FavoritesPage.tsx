@@ -1,8 +1,9 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import useApi from "../../../hooks/UseApi";
 import { useAuth } from "../../Shared/AuthContext/AuthContext";
 import { Grid } from "@mui/material";
-import OfferElement from "../MainPage/OfferElement";
+import FavoriteOfferElement from "./FavoriteOfferElement";
+import OffersDisplayPage from "../../Shared/OffersDisplayPage/OffersDisplayPage";
 
 interface OfferPreview{
     id: number,
@@ -25,20 +26,18 @@ function FavoritesPage() {
     }, [favorites])
 
     return (
-        <div className="offers_display_page">
-            <h1 className="large_heading">Вибрані</h1>
+        <OffersDisplayPage title="Вибрані">
             {favorites ? (
                 <>
                     {favorites.length == 0 && <span className="small_text">Вибрані оголошення з'являтимуться тут</span>}
                     <div className="offers_block">
                         <Grid container spacing={2} className="offers_grid">
                             {favorites.map((offer, index) =>
-                                <OfferElement key={index} offerData={offer} linkUrl={"offer"} onFavoriteClick={(id) => {
-                                    console.log("remove favorite ", id);
-                                    setFavorites(prev => prev.filter(offer => offer.id !== id));
-                                }}/>
+                                <FavoriteOfferElement key={index} offerData={offer} onFavoriteClick={(id) => {
+                                    console.log("favorite clicked", id)
+                                    setFavorites(prev => prev.filter(offer => offer.id !== id))
+                                }} />
                             )}
-                            
                         </Grid>
                         
                     </div>
@@ -48,7 +47,7 @@ function FavoritesPage() {
                     loading...
                 </>
             )}
-        </div>
+        </OffersDisplayPage>
      );
 
      async function fetchFavorites() {

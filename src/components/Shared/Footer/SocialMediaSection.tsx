@@ -1,4 +1,4 @@
-import Logo from "../Header/Logo";
+import Logo from "../Logo/Logo";
 import { AdvancedImage } from '@cloudinary/react';
 import { Cloudinary } from '@cloudinary/url-gen';
 import { useContext } from "react";

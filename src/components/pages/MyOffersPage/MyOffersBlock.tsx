@@ -1,10 +1,9 @@
 import { Grid, Grow } from "@mui/material";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../../Shared/AuthContext/AuthContext";
 import useApi from "../../../hooks/UseApi";
-import OfferElement from "../MainPage/OfferElement";
-import MyOfferElement from "./MyOfferElement";
 import { OfferPreview } from "../../../models/OfferPreview";
+import MyOfferElement from "./MyOfferElement";
 
 function MyOffersBlock() {
     const { baseUrl } = useAuth();
@@ -19,6 +18,7 @@ function MyOffersBlock() {
         <div className="offers_block">
             <Grid container spacing={2} className="offers_grid">
                 {offers.map((offer, index) =>
+                    // <MyOfferElement key={index} offerData={offer} onDelete={() => setOffers(offers.splice(index, 1))} />
                     <MyOfferElement key={index} offerData={offer} onDelete={() => setOffers(offers.splice(index, 1))} />
                 )}
             </Grid>

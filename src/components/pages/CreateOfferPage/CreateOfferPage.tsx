@@ -8,6 +8,7 @@ import GeneralDataBlock from "./GeneralDataBlock";
 import { jsx } from "react/jsx-runtime";
 import { Photo } from "../../../models/Photo";
 import { Offer } from "../../../models/Offer";
+import './style.css';
 
 export type PhotosType = {
     [index: number]: string | Photo | null; 

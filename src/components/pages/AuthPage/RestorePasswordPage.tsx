@@ -3,6 +3,7 @@ import { useNavigate, useParams, useSearchParams } from "react-router";
 import { useAuth } from "../../Shared/AuthContext/AuthContext";
 import { AdvancedImage } from '@cloudinary/react';
 import { Link } from 'react-router';
+import './style.css';
 
 function RestorePasswordPage() {
     const { cld, baseUrl } = useAuth();

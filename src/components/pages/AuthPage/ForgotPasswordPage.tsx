@@ -3,6 +3,7 @@ import { useAuth } from '../../Shared/AuthContext/AuthContext';
 import { AdvancedImage } from '@cloudinary/react';
 import { Link } from 'react-router';
 import Countdown from 'react-countdown';
+import './style.css';
 
 function ForgotPasswordPage() {
     const { cld } = useAuth();

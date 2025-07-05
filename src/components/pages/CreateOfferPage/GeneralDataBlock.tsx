@@ -1,6 +1,6 @@
 import { ChangeEvent, useEffect } from "react";
 import { GeneralData } from "./CreateOfferPage";
-import { DropdownMenu } from "./DropdownMenu";
+import { DropdownMenu } from "../../Shared/DropdownMenu/DropdownMenu";
 import { useAuth } from "../../Shared/AuthContext/AuthContext";
 
 interface GeneralDataBlockProps {
