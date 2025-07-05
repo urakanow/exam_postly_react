@@ -6,6 +6,7 @@ import { useNavigate } from "react-router";
 import { Filters } from "../../../models/Filters";
 import OfferElement from "../../Shared/OfferElement/OfferElement";
 import DefaultOfferElement from "./DefaultOfferElement";
+import RegularButton from "../../Shared/RegularButton/RegularButton";
 
 interface OffersBlockProps {
     categoryIndex: number
@@ -42,6 +43,7 @@ function OffersBlock({ categoryIndex }: OffersBlockProps) {
             </Grid>
 
             <button className="see_more" onClick={() => navigate(`/category/${categoryIndex}`)}>Див. більше</button>
+            {/* <RegularButton onClick={() => navigate(`/category/${categoryIndex}`)} text='Див. більше' /> */}
         </div>
     );
 

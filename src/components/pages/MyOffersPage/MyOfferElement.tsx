@@ -6,6 +6,7 @@ import useApi from "../../../hooks/UseApi";
 import { OfferPreview } from "../../../models/OfferPreview";
 import './style.css';
 import IOfferElement from "../../Shared/IOfferElement/IOfferElement";
+import RegularButton from '../../Shared/RegularButton/RegularButton';
 
 interface MyOfferElementProps {
     offerData: OfferPreview,
@@ -24,8 +25,8 @@ function MyOfferElement({ offerData, onDelete }: MyOfferElementProps) {
     return (
         <IOfferElement offerData={offerData} linkUrl="/my-offer">
             <div id='my_offer_element_button_section' className="horizontal_container">
-                <button className="green_button" onClick={() => navigate(`/my-offer/${offerData.id}`)}>Редагувати</button>
-                <button id="delete_button" className="green_button" onClick={deleteOffer}>
+                <RegularButton onClick={() => navigate(`/my-offer/${offerData.id}`)} text='Редагувати' />
+                <button id="delete_button" onClick={deleteOffer}>
                     <AdvancedImage cldImg={delete_image} />
                 </button>
             </div>

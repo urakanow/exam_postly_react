@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { useAuth } from '../../Shared/AuthContext/AuthContext';
 import { AdvancedImage } from '@cloudinary/react';
+import RegularButton from '../../Shared/RegularButton/RegularButton';
 
 interface Data {
     creationDate: string,
@@ -58,7 +59,7 @@ function BuySection({ data }: BuySectionProps) {
                 <AdvancedImage cldImg={green_arrow_image} id="form_text_input_image"/>
             </div>
 
-            <button className='green_button' id='buy_now_button'>Купити зараз</button>
+            <RegularButton id='buy_now_button' text='Купити зараз' onClick={buyNow} />
 
             <h3 className='small_heading'>Спосіб доставки</h3>
             
@@ -108,6 +109,9 @@ function BuySection({ data }: BuySectionProps) {
 
         </div>
      );
+    function buyNow(){
+        console.log("buy now clicked")
+    }
 }
 
 export default BuySection;

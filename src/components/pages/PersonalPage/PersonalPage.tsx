@@ -1,11 +1,11 @@
 import PersonalDataBlock from './PersonalDataBlock';
 import MyOffersBlock from './MyOffersBlock';
 import MessagesBlock from './MessagesBlock';
-import { useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router';
+import { useEffect, useState } from 'react';
 import useApi from '../../../hooks/UseApi';
 import { useAuth } from '../../Shared/AuthContext/AuthContext';
 import './style.css';
+import RegularButton from '../../Shared/RegularButton/RegularButton';
 
 interface OfferPreview{
     id: number,
@@ -64,9 +64,8 @@ function PersonalPage() {
                         <MessagesBlock />
 
                         <div className='horizontal_container'>
-                            <button id='logout_button' className='green_button' onClick={logout}>logout</button>
-                            <button id='logout_button' className='green_button' onClick={deleteAccount}>delete account</button>
-
+                            <RegularButton onClick={logout} text="logout" />
+                            <RegularButton onClick={deleteAccount} text="delete account" />
                         </div>
                     </div>
                 </>

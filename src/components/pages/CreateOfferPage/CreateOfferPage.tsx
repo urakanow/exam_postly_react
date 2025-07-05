@@ -9,6 +9,7 @@ import { jsx } from "react/jsx-runtime";
 import { Photo } from "../../../models/Photo";
 import { Offer } from "../../../models/Offer";
 import './style.css';
+import RegularButton from "../../Shared/RegularButton/RegularButton";
 
 export type PhotosType = {
     [index: number]: string | Photo | null; 
@@ -70,7 +71,7 @@ function CreateOfferPage() {
 
             <ContactDataBlock formData={contactData} setFormData={setContactData} />
 
-            <button className="green_button" id="add_offer_button" onClick={id ? editOffer : createOffer}>{id ? "Зберегти" : "Додати Оголошення"}</button>
+            <RegularButton id="add_offer_button" onClick={id ? editOffer : createOffer} text={id ? "Зберегти" : "Додати Оголошення"} />
 
             {error && <span className="small_text error_text">{error}</span>}
         </div>

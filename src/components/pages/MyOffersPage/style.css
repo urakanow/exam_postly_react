@@ -7,18 +7,14 @@
   border-radius: 10px;
 }
 
-#my_offer_element .green_button:nth-child(1){
-  /* flex: 1; */
-}
-
 #my_offer_element a{
-  /* margin-bottom: 26px; */
   padding-bottom: 26px;
   box-sizing: border-box;
 }
 
 #delete_button{
   background-color: #2C3331;
+  
 }
 
 #delete_button img{

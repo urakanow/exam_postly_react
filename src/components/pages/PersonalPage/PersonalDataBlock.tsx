@@ -1,6 +1,7 @@
-import { ChangeEvent, useContext, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import useApi from "../../../hooks/UseApi";
 import { useAuth } from "../../Shared/AuthContext/AuthContext";
+import RegularButton from "../../Shared/RegularButton/RegularButton";
 
 interface Data {
     username: string,
@@ -78,7 +79,7 @@ function PersonalDataBlock({ data }: PersonalDataBlockProps) {
             <label className="text_input_label" htmlFor="phoneNumber">Номер телефону</label>
             <input type="text" className="text_input" id="phoneNumber" value={formData.phoneNumber} onChange={handleChange}/>
 
-            {isChanged && <button className="green_button" id="save_button" onClick={editUserData}>Зберегти</button>}
+            {isChanged && <RegularButton id="save_button" onClick={editUserData} text="Зберегти" />}
         </div>
      );
 

@@ -1,3 +1,5 @@
+import RegularButton from "../../Shared/RegularButton/RegularButton"
+
 interface Data {
     id: number,
     description: string
@@ -26,10 +28,14 @@ function DescriptionBlock({ data }: DescriptionBlockProps) {
             <div className='horizontal_container' id='report_container'>
                 <span className='small_text'>ID: {data.id}</span>
 
-                <button className='green_button small_heading' id='report_button'>Поскаржитися</button>
+                {/* <button className='green_button small_heading' id='report_button'>Поскаржитися</button> */}
+                <RegularButton id='report_button' text='Поскаржитися' onClick={report} />
             </div>
         </div>
      );
+    function report(){
+        console.log("report clicked")
+    }
 }
 
 export default DescriptionBlock;
