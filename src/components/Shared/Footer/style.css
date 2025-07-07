@@ -1,0 +1,108 @@
+/* FOOTER */
+
+footer {
+  padding: 46px 0;
+  background-color: rgb(128, 68, 0);
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+  background: linear-gradient(192.08deg, #2C3331 -88.48%, #212121 141.66%);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+}
+
+footer p{
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  color: white;
+  margin: 0;
+}
+
+/* social media */
+
+.social_media_text{
+  font-size: 20px;
+  font-family: IstokWebBold;
+  font-weight: 700;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  color: white;
+}
+
+#footer_logo{
+  font-size: 20px;
+}
+
+.social_media{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.social_media_images{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+#tiktok_logo{
+  width: 52px;
+  height: 52px;
+}
+
+#youtube_logo{
+  width: 60px;
+}
+
+#instagram_logo{
+  width: 60px;
+  height: 60px;
+}
+
+/* faq */
+
+.faq{
+  display: flex;
+  flex-direction: row;
+  gap: 80px;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.faq_column{
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.faq_column span{
+  font-size: 20px;
+  font-family: IstokWebBold;
+  font-weight: 700;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  color: white;
+  text-align: left;
+}
+
+/* download buttons */
+
+.download_buttons{
+  margin-top: 66px;
+  display: flex;
+  flex-direction: row;
+  gap: 190px;
+  justify-content: center;
+}
+
+.download_buttons img{
+  height: 84px;
+}

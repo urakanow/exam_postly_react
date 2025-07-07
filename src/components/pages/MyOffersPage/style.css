@@ -1,0 +1,36 @@
+#my_offer_element{
+  height: auto;
+}
+
+#my_offer_element .green_button{
+  padding: 12px 20px;
+  border-radius: 10px;
+}
+
+#my_offer_element a{
+  padding-bottom: 26px;
+  box-sizing: border-box;
+}
+
+#delete_button{
+  background-color: #2C3331;
+  
+}
+
+#delete_button img{
+  width: 34px;
+  height: 34px;
+}
+
+#my_offer_element_button_section{
+  gap: 20px;
+}
+
+#my_offer_element_button_section button{
+  padding: 12px 20px;
+  border-radius: 10px;
+}
+
+#my_offer_element_button_section button:nth-child(1){
+  flex: 1;
+}
