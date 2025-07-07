@@ -1,8 +1,10 @@
-import { use, useContext, useState } from 'react';
+import { useState } from 'react';
 import { useAuth } from '../../Shared/AuthContext/AuthContext';
-import { AdvancedImage } from '@cloudinary/react';
-import { Link, useLocation, useNavigate } from 'react-router';
+// import { AdvancedImage } from '@cloudinary/react';
+import { Link, useNavigate } from 'react-router';
 import './style.css';
+import Error from "../../Shared/Error/Error";
+import AuthInputField from './AuthInputField';
 
 function SignUpPage() {
     const { cld } = useAuth();
@@ -17,12 +19,12 @@ function SignUpPage() {
     const [phoneNumber, setPhoneNumber] = useState("");
     const [password, setPassword] = useState("");
 
-    const { baseUrl, setAccessToken } = useAuth();
+    const { baseUrl } = useAuth();
     const [error, setError] = useState("");
 
-    const location = useLocation();
+    // const location = useLocation();
     const navigate = useNavigate();
-    const from = location.state?.from?.pathname || '/';
+    // const from = location.state?.from?.pathname || '/';
 
     const [isRegistered, setIsRegistered] = useState(false);
 
@@ -39,40 +41,26 @@ function SignUpPage() {
                             signup();
                         }}>
                             <div className='auth_input_container vertical_container'>
-                                <div className="auth_input_wrapper horizontal_container">
-                                    <div className="auth_input_image_wrapper vertical_container">
-                                        <AdvancedImage cldImg={login_image} />
-                                    </div>
-                                    <input name='username' type="text" required minLength={3} maxLength={20} className="text_input auth_input auth_medium_heading" placeholder="Логін" onChange={(e) => setUsername(e.target.value)} />
-                                </div>
+                                <AuthInputField type="text" cldImg={login_image}
+                                minLength={3} maxLength={20} placeholder="Логін"
+                                onChange={(e) => setUsername(e.target.value)} />
 
-                                <div className='auth_input_container vertical_container'>
-                                    <div className="auth_input_wrapper horizontal_container">
-                                        <div className="auth_input_image_wrapper vertical_container">
-                                            <AdvancedImage cldImg={email_image} />
-                                        </div>
-                                        <input type="email" required className="text_input auth_input auth_medium_heading" placeholder="Ел. пошта" onChange={(e) => setEmail(e.target.value)} />
-                                    </div>
-                                </div>
+                                <AuthInputField type="email" cldImg={email_image} placeholder="Ел. пошта"
+                                onChange={(e) => setEmail(e.target.value)} />
 
-                                <div className="auth_input_wrapper horizontal_container">
-                                    <div className="auth_input_image_wrapper vertical_container">
-                                        <AdvancedImage cldImg={phone_image} />
-                                    </div>
-                                    <input type="tel" pattern="^(\+38|38)?\s?(0\d{2})\s?(\d{3})\s?(\d{2})\s?(\d{2})$" title="+380 123 456 789" required className="text_input auth_input auth_medium_heading" placeholder="Номер тел." onChange={(e) => setPhoneNumber(e.target.value)} />
-                                </div>
+                                <AuthInputField type="tel" cldImg={phone_image} placeholder="Номер тел."
+                                onChange={(e) => setPhoneNumber(e.target.value)}
+                                pattern="^(\+38|38)?\s?(0\d{2})\s?(\d{3})\s?(\d{2})\s?(\d{2})$"
+                                />
 
-                                <div className="auth_input_wrapper horizontal_container">
-                                    <div className="auth_input_image_wrapper vertical_container">
-                                        <AdvancedImage cldImg={password_image} />
-                                    </div>
-                                    <input type="password" required minLength={8} maxLength={20} className="text_input auth_input auth_medium_heading" placeholder="Пароль" onChange={(e) => setPassword(e.target.value)} />
-                                </div>
+                                <AuthInputField type="password" cldImg={password_image}
+                                minLength={8} maxLength={20} placeholder="Пароль"
+                                onChange={(e) => setPassword(e.target.value)} />
                             </div>
 
                             <input type='submit' className='auth_button auth_medium_heading' value={"Створити"} />
 
-                            {error && <span className="small_text error_text">{error}</span>}
+                            {error && <Error text={error} />}
                         </form>
 
                         <span className='auth_medium_text'>Вже є аккаунт? <Link to={"/login"} className='change_auth_link'>Увійти</Link></span>
@@ -108,10 +96,12 @@ function SignUpPage() {
     async function handleResponse(response: Response) {
         // const data = await response.json();
         if (response.ok) {
-            // setAccessToken(data.accessToken);
             setError("");
             setIsRegistered(true);
-            // navigate(from, {replace: true})
+        }
+        else if(response.status === 409){
+            const data = await response.json();
+            setError(data.message)
         }
         else {
             setError("Unexpected error. please try again later");

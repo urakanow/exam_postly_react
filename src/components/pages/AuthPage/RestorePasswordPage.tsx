@@ -4,6 +4,8 @@ import { useAuth } from "../../Shared/AuthContext/AuthContext";
 import { AdvancedImage } from '@cloudinary/react';
 import { Link } from 'react-router';
 import './style.css';
+import Error from "../../Shared/Error/Error";
+import AuthInputField from "./AuthInputField";
 
 function RestorePasswordPage() {
     const { cld, baseUrl } = useAuth();
@@ -60,18 +62,12 @@ function RestorePasswordPage() {
                         setSendingStatus("sending")
                         restorePassword();
                     }}>
-                        <div id='restore_password_input_container' className='auth_input_container vertical_container'>
-                            <div className="auth_input_wrapper horizontal_container">
-                                <div className="auth_input_image_wrapper vertical_container">
-                                    <AdvancedImage cldImg={password_image} />
-                                </div>
-                                <input type="password" className="text_input auth_input auth_medium_heading" placeholder="Пароль" onChange={(e) => setNewPassword(e.target.value)}/>
-                            </div>
-                        </div>
+                        <AuthInputField type="password" cldImg={password_image} placeholder="Новий пароль"
+                        onChange={(e) => setNewPassword(e.target.value)} />
             
                         <input type='submit' disabled={sendingStatus === "sending"} className={`auth_button auth_medium_heading ${sendingStatus === "sending" ? "disabled_button" : ""}`} value={"Змінити пароль"}></input>
 
-                        {error && <span className="small_text error_text">{error}</span>}
+                        {error && <Error text={error} />}
                     </form>
                 )}
 

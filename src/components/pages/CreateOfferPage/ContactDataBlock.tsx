@@ -1,6 +1,7 @@
-import { ChangeEvent, useContext, useEffect, useState } from "react";
+import { ChangeEvent, useEffect } from "react";
 import useApi from "../../../hooks/UseApi";
 import { useAuth } from "../../Shared/AuthContext/AuthContext";
+import TextInputField from "./TextInputField";
 
 interface FormData {
     contacter: string,
@@ -37,37 +38,33 @@ function ContactDataBlock({formData, setFormData}: ContactDataBlockProps) {
         fetchPersonalData();
     }, []);
     
-    function isFilled(){
-        return Object.values(formData).some(value => value.trim() === "");
-    }
+    // function isFilled(){
+    //     return Object.values(formData).some(value => value.trim() === "");
+    // }
 
-    function showError(text: string){
-        console.error(text);
-    }
+    // function showError(text: string){
+    //     console.error(text);
+    // }
 
     return (
         <div className="create_offer_page_section">
             <h1 className="section_heading">Контактні дані</h1>
 
-            <label className="text_input_label" htmlFor="contacter">Контактна особа</label>
-            <input required type="text" className="form_text_input text_input" id="contacter" value={formData.contacter} onChange={handleChange}/>
+            <TextInputField value={formData.contacter} onChange={handleChange} id="contacter" label="Контактна особа" />
             
-            <label className="text_input_label" htmlFor="email">Ел. Пошта</label>
-            <input type="text" className="form_text_input text_input" id="email" value={formData.email} onChange={handleChange}/>
+            <TextInputField value={formData.email} onChange={handleChange} id="email" label="Ел. Пошта" />
 
-            <label className="text_input_label" htmlFor="phoneNumber">Номер телефону</label>
-            <input type="text" className="form_text_input text_input" id="phoneNumber" value={formData.phoneNumber} onChange={handleChange}/>
+            <TextInputField value={formData.phoneNumber} onChange={handleChange} id="phoneNumber" label="Номер Телефону" />
 
-            <label className="text_input_label" htmlFor="address">Місце знаходження</label>
-            <input type="text" className="form_text_input text_input" id="address" value={formData.address} onChange={handleChange}/>
+            <TextInputField value={formData.address} onChange={handleChange} id="address" label="Місце знаходження" />
         </div>
     );
 
     async function fetchPersonalData(){
-        if(!isFilled()){
-            showError("all fields must be filled")
-            return;
-        }
+        // if(!isFilled()){
+        //     showError("all fields must be filled")
+        //     return;
+        // }
 
         try {
             const response = await authorizedRequest({
@@ -112,8 +109,6 @@ function ContactDataBlock({formData, setFormData}: ContactDataBlockProps) {
             console.error('Failed to fetch personal data:', err);
         }
     }
-
-
 }
 
 export default ContactDataBlock;

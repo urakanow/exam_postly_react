@@ -1,13 +1,11 @@
-import OffersBlock from "../MainPage/OffersBlock";
+import OffersDisplayPage from "../../Shared/OffersDisplayPage/OffersDisplayPage";
 import MyOffersBlock from "./MyOffersBlock";
 
 function MyOffersPage() {
     return (
-        <>
-            <h1 className="large_heading">Мої оголошення</h1>
-
+        <OffersDisplayPage title="Мої оголошення">
             <MyOffersBlock />
-        </>
+        </OffersDisplayPage>
     );
 }
 

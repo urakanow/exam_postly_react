@@ -26,7 +26,7 @@ function VerifyEmailPage() {
                             Тепер можете продовжувати покупки.<br /><br />
                             Команда Шукайка бажає вам <br />
                             приємного та вигідного шопінгу!
-                        </>
+                        </>//TODO: add link to the main page
                     }
 
                     {isVerified === "error" &&

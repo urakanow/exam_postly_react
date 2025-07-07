@@ -10,6 +10,7 @@ import { Photo } from "../../../models/Photo";
 import { Offer } from "../../../models/Offer";
 import './style.css';
 import RegularButton from "../../Shared/RegularButton/RegularButton";
+import Error from "../../Shared/Error/Error";
 
 export type PhotosType = {
     [index: number]: string | Photo | null; 
@@ -73,7 +74,7 @@ function CreateOfferPage() {
 
             <RegularButton id="add_offer_button" onClick={id ? editOffer : createOffer} text={id ? "Зберегти" : "Додати Оголошення"} />
 
-            {error && <span className="small_text error_text">{error}</span>}
+            {error && <Error text={error} />}
         </div>
     );
 

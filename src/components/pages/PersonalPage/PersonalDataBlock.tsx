@@ -2,6 +2,7 @@ import { ChangeEvent, useState } from "react";
 import useApi from "../../../hooks/UseApi";
 import { useAuth } from "../../Shared/AuthContext/AuthContext";
 import RegularButton from "../../Shared/RegularButton/RegularButton";
+import TextInputField from "../CreateOfferPage/TextInputField";
 
 interface Data {
     username: string,
@@ -52,32 +53,23 @@ function PersonalDataBlock({ data }: PersonalDataBlockProps) {
         <div id="personal_data" className="green_rectangle vertical_container">
             <h1 className="semi_large_heading">Особистий Кабінет</h1>
 
-            <label className="text_input_label" htmlFor="username">Ім’я Користувача</label>
-            <input type="text" className="text_input" id="username" value={formData.username} onChange={handleChange}/>
+            <TextInputField value={formData.username} onChange={handleChange} id="username" label="Ім’я Користувача" />
 
-            <label className="text_input_label" htmlFor="firstName">Ім’я</label>
-            <input type="text" className="text_input" id="firstName" value={formData.firstName} onChange={handleChange}/>
+            <TextInputField value={formData.firstName} onChange={handleChange} id="firstName" label="Ім’я" />
 
-            <label className="text_input_label" htmlFor="lastName">Прізвище</label>
-            <input type="text" className="text_input" id="lastName" value={formData.lastName} onChange={handleChange}/>
+            <TextInputField value={formData.lastName} onChange={handleChange} id="lastName" label="Прізвище" />
 
-            <label className="text_input_label" htmlFor="city">Місто</label>
-            <input type="text" className="text_input" id="city" value={formData.city} onChange={handleChange}/>
+            <TextInputField value={formData.city} onChange={handleChange} id="city" label="Місто" />
 
-            <label className="text_input_label" htmlFor="postCode">Поштовий індекс</label>
-            <input type="text" className="text_input" id="postCode" value={formData.postCode} onChange={handleChange}/>
+            <TextInputField value={formData.postCode} onChange={handleChange} id="postCode" label="Поштовий індекс" />
 
-            <label className="text_input_label" htmlFor="address">Адреса</label>
-            <input type="text" className="text_input" id="address" value={formData.address} onChange={handleChange}/>
+            <TextInputField value={formData.address} onChange={handleChange} id="address" label="Адреса" />
 
-            <label className="text_input_label" htmlFor="apartmentNumber">Номер квартири(якщо присутній)</label>
-            <input type="text" className="text_input" id="apartmentNumber" value={formData.apartmentNumber} onChange={handleChange}/>
+            <TextInputField value={formData.apartmentNumber} onChange={handleChange} id="apartmentNumber" label="Номер квартири(якщо присутній)" />
 
-            <label className="text_input_label" htmlFor="email">Ел. Адреса</label>
-            <input type="text" className="text_input" id="email" value={formData.email} onChange={handleChange}/>
+            <TextInputField value={formData.email} onChange={handleChange} id="email" label="Ел. Адреса" />
 
-            <label className="text_input_label" htmlFor="phoneNumber">Номер телефону</label>
-            <input type="text" className="text_input" id="phoneNumber" value={formData.phoneNumber} onChange={handleChange}/>
+            <TextInputField value={formData.phoneNumber} onChange={handleChange} id="phoneNumber" label="Номер телефону" />
 
             {isChanged && <RegularButton id="save_button" onClick={editUserData} text="Зберегти" />}
         </div>

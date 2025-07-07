@@ -1,4 +1,5 @@
 import { Photo } from "../../../models/Photo";
+import InputLabel from "../../Shared/InputLabel/InputLabel";
 import { PhotosType } from "./CreateOfferPage";
 import PhotoElement from "./Photo";
 
@@ -60,7 +61,7 @@ function PhotosBlock({ photos, setPhotos }: PhotosBlockProps) {
         <div className="create_offer_page_section">
             <h1 className="section_heading">Фото</h1>
 
-            <label className="text_input_label" htmlFor="photos_container" id="photos_label">Максимально покажіть всі деталі або дефекти, перше фото буде на обкладинці</label>
+            <InputLabel htmlFor="photos_container" text="Максимально покажіть всі деталі або дефекти, перше фото буде на обкладинці" id="photos_label" />
             <div className="photos_container" id="photos_container">
                 {Array.from({ length: 2 }).map((_, i) => (
                     <div className="photos_container_row">
@@ -76,7 +77,7 @@ function PhotosBlock({ photos, setPhotos }: PhotosBlockProps) {
                             //     index={i * 4 + j}/>
                             <PhotoElement key={j} onFilesSelect={handlePhotoUpload} photoUrl={getPhotoUrl(photos[i * 4 + j])} index={i * 4 + j} />
                         ))}
-                    </div>
+                    </div>//TODO: getphotourl runs with every rerender on every photo
                 ))}
             </div>
         </div>

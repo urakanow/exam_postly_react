@@ -19,7 +19,7 @@ function MyOffersBlock() {
             <Grid container spacing={2} className="offers_grid">
                 {offers.map((offer, index) =>
                     // <MyOfferElement key={index} offerData={offer} onDelete={() => setOffers(offers.splice(index, 1))} />
-                    <MyOfferElement key={index} offerData={offer} onDelete={() => setOffers(offers.splice(index, 1))} />
+                    <MyOfferElement key={index} offerData={offer} onDelete={() => setOffers(offers.splice(index, 1))} />//TODO: leaves the element the only one on the page instead of deleting
                 )}
             </Grid>
         </div>

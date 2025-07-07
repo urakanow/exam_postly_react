@@ -2,6 +2,8 @@ import { ChangeEvent, useEffect } from "react";
 import { GeneralData } from "./CreateOfferPage";
 import { DropdownMenu } from "../../Shared/DropdownMenu/DropdownMenu";
 import { useAuth } from "../../Shared/AuthContext/AuthContext";
+import InputLabel from "../../Shared/InputLabel/InputLabel";
+import TextInputField from "./TextInputField";
 
 interface GeneralDataBlockProps {
     setGeneralData: React.Dispatch<React.SetStateAction<GeneralData>>,
@@ -27,13 +29,12 @@ function GeneralDataBlock({ setGeneralData, generalData }: GeneralDataBlockProps
         <div className="create_offer_page_section">
             <h1 className="section_heading">Створити оголошення</h1>
 
-            <label className="text_input_label" htmlFor="title">Назва</label>
-            <input type="text" className="form_text_input text_input" id="title" defaultValue={generalData ? generalData.title : ""} onChange={handleChange}/>
+            <TextInputField defaultValue={generalData ? generalData.title : ""} onChange={handleChange} id="title" label="Назва" />
             
-            <label className="text_input_label" htmlFor="description">Опишіть у подробицях</label>
-            <textarea className="form_text_input text_input" id="description" defaultValue={generalData ? generalData.description : ""} onChange={handleChange}/>
+            <InputLabel htmlFor="description" text="Опишіть у подробицях" />
+            <textarea className="text_input" id="description" defaultValue={generalData ? generalData.description : ""} onChange={handleChange}/>
 
-            <label className="text_input_label" htmlFor="category_dropdown">Категорія</label>
+            <InputLabel htmlFor="category_dropdown" text="Категорія" />
             <DropdownMenu
             items={categories}
             onSelect={(index) => {
@@ -45,7 +46,7 @@ function GeneralDataBlock({ setGeneralData, generalData }: GeneralDataBlockProps
             selectedIndex={generalData?.category ? generalData?.category : undefined}
             />
 
-            <label className="text_input_label" htmlFor="state_dropdown">Стан</label>
+            <InputLabel htmlFor="state_dropdown" text="Стан" />
             <DropdownMenu
             items={states}
             onSelect={(index) => {
@@ -57,8 +58,7 @@ function GeneralDataBlock({ setGeneralData, generalData }: GeneralDataBlockProps
             selectedIndex={generalData?.state ? generalData?.state : undefined}
             />
 
-            <label className="text_input_label" htmlFor="price">Ціна</label>
-            <input type="text" className="form_text_input text_input" id="price" defaultValue={generalData ? generalData.price : ""} onChange={handleChange}/>
+            <TextInputField defaultValue={generalData ? generalData.price.toString() : ""} onChange={handleChange} id="price" label="Ціна" />
         </div>
     );
 }

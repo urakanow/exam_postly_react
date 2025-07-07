@@ -175,11 +175,6 @@ form{
   cursor: pointer;
 }
 
-.error_text{
-  margin-top: 20px;
-  color: red;
-}
-
 .text_input{
   width: calc(460px - 20px - 20px);
   height: calc(60px - 20px - 20px);
@@ -191,18 +186,6 @@ form{
   outline: none;
   padding: 20px;
   border-radius: 5px;
-}
-
-.form_text_input{
-  margin-bottom: 47px;
-}
-
-.form_text_input:last-child{
-  margin-bottom: 0;
-}
-
-.form_text_input::placeholder{
-  color: #B9B9B9;
 }
 
 .text_input_label{
