@@ -2,6 +2,7 @@ import { useContext, useEffect, useLayoutEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router";
 import { useAuth } from "../../Shared/AuthContext/AuthContext";
 import './style.css';
+import AuthPage from "./AuthPage";
 
 enum VerificationStatus{
     Sending = "sending",
@@ -51,15 +52,11 @@ function VerifyEmailPage() {
     };
     
     return (
-        <div id="authorize_page_container">
-            <div className="auth_form vertical_container">
-                <h1 className="large_heading auth_page_heading">Верифікація</h1>
-
-                <span className='auth_medium_text'>
-                    {getVerificationContent()}
-                </span>
-            </div>
-        </div>
+        <AuthPage title="Верифікація">
+            <span className='auth_medium_text'>
+                {getVerificationContent()}
+            </span>
+        </AuthPage>
     );
 
     async function validateToken(){

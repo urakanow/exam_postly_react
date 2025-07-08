@@ -6,6 +6,7 @@ import Countdown from 'react-countdown';
 import './style.css';
 import Error from '../../Shared/Error/Error';
 import AuthInputField from './AuthInputField';
+import AuthPage from './AuthPage';
 
 function ForgotPasswordPage() {
     const { cld } = useAuth();
@@ -55,40 +56,36 @@ function ForgotPasswordPage() {
     }, [sendingStatus])
 
     return (
-        <div id="authorize_page_container">
-            <div className="auth_form vertical_container">
-                <h1 className="large_heading auth_page_heading">Відновлення пароля</h1>
+        <AuthPage title='Відновлення пароля'>
+            <span className='auth_medium_text'>
+                Вам на пошту буде надіслано інструкцію<br/>
+                з відновлення пароля
+            </span>
 
-                <span className='auth_medium_text'>
-                    Вам на пошту буде надіслано інструкцію<br/>
-                    з відновлення пароля
-                </span>
-
-                <form onSubmit={(e) => {
-                    e.preventDefault();
-                    setSendingStatus("sending")
-                    forgotPassword();
-                }}>
-                    <AuthInputField type="email" cldImg={restore_password_image} placeholder="Ел. пошта"
-                    onChange={(e) => setEmail(e.target.value)} />
-        
-                    <div id='send_email_button' className="horizontal_container" style={sendingStatus === "blocked" ? {filter: 'grayscale()'} : undefined}>
-                        {sendingStatus === "blocked" && 
-                            <div className="auth_input_image_wrapper vertical_container">
-                                <Countdown date={Date.now() + 1 * 60 * 1000} renderer={renderer}/>
-                            </div>
-                        }
-                        <input type='submit' disabled={sendingStatus === "blocked" || sendingStatus === "sending"} className={`auth_button auth_medium_heading ${sendingStatus === "blocked" || sendingStatus == "sending"? "disabled_button" : ""}`} value={buttonText}></input>
+            <form onSubmit={(e) => {
+                e.preventDefault();
+                setSendingStatus("sending")
+                forgotPassword();
+            }}>
+                <AuthInputField type="email" cldImg={restore_password_image} placeholder="Ел. пошта"
+                onChange={(e) => setEmail(e.target.value)} />
     
-                    </div>
-                    
-                    {error && <Error text={error} />}
-                </form>
+                <div id='send_email_button' className="horizontal_container" style={sendingStatus === "blocked" ? {filter: 'grayscale()'} : undefined}>
+                    {sendingStatus === "blocked" && 
+                        <div className="auth_input_image_wrapper vertical_container">
+                            <Countdown date={Date.now() + 1 * 60 * 1000} renderer={renderer}/>
+                        </div>
+                    }
+                    <input type='submit' disabled={sendingStatus === "blocked" || sendingStatus === "sending"} className={`auth_button auth_medium_heading ${sendingStatus === "blocked" || sendingStatus == "sending"? "disabled_button" : ""}`} value={buttonText}></input>
+
+                </div>
+                
+                {error && <Error text={error} />}
+            </form>
 
 
-                <span className='auth_medium_text'><Link to={"/login"}>Назад до входу</Link></span>
-            </div>
-        </div>
+            <span className='auth_medium_text'><Link to={"/login"}>Назад до входу</Link></span>
+        </AuthPage>
     );
 
     async function forgotPassword() {

@@ -6,6 +6,7 @@ import { AxiosResponse } from 'axios';
 import './style.css';
 import Error from "../../Shared/Error/Error";
 import AuthInputField from './AuthInputField';
+import AuthPage from './AuthPage';
 
 function LoginPage() {
     const { cld } = useAuth();
@@ -22,34 +23,30 @@ function LoginPage() {
     const from = location.state?.from?.pathname || '/';
 
     return (
-        <div id="authorize_page_container">
-            <div className="auth_form vertical_container">
-                <h1 className="large_heading auth_page_heading">Вхід</h1>
+        <AuthPage title="Вхід">
+            <form onSubmit={(e) => {
+                e.preventDefault();
+                signin();
+            }}>
+                <div className='auth_input_container vertical_container'>
+                    <AuthInputField type="text" cldImg={login_image}
+                    minLength={3} maxLength={20} placeholder="Логін"
+                    onChange={(e) => setLogin(e.target.value)} />
 
-                <form onSubmit={(e) => {
-                    e.preventDefault();
-                    signin();
-                }}>
-                    <div className='auth_input_container vertical_container'>
-                        <AuthInputField type="text" cldImg={login_image}
-                        minLength={3} maxLength={20} placeholder="Логін"
-                        onChange={(e) => setLogin(e.target.value)} />
+                    <AuthInputField type="password" cldImg={password_image}
+                    minLength={8} maxLength={20} placeholder="Пароль"
+                    onChange={(e) => setPassword(e.target.value)} />
+                </div>
 
-                        <AuthInputField type="password" cldImg={password_image}
-                        minLength={8} maxLength={20} placeholder="Пароль"
-                        onChange={(e) => setPassword(e.target.value)} />
-                    </div>
+                <span className='auth_medium_text'><Link to={"/forgot-password"}>Забули пароль?</Link></span>
 
-                    <span className='auth_medium_text'><Link to={"/forgot-password"}>Забули пароль?</Link></span>
+                <input className='auth_button auth_medium_heading' type='submit' value={"Увійти"}></input>
 
-                    <input className='auth_button auth_medium_heading' type='submit' value={"Увійти"}></input>
+                {error && <Error text={error} />}
+            </form>
 
-                    {error && <Error text={error} />}
-                </form>
-
-                <span className='auth_medium_text'>Немає аккаунта? <Link to={"/signup"} className='change_auth_link'>Створити</Link></span>
-            </div>
-        </div>
+            <span className='auth_medium_text'>Немає аккаунта? <Link to={"/signup"} className='change_auth_link'>Створити</Link></span>
+        </AuthPage>
     );
 
     async function signin(){
