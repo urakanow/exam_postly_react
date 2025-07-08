@@ -66,18 +66,10 @@ function PhotosBlock({ photos, setPhotos }: PhotosBlockProps) {
                 {Array.from({ length: 2 }).map((_, i) => (
                     <div className="photos_container_row">
                         {Array.from({ length: 4 }).map((_, j) => (
-                            // <Photo key={j} onFilesSelect={handlePhotoUpload}
-                            //     photoUrl={
-                            //         photos[i * 4 + j] ? 
-                            //         (photos[i * 4 + j]?.url ? 
-                            //             `https://res.cloudinary.com/dxvwnanu4/image/upload/${photos[i * 4 + j].url}?_a=DAJCyJB3ZAA0`
-                            //             : photos[i * 4 + j])
-                            //         : null
-                            //     }
-                            //     index={i * 4 + j}/>
-                            <PhotoElement key={j} onFilesSelect={handlePhotoUpload} photoUrl={getPhotoUrl(photos[i * 4 + j])} index={i * 4 + j} />
+                            <PhotoElement key={j} onFilesSelect={handlePhotoUpload}
+                            photoUrl={getPhotoUrl(photos[i * 4 + j])} index={i * 4 + j} />
                         ))}
-                    </div>//TODO: getphotourl runs with every rerender on every photo
+                    </div>//TODO: getphotourl runs with every rerender on every photo(rerender problem, fixable with react compiler)
                 ))}
             </div>
         </div>

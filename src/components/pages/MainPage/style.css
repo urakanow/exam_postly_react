@@ -205,3 +205,6 @@
   line-height: 150%;
 }
 
+main:has(.top_slogan){
+  padding: 0;
+}
