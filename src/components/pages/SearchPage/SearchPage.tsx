@@ -6,12 +6,11 @@ import { Filters } from "../../../models/Filters";
 import { OfferPreview } from "../../../models/OfferPreview";
 import { DropdownMenu } from "../../Shared/DropdownMenu/DropdownMenu";
 import OfferElement from "../../Shared/OfferElement/OfferElement";
-// import CategoryDropdown from "../Create_Offer_Page/CategoryDropdown";
-// import StateDropdown from "../Create_Offer_Page/StateDropdown";
 import OffersDisplayPage from "../../Shared/OffersDisplayPage/OffersDisplayPage";
 
 function SearchPage() {
     const { baseUrl, categories } = useAuth();
+    const states = ["Нове", "Вживане", "З дефектом"];
     const [ searchParams, setSearchParams ] = useSearchParams();
     const filters: Filters = {
         title: searchParams.get('title') || '',
@@ -22,17 +21,6 @@ function SearchPage() {
     };
     const [offers, setOffers] = useState<OfferPreview[]>([]);
 
-    // const handleFilterChange = (newFilters) => {
-    //     const params = new URLSearchParams(searchParams);
-        
-    //     // Update only changed filters
-    //     Object.entries(newFilters).forEach(([key, value]) => {
-    //     if (value) params.set(key, value);
-    //     else params.delete(key); // Remove empty filters
-    //     });
-
-    //     setSearchParams(params);
-    // };
     const handleFilterChange = (key: string, value: number) => {
         const params = new URLSearchParams(searchParams);
         
@@ -49,6 +37,7 @@ function SearchPage() {
 
     const handleStateChange = (index: number) => {
         console.log("state: ", index);
+        handleFilterChange("state", index);
     }
 
     const handleMinPriceChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -70,7 +59,7 @@ function SearchPage() {
             title: searchParams.get('title') || undefined,
             // categoryIndex: Number(searchParams.get('categoryId')) || undefined,
             categoryIndex: searchParams.has('categoryId') ? Number(searchParams.get('categoryId')) : undefined,
-            state: Number(searchParams.get('state')) || undefined,
+            state: searchParams.has('state') ? Number(searchParams.get('state')) : undefined,
             minPrice: Number(searchParams.get('minPrice')) || undefined,
             maxPrice: Number(searchParams.get('maxPrice')) || undefined,
         };
@@ -79,9 +68,6 @@ function SearchPage() {
 
     return (
         <OffersDisplayPage title="Фільтри">
-            <h1 className="large_heading">Фільтри</h1>
-
-            {/* <CategoryDropdown selectedIndex={filters.categoryId ? filters.categoryId : undefined} onChange={(index) => handleFilterChange("categoryId", index)} /> */}
             <DropdownMenu
             items={categories}
             onSelect={(index) => handleCategoryChange(index)}
@@ -90,6 +76,12 @@ function SearchPage() {
             />
 
             {/* <StateDropdown selectedIndex={filters.state ? filters.state : undefined} onChange={(index) => handleFilterChange("state", index)}/> */}
+            <DropdownMenu
+            items={states}
+            onSelect={(index) => handleStateChange(index)}
+            initialText="Виберіть стан"
+            selectedIndex={filters?.state ? filters?.state : undefined}
+            />
 
             <input type="number" min={0} defaultValue={filters.minPrice ? filters.minPrice : undefined} placeholder="від" onChange={handleMinPriceChange}/>
 

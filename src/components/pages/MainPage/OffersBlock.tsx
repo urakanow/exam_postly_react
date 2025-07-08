@@ -43,7 +43,6 @@ function OffersBlock({ categoryIndex }: OffersBlockProps) {
             </Grid>
 
             <button className="see_more" onClick={() => navigate(`/category/${categoryIndex}`)}>Див. більше</button>
-            {/* <RegularButton onClick={() => navigate(`/category/${categoryIndex}`)} text='Див. більше' /> */}
         </div>
     );
 
