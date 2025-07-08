@@ -9,11 +9,12 @@ import IOfferElement from "../../Shared/IOfferElement/IOfferElement";
 import RegularButton from '../../Shared/RegularButton/RegularButton';
 
 interface MyOfferElementProps {
+    id: number,
     offerData: OfferPreview,
-    onDelete: () => void
+    onDelete: (id: number) => void
 }
 
-function MyOfferElement({ offerData, onDelete }: MyOfferElementProps) {
+function MyOfferElement({ id, offerData, onDelete }: MyOfferElementProps) {
     const { baseUrl } = useAuth();
     const { authorizedRequest } = useApi();
     
@@ -42,7 +43,7 @@ function MyOfferElement({ offerData, onDelete }: MyOfferElementProps) {
             })
 
             if (response.status === 200) {
-                onDelete();
+                onDelete(id);
             }
 
         } catch(err){

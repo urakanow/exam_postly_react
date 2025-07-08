@@ -122,3 +122,7 @@
   padding-right: 20px;
   box-sizing: border-box;
 }
+
+main:has(#authorize_page_container){
+  padding: 0;
+}
