@@ -5,6 +5,7 @@ import './style.css';
 import Error from "../../Shared/Error/Error";
 import AuthInputField from './AuthInputField';
 import AuthPage from './AuthPage';
+import GoogleLoginComponent from './GoogleLoginComponent';
 
 function SignUpPage() {
     const { cld } = useAuth();
@@ -24,7 +25,6 @@ function SignUpPage() {
     const navigate = useNavigate();
 
     const [isRegistered, setIsRegistered] = useState(false);
-
 
     return (
         <AuthPage title='Реєстрація'>
@@ -58,6 +58,8 @@ function SignUpPage() {
                     </form>
 
                     <span className='auth_medium_text'>Вже є аккаунт? <Link to={"/login"} className='change_auth_link'>Увійти</Link></span>
+
+                    <GoogleLoginComponent />
                 </>
             ) : (
                 <>

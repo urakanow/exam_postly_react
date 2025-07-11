@@ -7,6 +7,7 @@ import './style.css';
 import Error from "../../Shared/Error/Error";
 import AuthInputField from './AuthInputField';
 import AuthPage from './AuthPage';
+import GoogleLoginComponent from './GoogleLoginComponent';
 
 function LoginPage() {
     const { cld } = useAuth();
@@ -46,6 +47,8 @@ function LoginPage() {
             </form>
 
             <span className='auth_medium_text'>Немає аккаунта? <Link to={"/signup"} className='change_auth_link'>Створити</Link></span>
+
+            <GoogleLoginComponent />
         </AuthPage>
     );
 

@@ -1,6 +1,9 @@
 import { createContext, useState, useEffect, ReactNode, useContext } from 'react';
 import axios from 'axios';
 import { Cloudinary } from '@cloudinary/url-gen';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+
+const clientId = "131530890468-fh6f28mtkb04gs02hva387frkbvieqs1.apps.googleusercontent.com";
 
 interface AuthContextType {
     accessToken: string | null;
@@ -41,18 +44,18 @@ function AuthProvider({ children } : {children: ReactNode}) {
         }
     }, [accessToken]);
 
-    
-
     return (
         <AuthContext.Provider value={{
-            accessToken,
-            setAccessToken,
-            authErrorMessage,
-            setAuthErrorMessage,
-            baseUrl,
-            categories,
-            cld }}>
-            {children}
+        accessToken,
+        setAccessToken,
+        authErrorMessage,
+        setAuthErrorMessage,
+        baseUrl,
+        categories,
+        cld }}>
+            <GoogleOAuthProvider clientId={clientId}>
+                {children}
+            </GoogleOAuthProvider>
         </AuthContext.Provider>
     );
 }
