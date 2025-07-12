@@ -94,8 +94,6 @@ function PersonalPage() {
     }
 
     async function logout(){
-        setAccessToken(null)
-        sessionStorage.removeItem('accessToken');
         try{
             const response = await authorizedRequest({
                 url: `${baseUrl}/user/logout`,
